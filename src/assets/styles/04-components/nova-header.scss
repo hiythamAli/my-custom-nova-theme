@@ -1,0 +1,58 @@
+/**
+ * NOVA HEADER
+ * ------------------------------------------------------------------
+ * Restyles Raed's existing two-row header (.top-navbar + .main-nav-
+ * container) into one visually seamless dark bar, matching Nova's
+ * identity. No markup/JS changes — same salla-menu, salla-search,
+ * salla-user-menu, salla-cart-summary, custom-main-menu components,
+ * same #mainnav id used by the sticky-header script.
+ *
+ * Specificity note: these rules use single-class selectors
+ * (.main-nav-container, .top-navbar). Salla's own header-customization
+ * feature (merchant-set colors from the Partners Portal) applies via
+ * ".has-bg .main-nav-container" / CSS vars, which is more specific and
+ * will still correctly win over these Nova defaults if a merchant sets
+ * a custom color there.
+ * ------------------------------------------------------------------
+ */
+
+.top-navbar {
+  background: var(--nova-ink-soft);
+  color: var(--nova-text-on-ink-muted);
+  border-bottom: 1px solid var(--nova-ink-border);
+
+  .topnav-link-item { border-color: var(--nova-ink-border); }
+  .btn--circle-gray,
+  .btn--rounded-gray { background: rgba(255,255,255,.06); color: var(--nova-text-on-ink); }
+  .s-search-input { background: rgba(255,255,255,.06); color: var(--nova-text-on-ink); }
+}
+
+.main-nav-container {
+  background: var(--nova-ink);
+  border-bottom: 1px solid var(--nova-ink-border);
+  box-shadow: none;
+
+  .main-menu > .root-level > a {
+    color: var(--nova-text-on-ink);
+    font-size: .9rem;
+    letter-spacing: var(--nova-tracking-wide);
+    transition: opacity var(--nova-duration) var(--nova-ease);
+    &:hover { opacity: .7; }
+  }
+
+  a[data-testid="store-header-mobile-toggle"] i,
+  a[data-testid="store-header-mobile-toggle"] .sicon-menu {
+    color: var(--nova-text-on-ink) !important;
+  }
+
+  .header-btn__icon {
+    background: transparent;
+    border-color: var(--nova-ink-border);
+    color: var(--nova-text-on-ink);
+  }
+
+  .s-cart-summary-total { color: var(--nova-text-on-ink); }
+}
+
+/* logo area keeps merchant's own image untouched — only vertical rhythm */
+.navbar-brand img { max-height: 34px; }

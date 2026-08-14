@@ -1,0 +1,53 @@
+/**
+ * NOVA CATEGORIES (square-photos.twig)
+ * ------------------------------------------------------------------
+ * Scoped strictly to [data-testid="store-home-square-photos"] so it
+ * never affects home/enhanced-square-banners.twig, which intentionally
+ * keeps its own dark-overlay marketing-banner look (different content
+ * type). The lazy-load mechanism (.lazy / .lazy__bg / [data-bg],
+ * owned by Salla's runtime) is untouched — only its CSS positioning
+ * changes, from an absolute full-cover overlay to a normal, sized
+ * image box.
+ * ------------------------------------------------------------------
+ */
+
+[data-testid="store-home-square-photos"] {
+  .nova-category-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--nova-text);
+  }
+
+  .nova-category-tile__photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--nova-radius-lg);
+    overflow: hidden;
+    background: var(--nova-card);
+    border: 1px solid var(--nova-border);
+    transition: border-color var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+
+    .lazy__bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 500ms var(--nova-ease), opacity 500ms;
+    }
+  }
+
+  .nova-category-tile:hover .nova-category-tile__photo {
+    border-color: var(--nova-border-strong);
+    .lazy__bg { transform: scale(1.05); }
+  }
+
+  .nova-category-tile__label {
+    margin-top: .75rem;
+    font-size: .8125rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--nova-text);
+    span { @apply line-clamp-1; }
+  }
+}

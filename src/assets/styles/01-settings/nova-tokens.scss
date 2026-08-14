@@ -1,0 +1,62 @@
+/**
+ * NOVA DESIGN TOKENS
+ * ------------------------------------------------------------------
+ * This file is additive only. It never redefines --color-primary,
+ * --color-primary-dark/light/reverse or --font-main — those stay
+ * fully controlled by Salla (merchant settings in twilight.json /
+ * store dashboard) and are injected inline in layouts/master.twig.
+ *
+ * Nova's identity lives in a second, independent layer of tokens:
+ * neutral surfaces, text hierarchy, borders and status colors.
+ * Everything here can be safely themed without touching Salla's
+ * data flow.
+ * ------------------------------------------------------------------
+ */
+
+:root {
+  /* ---- Neutrals / surfaces (light, default) ---- */
+  --nova-bg: #FAFAF8;              /* page background */
+  --nova-surface: #FFFFFF;         /* raised panels, header on light pages */
+  --nova-card: #F6F5F2;            /* product cards, filter boxes */
+  --nova-border: #E7E4DD;          /* hairline borders */
+  --nova-border-strong: #D8D4CB;
+
+  /* ---- Ink / dark surfaces (header, footer, hero) ---- */
+  --nova-ink: #101113;             /* near-black, matches tailwind 'darker' */
+  --nova-ink-soft: #17181B;
+  --nova-ink-border: #2A2C30;
+
+  /* ---- Text ---- */
+  --nova-text: #16171A;
+  --nova-text-muted: #6E7178;
+  --nova-text-on-ink: #F5F4F1;
+  --nova-text-on-ink-muted: #A7A9AE;
+
+  /* ---- Accent (independent from merchant primary, used sparingly) ---- */
+  --nova-accent: #C7A15A;
+  --nova-accent-soft: #E9DCC0;
+
+  /* ---- Status ---- */
+  --nova-success: #1F8A57;
+  --nova-warning: #B7791F;
+  --nova-error: #C23A2E;
+
+  /* ---- Radius scale (Nova is squarer / more architectural than Raed default) ---- */
+  --nova-radius-sm: .375rem;
+  --nova-radius-md: .625rem;
+  --nova-radius-lg: 1rem;
+  --nova-radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --nova-shadow-sm: 0 1px 2px rgba(16,17,19,.06);
+  --nova-shadow-md: 0 8px 24px rgba(16,17,19,.08);
+  --nova-shadow-lg: 0 16px 48px rgba(16,17,19,.12);
+
+  /* ---- Motion ---- */
+  --nova-ease: cubic-bezier(.4,0,.2,1);
+  --nova-duration: 240ms;
+
+  /* ---- Type scale (works with any --font-main Salla injects) ---- */
+  --nova-tracking-tight: -0.02em;
+  --nova-tracking-wide: 0.04em;
+}

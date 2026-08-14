@@ -1,0 +1,15 @@
+{#
+| Variable        | Type       | Description                    |
+|-----------------|------------|--------------------------------|
+| products        | Products[] |                                |
+| position        | Int        | Sorting number start from zero |
+#}
+<section data-testid="store-home-products-section" class="s-block s-block--latest-products container mt-6 sm:mt-8">
+    <div class="s-block__title">
+      <h2>{{ trans('blocks.home.latest_products') }}</h2>
+    </div>
+    
+    <salla-products-list data-testid="store-home-latest-products-list" source="latest"
+      product-card-component="custom-salla-product-card"
+      {{ theme.settings.get('product_card_style') == 'horizontal' ? 'row-cards' : '' }}></salla-products-list>
+</section> 

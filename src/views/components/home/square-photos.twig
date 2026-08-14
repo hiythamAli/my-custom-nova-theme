@@ -1,0 +1,36 @@
+{#
+| Variable          | Type   | Description                                                      |
+|-------------------|--------|------------------------------------------------------------------|
+| title             | string | Section title                                                    |
+| items[]           | array  | List of images                                                   |
+| items[].url       | Bool   | Should set overlay on the background or not                      |
+| items[].link_type | string | category,product,offers,page,external_link,brand                 |
+| items[].image.url | string |                                                                  |
+| items[].image.alt | string |                                                                  |
+| items[].text      | string | Visible title for the photo                                      |
+| position          | Int    | Sorting number start from zero                                   |
+#}
+<section data-testid="store-home-square-photos" class="s-block s-block--banners container">
+    {% if title %}
+        <div class="s-block__title">
+            <div class="right-side">
+                <h2>{{ title }}</h2>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="nova-categories-grid grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6">
+        {% for item in items %}
+            <a class="nova-category-tile" href="{{ item.url }}" {% if item.link_type == 'external_link' %}target="_blank"{% endif %}>
+                <div class="nova-category-tile__photo">
+                    <div class="lazy__bg lazy bg-no-repeat" data-bg="{{ item.image.url }}"
+                    style="background-size: {{ theme.settings.get('squar_photo_bg_image_size', 'contain') }};"
+                    ></div>
+                </div>
+                {% if item.text %}
+                    <h3 class="nova-category-tile__label"><span>{{ item.text }}</span></h3>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+</section>

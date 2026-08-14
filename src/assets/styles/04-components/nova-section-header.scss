@@ -1,0 +1,39 @@
+/**
+ * NOVA SECTION HEADERS — shared across home blocks that render
+ * .s-block__title (categories, featured products, tabs...). Pure
+ * typography, no markup change.
+ */
+.s-block__title {
+  @apply flex items-center justify-between mb-6;
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--nova-text);
+    letter-spacing: var(--nova-tracking-tight);
+  }
+
+  .s-block__display-all {
+    font-size: .8125rem;
+    color: var(--nova-text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    transition: opacity var(--nova-duration) var(--nova-ease);
+    &:hover { opacity: .7; }
+  }
+}
+
+/* tabs used in featured-products-style1/2 (Best Sellers / New / Top Rated) */
+.tabs__header,
+.s-block--tabs-produtcs .tabs {
+  li, a, button {
+    font-size: .8125rem;
+    color: var(--nova-text-muted);
+  }
+  .is-active,
+  .active {
+    color: var(--nova-text) !important;
+    font-weight: 600;
+  }
+}

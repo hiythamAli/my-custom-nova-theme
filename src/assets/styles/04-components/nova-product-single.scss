@@ -1,0 +1,85 @@
+/**
+ * NOVA — PRODUCT SINGLE PAGE
+ * ------------------------------------------------------------------
+ * Restyles pages/product/single.twig. Everything here is presentation
+ * only: gallery thumbnails, typography, spacing, and the little
+ * white "info boxes" (sold/remaining qty, SKU, availability,
+ * size guide, price/quantity/add-to-cart) unified into one visual
+ * language (nova-card).
+ *
+ * NOT touched — confirmed unsafe/unknown territory:
+ *  - <salla-slider>, <salla-product-options>, <salla-add-product-button>,
+ *    <salla-quantity-input>, data-fslightbox attributes, all onclick /
+ *    salla.event / salla.form handlers, every data-testid and #id.
+ *  - <salla-product-options> in particular renders its own internal
+ *    markup for color/size swatches that isn't in this repo (compiled
+ *    Twilight component) — its swatch styling could only be safely
+ *    adjusted with a live preview against the real rendered DOM.
+ * ------------------------------------------------------------------
+ */
+
+.container--product-details {
+  h1[data-testid="store-product-title"] {
+    color: var(--nova-text);
+    font-weight: 700;
+    letter-spacing: var(--nova-tracking-tight);
+  }
+  .product-entry__sub-title { color: var(--nova-text-muted); }
+
+  /* Price */
+  [data-testid="store-product-price"],
+  .price-wrapper {
+    .text-red-800 { color: #B5433A; }
+    .text-gray-500.line-through { color: var(--nova-text-muted); }
+  }
+
+  /* Gallery thumbnails */
+  [data-testid="store-product-thumbnails"] {
+    .slide--one-fourth {
+      border-radius: var(--nova-radius-sm);
+      overflow: hidden;
+      border: 1.5px solid transparent;
+      transition: border-color var(--nova-duration) var(--nova-ease);
+      img { border-radius: 0 !important; }
+    }
+    .swiper-slide-thumb-active .slide--one-fourth,
+    .swiper-slide-thumb-active {
+      border-color: var(--nova-ink);
+    }
+  }
+  .details-slider { border-radius: var(--nova-radius-lg) !important; background: var(--nova-card); }
+
+  /* Wishlist / share circular buttons */
+  .btn--wishlist,
+  salla-social-share {
+    border-radius: var(--nova-radius-pill) !important;
+    border-color: var(--nova-border) !important;
+  }
+
+  /* Unify the stacked "bg-white p-5 rounded-md" info boxes */
+  .product__description,
+  section.bg-white,
+  div.bg-white.py-2\.5,
+  div.bg-white.rounded-md {
+    background: var(--nova-card) !important;
+    border: 1px solid var(--nova-border);
+    border-radius: var(--nova-radius-md) !important;
+  }
+  section.bg-white + section.bg-white,
+  .product-form section + section {
+    margin-top: .75rem;
+    border-top: 1px solid var(--nova-border) !important;
+  }
+
+  .form-label { color: var(--nova-text); font-weight: 600; font-size: .875rem; }
+
+  /* Add to cart / quantity block */
+  .sticky-product-bar {
+    salla-add-product-button {
+      --btn-radius: var(--nova-radius-sm);
+    }
+  }
+}
+
+/* Related products slider heading, reuses nova-section-header rules automatically via .s-block__title if present */
+[data-testid="store-product-related"] { margin-top: 1rem; }

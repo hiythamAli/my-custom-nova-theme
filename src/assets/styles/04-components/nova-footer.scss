@@ -1,0 +1,12 @@
+/**
+ * NOVA FOOTER — typography/spacing polish only.
+ * Raed's footer.scss is already dark by default (bg-darker/text-white),
+ * matching footer_is_dark=true (Nova's new default). This file just
+ * refines type + muted text, same markup/classes.
+ */
+.store-footer {
+  h3 { @apply text-sm font-semibold tracking-wide; color: var(--nova-text-on-ink); }
+  p, .max-w-sm { color: var(--nova-text-on-ink-muted) !important; font-size: .875rem; }
+  .social-link { border-color: var(--nova-ink-border); color: var(--nova-text-on-ink); }
+  .copyright-text { color: var(--nova-text-on-ink-muted); }
+}
