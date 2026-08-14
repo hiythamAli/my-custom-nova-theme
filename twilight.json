@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "رائد",
-        "en": "Theme Raed"
+        "ar": "نوفا",
+        "en": "Theme nova"
     },
-    "repository": "https://github.com/SallaApp/theme-raed",
-    "author_email": "support@salla.sa",
+    "repository": "https://github.com/hiythamAli/my-custom-nova-theme.git",
+    "author_email": "hiythamali69@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
