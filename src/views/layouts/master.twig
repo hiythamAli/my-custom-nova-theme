@@ -79,7 +79,7 @@
     {% hook 'head:start' %}
     {% hook head %}
     {% block styles %}{% endblock %}
-    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}?nova=1">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
     
@@ -111,7 +111,7 @@
     <a href="https://www.enable-javascript.com/" rel="noreferrer"
        target="_blank">To enable JavaScript on webpage</a>.
 </noscript>
-<div style="background:red;color:white;padding:40px;font-size:30px;text-align:center;">NOVA TEST 123</div>
+
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
     {% component 'header.header' %}
