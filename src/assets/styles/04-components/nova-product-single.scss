@@ -73,11 +73,24 @@
 
   .form-label { color: var(--nova-text); font-weight: 600; font-size: .875rem; }
 
-  /* Add to cart / quantity block */
-  .sticky-product-bar {
-    salla-add-product-button {
-      --btn-radius: var(--nova-radius-sm);
-    }
+  /* Add to cart / Buy now — best-effort styling of the Salla-owned
+     <salla-add-product-button> component. Internal markup isn't in
+     this repo (compiled Twilight component), so we style at the host
+     level (clips/tints its own internal button regardless of markup)
+     plus a few CSS custom properties Salla's design system commonly
+     respects. If it renders its own shadow DOM in your build, this
+     styling may need to be verified live and adjusted. */
+  salla-add-product-button {
+    display: block;
+    border-radius: var(--nova-radius-sm);
+    overflow: hidden;
+    --btn-radius: 8px;
+    --btn-bg: var(--nova-ink);
+    --btn-color: #fff;
+    font-family: var(--font-main);
+    letter-spacing: var(--nova-tracking-wide);
+    text-transform: uppercase;
+    font-size: .8125rem;
   }
 }
 

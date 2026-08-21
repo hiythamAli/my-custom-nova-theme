@@ -29,14 +29,18 @@ body:has(.nova-home-marker) {
     position: absolute;
     top: 0; left: 0; right: 0;
     z-index: 30;
-    background: linear-gradient(180deg, rgba(16,17,19,.55) 0%, rgba(16,17,19,0) 100%);
-    border-bottom-color: transparent;
+    background: rgba(16,17,19,.35);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border-bottom-color: rgba(255,255,255,.08);
     transition: background var(--nova-duration) var(--nova-ease), position var(--nova-duration);
 
-    /* once Raed's own scroll script adds "fixed-header", go solid */
+    /* once Raed's own scroll script adds "fixed-header", go dark glass */
     &.fixed-header {
       position: fixed;
-      background: var(--nova-ink);
+      background: rgba(16,17,19,.75);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
       border-bottom-color: var(--nova-ink-border);
     }
   }

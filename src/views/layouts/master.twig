@@ -133,5 +133,36 @@
     <salla-scopes data-testid="store-scopes" selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
 {% block scripts %}{% endblock %}
+<script>
+  // NOVA — product card 3D tilt (mouse-follow), pure presentation only.
+  // Event delegation, no interference with Salla's own click/add-to-cart
+  // handlers: only reads mouse position, writes CSS custom properties.
+  (function () {
+    function onMove(e) {
+      var card = e.target.closest && e.target.closest('custom-salla-product-card');
+      if (!card) return;
+      var img = card.querySelector('.s-product-card-image');
+      if (!img) return;
+      var r = img.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;   // 0 → 1
+      var py = (e.clientY - r.top) / r.height;   // 0 → 1
+      var maxDeg = 8;
+      var rx = (px - 0.5) * maxDeg * 2;   // rotateY
+      var ry = (0.5 - py) * maxDeg * 2;   // rotateX
+      img.style.setProperty('--nova-tilt-x', rx.toFixed(2) + 'deg');
+      img.style.setProperty('--nova-tilt-y', ry.toFixed(2) + 'deg');
+    }
+    function onLeave(e) {
+      var card = e.target.closest && e.target.closest('custom-salla-product-card');
+      if (!card) return;
+      var img = card.querySelector('.s-product-card-image');
+      if (!img) return;
+      img.style.setProperty('--nova-tilt-x', '0deg');
+      img.style.setProperty('--nova-tilt-y', '0deg');
+    }
+    document.addEventListener('mousemove', onMove, { passive: true });
+    document.addEventListener('mouseout', onLeave, { passive: true });
+  })();
+</script>
 </body>
 </html>

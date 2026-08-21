@@ -26,18 +26,20 @@
 [data-nova-card-bg="gray"]        { --nova-card-active: #F1F1EF; --nova-card-border-active: var(--nova-border); --nova-card-shadow-active: var(--nova-shadow-sm); }
 
 /* ---- resolve active section bg from merchant choice ---- */
-/* Default (white) applies unconditionally — matches Nova's design
-   even before the "nova_section_bg" setting is recognized by the
-   store. The data-attribute rules only override it for beige/gray. */
-.s-block { background-color: #FFFFFF; }
+/* Default = transparent (blends with page bg, no boxy container look).
+   The data-attribute rules only kick in if the merchant actively picks
+   a section background from theme settings. */
 [data-nova-section-bg="white"] .s-block { background-color: #FFFFFF !important; }
 [data-nova-section-bg="beige"] .s-block { background-color: var(--nova-bg) !important; }
 [data-nova-section-bg="gray"]  .s-block { background-color: #F5F5F3 !important; }
 
 /* ---- shared card typography (all variants) ---- */
 custom-salla-product-card {
+  /* uniform tilt/shine interaction wrapper */
+  perspective: 1000px;
+
   .s-product-card-content-title a {
-    @apply text-[15px] font-medium;
+    @apply text-[15px] font-medium line-clamp-1;
     color: var(--nova-text);
     letter-spacing: var(--nova-tracking-tight);
   }
@@ -63,21 +65,45 @@ custom-salla-product-card.s-product-card-vertical,
   box-shadow: var(--nova-card-shadow-active);
   border-radius: var(--nova-radius-md);
   overflow: hidden;
+  max-width: 220px;
+  margin: 0 auto;
   transition: transform var(--nova-duration) var(--nova-ease),
               box-shadow var(--nova-duration) var(--nova-ease),
               border-color var(--nova-duration) var(--nova-ease);
 
-  &:hover { transform: translateY(-3px); }
+  &:hover { box-shadow: var(--nova-shadow-md); }
 
   .s-product-card-image {
     @apply relative;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     border-radius: var(--nova-radius-md);
     overflow: hidden;
-    background: #fff;
+    background: transparent;
+    transform: perspective(700px) rotateX(var(--nova-tilt-y, 0deg)) rotateY(var(--nova-tilt-x, 0deg)) translateZ(0);
+    will-change: transform;
+    transition: transform 120ms linear;
   }
-  .s-product-card-image img { @apply w-full h-full; transition: transform 600ms var(--nova-ease); }
-  &:hover .s-product-card-image img { transform: scale(1.04); }
+  .s-product-card-image img {
+    @apply w-full h-full;
+    transition: transform 500ms var(--nova-ease);
+    pointer-events: none;
+  }
+  &:hover .s-product-card-image img { transform: scale(1.06); }
+
+  /* ---- shine sweep on hover ---- */
+  .s-product-card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+  &:hover .s-product-card-image::after {
+    transform: translateX(120%);
+    transition: transform 850ms ease;
+  }
+
   .s-product-card-content { @apply px-1 pt-3 pb-1; }
   .s-product-card-wishlist-btn button { background: var(--nova-surface) !important; box-shadow: var(--nova-shadow-sm); }
 }
