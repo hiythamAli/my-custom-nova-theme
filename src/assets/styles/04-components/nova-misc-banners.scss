@@ -1,8 +1,48 @@
 /**
- * NOVA — misc home banners/sliders quick polish
+ * NOVA — full-bleed banner + transparent header-over-hero
+ * ------------------------------------------------------------------
+ * Transparent header only activates on the home page (scoped via
+ * body:has(.nova-home-marker), a harmless wrapper div added in
+ * pages/index.twig — no Salla logic touched). Uses Raed's EXISTING
+ * scroll listener (app.js initiateStickyMenu, untouched) which
+ * already toggles "fixed-header" on #mainnav — we only style that
+ * state differently.
+ * ------------------------------------------------------------------
  */
-[data-testid="store-home-fixed-banner"] .banner--fixed,
+
+/* full-bleed banner image, edge to edge */
+.nova-full-bleed {
+  &__inner { width: 100%; }
+  .banner--fixed { border-radius: 0; width: 100%; }
+  .banner--fixed img { width: 100%; height: auto; max-width: none !important; object-fit: cover !important; }
+}
 [data-testid="store-home-photos-slider"] .swiper-slide img {
   border-radius: var(--nova-radius-lg);
   overflow: hidden;
+}
+
+/* transparent header floating over the hero — home page only */
+body:has(.nova-home-marker) {
+  .top-navbar { display: none; }
+
+  #mainnav.main-nav-container {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    background: linear-gradient(180deg, rgba(16,17,19,.55) 0%, rgba(16,17,19,0) 100%);
+    border-bottom-color: transparent;
+    transition: background var(--nova-duration) var(--nova-ease), position var(--nova-duration);
+
+    /* once Raed's own scroll script adds "fixed-header", go solid */
+    &.fixed-header {
+      position: fixed;
+      background: var(--nova-ink);
+      border-bottom-color: var(--nova-ink-border);
+    }
+  }
+
+  /* pull the first hero/banner section up behind the transparent header */
+  .nova-home-marker .s-block:first-of-type {
+    margin-top: 0 !important;
+  }
 }

@@ -8,8 +8,8 @@
 | position        | Int     | Sorting number start from zero                                   |
 
 #}
-<section data-testid="store-home-fixed-banner" class="s-block s-block--fixed-banner wide-placeholder">
-    <div class="container">
+<section data-testid="store-home-fixed-banner" class="s-block s-block--fixed-banner wide-placeholder nova-full-bleed">
+    <div class="nova-full-bleed__inner">
         {% set alt_text = image.alt|trim ? image.alt : 'fixed banner' %}
         <a href="{{ url }}" class="banner banner--fixed overflow-hidden" aria-label="Banner {{ alt_text }}">
             <picture>

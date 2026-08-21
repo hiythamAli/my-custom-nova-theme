@@ -14,13 +14,22 @@
  * ------------------------------------------------------------------
  */
 
-/* ---- resolve active card bg/border/shadow from merchant choice ---- */
+/* ---- resolve active card bg/border/shadow ----
+   :root default = Nova's card style (transparent), applies with ZERO
+   dependency on the theme setting being recognized by the store yet.
+   The data-attribute rules below only OVERRIDE this when the merchant
+   actively picks something else from theme settings. */
+:root { --nova-card-active: transparent; --nova-card-border-active: transparent; --nova-card-shadow-active: none; }
 [data-nova-card-bg="transparent"] { --nova-card-active: transparent; --nova-card-border-active: transparent; --nova-card-shadow-active: none; }
 [data-nova-card-bg="white"]       { --nova-card-active: #FFFFFF; --nova-card-border-active: var(--nova-border); --nova-card-shadow-active: var(--nova-shadow-sm); }
 [data-nova-card-bg="beige"]       { --nova-card-active: var(--nova-card); --nova-card-border-active: var(--nova-border); --nova-card-shadow-active: var(--nova-shadow-sm); }
 [data-nova-card-bg="gray"]        { --nova-card-active: #F1F1EF; --nova-card-border-active: var(--nova-border); --nova-card-shadow-active: var(--nova-shadow-sm); }
 
 /* ---- resolve active section bg from merchant choice ---- */
+/* Default (white) applies unconditionally — matches Nova's design
+   even before the "nova_section_bg" setting is recognized by the
+   store. The data-attribute rules only override it for beige/gray. */
+.s-block { background-color: #FFFFFF; }
 [data-nova-section-bg="white"] .s-block { background-color: #FFFFFF !important; }
 [data-nova-section-bg="beige"] .s-block { background-color: var(--nova-bg) !important; }
 [data-nova-section-bg="gray"]  .s-block { background-color: #F5F5F3 !important; }
@@ -45,6 +54,9 @@ custom-salla-product-card {
    product image floating on the section background, title/price/
    rating underneath. Background/border only appear if the merchant
    picks something other than "transparent" in nova_card_bg. */
+/* Modern is Nova's unconditional default (works even if the store
+   hasn't picked up the "product_card_style" setting yet). */
+custom-salla-product-card.s-product-card-vertical,
 [data-nova-pc="modern"] custom-salla-product-card.s-product-card-vertical {
   background: var(--nova-card-active);
   border: 1px solid var(--nova-card-border-active);
