@@ -1,11 +1,11 @@
 {
-  "name": "theme-nova",
+  "name": "theme-raed",
   "version": "1.358.0",
   "description": "Salla Theme",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hiythamAli/my-custom-nova-theme.git"
+    "url": "git+https://github.com/SallaApp/theme-raed.git"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",

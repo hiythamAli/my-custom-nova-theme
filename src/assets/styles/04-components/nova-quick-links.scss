@@ -1,0 +1,33 @@
+/**
+ * NOVA QUICK LINKS (home/main-links.twig)
+ * This is the actual component in use for the category icons row
+ * (confirmed via live preview — not square-photos.twig).
+ */
+[data-testid="store-home-main-links"] {
+  .slide--cat-entry {
+    background: transparent;
+    border: 0;
+    box-shadow: none !important;
+    border-radius: 0;
+    height: auto;
+    padding: 0;
+
+    i {
+      color: var(--nova-text);
+      background: var(--nova-card);
+      border: 1px solid var(--nova-border);
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 0 .75rem;
+      transition: border-color var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+    }
+    &:hover i { border-color: var(--nova-border-strong); transform: translateY(-2px); }
+
+    h2 { font-size: .8125rem; font-weight: 500; color: var(--nova-text); }
+  }
+}

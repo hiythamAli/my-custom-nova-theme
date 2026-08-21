@@ -1,0 +1,8 @@
+/**
+ * NOVA — misc home banners/sliders quick polish
+ */
+[data-testid="store-home-fixed-banner"] .banner--fixed,
+[data-testid="store-home-photos-slider"] .swiper-slide img {
+  border-radius: var(--nova-radius-lg);
+  overflow: hidden;
+}
