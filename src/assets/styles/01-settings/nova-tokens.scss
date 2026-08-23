@@ -15,11 +15,11 @@
 
 :root {
   /* ---- Neutrals / surfaces (light, default) ---- */
-  --nova-bg: #FAFAF8;              /* page background */
+  --nova-bg: #FFFFFF;              /* page background */
   --nova-surface: #FFFFFF;         /* raised panels, header on light pages */
-  --nova-card: #F6F5F2;            /* product cards, filter boxes */
-  --nova-border: #E7E4DD;          /* hairline borders */
-  --nova-border-strong: #D8D4CB;
+  --nova-card: #FFFFFF;            /* product cards, filter boxes */
+  --nova-border: #EDEBE6;          /* hairline borders */
+  --nova-border-strong: #E0DCD3;
 
   /* ---- Ink / dark surfaces (header, footer, hero) ---- */
   --nova-ink: #101113;             /* near-black, matches tailwind 'darker' */

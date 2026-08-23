@@ -164,5 +164,25 @@
     document.addEventListener('mouseout', onLeave, { passive: true });
   })();
 </script>
+<script>
+  // NOVA — typewriter reveal for the first hero slide's title, once on load.
+  (function () {
+    function run() {
+      var h2 = document.querySelector('.nova-hero-slide__copy h2');
+      if (!h2 || h2.dataset.novaTyped) return;
+      h2.dataset.novaTyped = '1';
+      var text = h2.textContent;
+      h2.textContent = '';
+      h2.style.opacity = '1';
+      var i = 0;
+      (function step() {
+        h2.textContent = text.slice(0, i);
+        i++;
+        if (i <= text.length) requestAnimationFrame(function () { setTimeout(step, 35); });
+      })();
+    }
+    window.addEventListener('load', function () { setTimeout(run, 300); });
+  })();
+</script>
 </body>
 </html>

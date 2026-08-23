@@ -25,23 +25,25 @@
 body:has(.nova-home-marker) {
   .top-navbar { display: none; }
 
-  #mainnav.main-nav-container {
-    position: absolute;
+  #mainnav.main-nav-container,
+  #mainnav.main-nav-container.has-bg {
+    position: absolute !important;
     top: 0; left: 0; right: 0;
     z-index: 30;
-    background: rgba(16,17,19,.35);
-    backdrop-filter: blur(14px) saturate(150%);
-    -webkit-backdrop-filter: blur(14px) saturate(150%);
-    border-bottom-color: rgba(255,255,255,.08);
-    transition: background var(--nova-duration) var(--nova-ease), position var(--nova-duration);
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+    transition: background var(--nova-duration) var(--nova-ease), backdrop-filter var(--nova-duration) var(--nova-ease), position var(--nova-duration);
 
-    /* once Raed's own scroll script adds "fixed-header", go dark glass */
+    /* once Raed's own scroll script adds "fixed-header": pure glass blur, no color at all */
     &.fixed-header {
-      position: fixed;
-      background: rgba(16,17,19,.75);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      border-bottom-color: var(--nova-ink-border);
+      position: fixed !important;
+      background: transparent !important;
+      backdrop-filter: blur(22px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+      border-bottom-color: transparent !important;
     }
   }
 
@@ -49,4 +51,5 @@ body:has(.nova-home-marker) {
   .nova-home-marker .s-block:first-of-type {
     margin-top: 0 !important;
   }
+  .nova-home-marker .s-block--hero-slider:first-of-type .swiper-slide { border-radius: 0 !important; }
 }

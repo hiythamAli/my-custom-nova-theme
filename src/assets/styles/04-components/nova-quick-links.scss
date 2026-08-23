@@ -5,6 +5,17 @@
  */
 [data-testid="store-home-main-links"] {
   background: transparent !important;
+  overflow: visible !important;
+  padding-top: 10px;
+
+  .s-slider-container,
+  .swiper,
+  .swiper-wrapper,
+  .swiper-container {
+    overflow: visible !important;
+    justify-content: center;
+  }
+  .swiper-wrapper { }
 
   .slide--cat-entry {
     background: transparent;
@@ -14,21 +25,29 @@
     height: auto;
     padding: 0;
 
-    i {
+    i, img {
       color: var(--nova-text);
       background: var(--nova-card);
       border: 1px solid var(--nova-border);
-      width: 96px;
-      height: 96px;
-      border-radius: 999px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover;
+      border-radius: var(--nova-radius-lg) !important;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      margin: 0 auto .85rem;
-      transition: border-color var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+      margin: 0 0 .85rem;
+      transition: box-shadow var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease), border-color var(--nova-duration) var(--nova-ease);
     }
-    &:hover i { border-color: var(--nova-border-strong); transform: translateY(-2px); }
+    &:hover i, &:hover img {
+      transform: translateY(-3px);
+      border-color: rgba(199,161,90,.6);
+      box-shadow: 0 0 0 1px rgba(199,161,90,.35), 0 0 22px 4px rgba(199,161,90,.35);
+    }
 
     h2 { font-size: .875rem; font-weight: 500; color: var(--nova-text); text-align: center; }
   }

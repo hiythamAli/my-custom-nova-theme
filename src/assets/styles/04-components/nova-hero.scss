@@ -13,22 +13,33 @@
 .nova-hero {
   .home-slider__content { @apply items-center; }
 
+  /* full-bleed, near full-viewport height, sits behind the transparent header */
+  .swiper-slide.nova-hero-slide {
+    height: 92vh !important;
+    min-height: 560px;
+    @media (max-width: 639px) {
+      height: 62vh !important;
+      min-height: 420px;
+    }
+  }
+
   &__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-top: 1.5rem;
-    padding: .85rem 2.25rem;
-    border-radius: var(--nova-radius-sm);
-    background: var(--color-primary);
+    padding: 1rem 2.75rem;
+    border-radius: var(--nova-radius-pill);
+    background: var(--nova-accent);
     color: #101113;
-    font-size: .875rem;
-    font-weight: 600;
+    font-size: .8125rem;
+    font-weight: 700;
     letter-spacing: var(--nova-tracking-wide);
     text-transform: uppercase;
     text-decoration: none;
-    transition: transform var(--nova-duration) var(--nova-ease), opacity var(--nova-duration) var(--nova-ease);
-    &:hover { transform: translateY(-2px); opacity: .92; }
+    box-shadow: 0 8px 24px rgba(199,161,90,.35);
+    transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease);
+    &:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(199,161,90,.45); }
   }
 }
 

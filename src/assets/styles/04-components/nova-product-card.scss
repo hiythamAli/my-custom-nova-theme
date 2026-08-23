@@ -29,6 +29,14 @@
 /* Default = transparent (blends with page bg, no boxy container look).
    The data-attribute rules only kick in if the merchant actively picks
    a section background from theme settings. */
+body#app.theme-raed { background-color: #FFFFFF !important; }
+.s-block,
+.s-block--full-bg,
+.s-block--categories,
+[data-testid="store-home-main-links"],
+[data-testid="store-home-square-photos"] {
+  background: transparent !important;
+}
 [data-nova-section-bg="white"] .s-block { background-color: #FFFFFF !important; }
 [data-nova-section-bg="beige"] .s-block { background-color: var(--nova-bg) !important; }
 [data-nova-section-bg="gray"]  .s-block { background-color: #F5F5F3 !important; }
@@ -60,25 +68,22 @@ custom-salla-product-card {
    hasn't picked up the "product_card_style" setting yet). */
 custom-salla-product-card.s-product-card-vertical,
 [data-nova-pc="modern"] custom-salla-product-card.s-product-card-vertical {
-  background: var(--nova-card-active);
-  border: 1px solid var(--nova-card-border-active);
-  box-shadow: var(--nova-card-shadow-active);
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
   border-radius: var(--nova-radius-md);
   overflow: hidden;
-  max-width: 220px;
-  margin: 0 auto;
-  transition: transform var(--nova-duration) var(--nova-ease),
-              box-shadow var(--nova-duration) var(--nova-ease),
-              border-color var(--nova-duration) var(--nova-ease);
+  width: 100%;
+  transition: transform var(--nova-duration) var(--nova-ease);
 
-  &:hover { box-shadow: var(--nova-shadow-md); }
+  &:hover { box-shadow: none !important; border-color: transparent !important; }
 
   .s-product-card-image {
     @apply relative;
     aspect-ratio: 1 / 1;
     border-radius: var(--nova-radius-md);
     overflow: hidden;
-    background: transparent;
+    background: transparent !important;
     transform: perspective(700px) rotateX(var(--nova-tilt-y, 0deg)) rotateY(var(--nova-tilt-x, 0deg)) translateZ(0);
     will-change: transform;
     transition: transform 120ms linear;
@@ -98,14 +103,81 @@ custom-salla-product-card.s-product-card-vertical,
     background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%);
     transform: translateX(-120%);
     pointer-events: none;
+    z-index: 2;
   }
   &:hover .s-product-card-image::after {
     transform: translateX(120%);
     transition: transform 850ms ease;
   }
 
-  .s-product-card-content { @apply px-1 pt-3 pb-1; }
-  .s-product-card-wishlist-btn button { background: var(--nova-surface) !important; box-shadow: var(--nova-shadow-sm); }
+  /* wishlist heart — reset ALL default positioning/box, then place a
+     small round pill (icon-sized, not a big square) at the bottom
+     of the image, hidden until hover */
+  .s-product-card-wishlist-btn {
+    all: unset;
+    position: absolute !important;
+    top: auto !important;
+    right: 50% !important;
+    left: auto !important;
+    bottom: .6rem !important;
+    transform: translateX(50%) translateY(6px);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+
+    button {
+      all: unset;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      svg, i {
+        color: #fff !important;
+        fill: #fff !important;
+        width: 18px; height: 18px;
+        filter: drop-shadow(0 1px 3px rgba(0,0,0,.7));
+      }
+    }
+  }
+  &:hover .s-product-card-wishlist-btn { opacity: 1; transform: translateX(50%) translateY(0); }
+
+  .s-product-card-content {
+    @apply px-2 pt-3 pb-2;
+    text-align: center;
+  }
+  .s-product-card-content-sub { justify-content: center !important; }
+  .s-product-card-rating { justify-content: center; }
+
+  /* add-to-cart — plain text link, no button chrome at all */
+  salla-add-product-button {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+    display: flex;
+    justify-content: center;
+
+    button, a, .btn {
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      color: var(--nova-accent) !important;
+      padding: .4rem 0 !important;
+      text-transform: uppercase;
+      letter-spacing: var(--nova-tracking-wide);
+      font-size: .9375rem;
+      font-weight: 700;
+      &:hover { opacity: .7; }
+    }
+  }
+  &:hover salla-add-product-button { opacity: 1; transform: translateY(0); }
+}
+
+/* bigger cards, tighter gaps */
+.s-products-list-wrapper { gap: 10px !important; }
+@media (max-width: 639px) {
+  .s-products-list-wrapper { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* ================= Style B — Glass ================= */
