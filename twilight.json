@@ -284,34 +284,39 @@
                 {
                     "label": "حديث (Modern)",
                     "value": "modern",
-                    "key": "b20f898f-631a-4728-b426-83caa72a49a6"
+                    "key": "e3687f1e-4f66-4205-a1c1-42fd396050aa"
                 },
                 {
                     "label": "زجاجي (Glass)",
                     "value": "glass",
-                    "key": "055769a1-cfc4-4b5c-8dc4-904195d3a880"
+                    "key": "938e11d6-c8da-45b2-818e-20735b37314a"
                 },
                 {
                     "label": "أفقي (Horizontal)",
                     "value": "horizontal",
-                    "key": "f5f52ecf-778d-4b43-afef-62dc29373687"
+                    "key": "d2b435b5-15e1-4086-9bd4-25b1d1f6abe0"
                 },
                 {
                     "label": "لوحة داكنة (Dark Panel)",
                     "value": "dark-panel",
-                    "key": "692f9af7-93e3-45a4-830b-e58d7e401f25"
+                    "key": "25ee1612-31d8-4dae-b806-81603f9cc6e3"
                 },
                 {
                     "label": "صورة كاملة + بلور (Overlay Blur)",
                     "value": "overlay-blur",
-                    "key": "d4824720-e1d1-4201-89e6-7333426939e6"
+                    "key": "0f58e117-37e6-4f14-a427-e0fa2efec897"
+                },
+                {
+                    "label": "بروز وعمق (Premium Floating)",
+                    "value": "floating",
+                    "key": "e25fa0fd-59c9-4191-802d-b15f6bce3133"
                 }
             ],
             "selected": [
                 {
                     "label": "حديث (Modern)",
                     "value": "modern",
-                    "key": "b20f898f-631a-4728-b426-83caa72a49a6"
+                    "key": "e3687f1e-4f66-4205-a1c1-42fd396050aa"
                 }
             ]
         },

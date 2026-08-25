@@ -1349,9 +1349,6 @@ input:where([type='file']):focus{
 .grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.grid-cols-\[repeat\(2\2c minmax\(0\2c 1fr\)\)\]{
-    grid-template-columns: repeat(2,minmax(0,1fr));
-}
 .flex-row{
     flex-direction: row;
 }
@@ -7073,6 +7070,24 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical salla-add-product-button .s-block--slider-with-bg .s-slider-block__display-all:hover {
   opacity: 0.7;
 }
+ [data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical salla-add-product-button .s-block--slider-with-bg .s-slider-block__display-all {
+  background: #C7A15A;
+  background: var(--nova-accent);
+  color: #101113;
+  color: var(--nova-ink);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 700;
+}
+ [data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical salla-add-product-button .s-block--slider-with-bg .s-slider-block__display-all {
+  background: #101113;
+  background: var(--nova-ink);
+  color: #fff;
+  border-radius: .375rem;
+  border-radius: var(--nova-radius-sm);
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
  .container--product-details salla-add-product-button .s-block--slider-with-bg .s-slider-block__display-all {
   background: #101113;
   background: var(--nova-ink);
@@ -10190,8 +10205,11 @@ custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn b
   display: flex !important;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(16, 17, 19, 0.45) !important;
+  backdrop-filter: blur(4px);
   cursor: pointer;
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn button svg, custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn button i,
@@ -10199,9 +10217,8 @@ custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn b
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn button i {
   color: #fff !important;
   fill: #fff !important;
-  width: 18px;
-  height: 18px;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
+  width: 20px;
+  height: 20px;
 }
 custom-salla-product-card.s-product-card-vertical:hover .s-product-card-wishlist-btn,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical:hover .s-product-card-wishlist-btn {
@@ -10379,6 +10396,132 @@ custom-salla-product-card.s-product-card-vertical:hover salla-add-product-button
     grid-template-columns: 1fr !important;
   }
 }
+/* ================= Style D — Dark Panel ================= */
+/* Square/portrait image on top, solid dark info panel underneath
+   (title, price, rating in light text). Reference: portrait profile
+   cards with a dark body. */
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical {
+  background: #101113 !important;
+  background: var(--nova-ink) !important;
+  border: 0 !important;
+  border-radius: 1rem;
+  border-radius: var(--nova-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(16,17,19,.08);
+  box-shadow: var(--nova-shadow-md);
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
+  aspect-ratio: 1/1;
+  border-radius: 0;
+  margin: 8px 8px 0;
+  width: calc(100% - 16px);
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-content {
+  padding: 0.9rem 1rem 1.1rem !important;
+  text-align: left !important;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-content-sub {
+  justify-content: space-between !important;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-content-title a,
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-price,
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-sale-price h4,
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-starting-price h4 {
+  color: #F5F4F1 !important;
+  color: var(--nova-text-on-ink) !important;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-content-subtitle,
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-rating,
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-sale-price span {
+  color: #A7A9AE !important;
+  color: var(--nova-text-on-ink-muted) !important;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn {
+  position: static !important;
+  opacity: 1 !important;
+  transform: none !important;
+  margin-top: 0.5rem;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical salla-add-product-button {
+  opacity: 1 !important;
+  transform: none !important;
+  margin-top: 0.5rem;
+}
+[data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical salla-add-product-button button, [data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical salla-add-product-button a, [data-nova-pc=dark-panel] custom-salla-product-card.s-product-card-vertical salla-add-product-button .btn {
+  background: #C7A15A !important;
+  background: var(--nova-accent) !important;
+  color: #101113 !important;
+  color: var(--nova-ink) !important;
+  border-radius: 999px !important;
+  padding: 0.5rem 1.1rem !important;
+  font-weight: 700;
+}
+/* ================= Style E — Overlay Blur ================= */
+/* Full-bleed image fills the whole card; title/price/button float
+   over the bottom of the image on a frosted-glass panel. */
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical {
+  position: relative;
+  border-radius: 1rem;
+  border-radius: var(--nova-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #FFFFFF !important;
+  background: var(--nova-card) !important;
+  border: 0 !important;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  aspect-ratio: auto !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical .s-product-card-content {
+  position: absolute !important;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-radius: .625rem !important;
+  border-radius: var(--nova-radius-md) !important;
+  padding: 0.75rem 0.9rem !important;
+  text-align: left !important;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical salla-add-product-button {
+  opacity: 1 !important;
+  transform: none !important;
+  margin-top: 0.4rem;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical salla-add-product-button button, [data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical salla-add-product-button a, [data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical salla-add-product-button .btn {
+  background: #101113 !important;
+  background: var(--nova-ink) !important;
+  color: #fff !important;
+  border-radius: .375rem !important;
+  border-radius: var(--nova-radius-sm) !important;
+  padding: 0.5rem 1rem !important;
+  width: 100%;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn {
+  z-index: 3;
+  top: 0.6rem !important;
+  bottom: auto !important;
+  right: 0.6rem !important;
+  left: auto !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+[data-nova-pc=overlay-blur] custom-salla-product-card.s-product-card-vertical .s-product-card-wishlist-btn button {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(6px);
+}
 /**
  * NOVA HERO — 3 style variants
  * ------------------------------------------------------------------
@@ -10406,7 +10549,7 @@ custom-salla-product-card.s-product-card-vertical:hover salla-add-product-button
     min-height: 420px;
   }
 }
-.nova-hero__btn {
+.nova-hero-slide__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10428,7 +10571,7 @@ custom-salla-product-card.s-product-card-vertical:hover salla-add-product-button
   transition: transform 240ms cubic-bezier(.4,0,.2,1), box-shadow 240ms cubic-bezier(.4,0,.2,1);
   transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease);
 }
-.nova-hero__btn:hover {
+.nova-hero-slide__btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(199, 161, 90, 0.45);
 }
@@ -10770,6 +10913,44 @@ custom-salla-product-card.s-product-card-vertical:hover salla-add-product-button
   color: var(--nova-text-on-ink-muted);
   font-size: 0.75rem;
   margin: 0;
+}
+/* ---- auto-sliding marquee ---- */
+.nova-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.nova-marquee__track {
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  animation: novaMarquee 22s linear infinite;
+}
+.nova-marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  padding-right: 3.5rem;
+  flex-shrink: 0;
+}
+.nova-marquee .s-block--features__item {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@keyframes novaMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+[dir=rtl] .nova-marquee__track {
+  animation-direction: reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-marquee__track {
+    animation: none;
+  }
 }
 /**
  * NOVA FOOTER — typography/spacing polish only.
@@ -11681,9 +11862,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:grid-cols-6{
         grid-template-columns: repeat(6, minmax(0, 1fr));
     }
-    .md\:grid-cols-\[repeat\(3\2c minmax\(0\2c 1fr\)\)\]{
-        grid-template-columns: repeat(3,minmax(0,1fr));
-    }
     .md\:flex-row{
         flex-direction: row;
     }
@@ -11908,9 +12086,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
 }
 @media (min-width: 1280px){
-    .xl\:gap-8{
-        gap: 2rem;
-    }
     .xl\:px-0{
         padding-left: 0px;
         padding-right: 0px;
