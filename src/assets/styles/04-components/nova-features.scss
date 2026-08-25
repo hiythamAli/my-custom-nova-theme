@@ -49,3 +49,33 @@
     }
   }
 }
+
+/* ---- auto-sliding marquee ---- */
+.nova-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.nova-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: novaMarquee 22s linear infinite;
+}
+.nova-marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  padding-inline-end: 3.5rem;
+  flex-shrink: 0;
+}
+.nova-marquee .s-block--features__item {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+@keyframes novaMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+[dir="rtl"] .nova-marquee__track { animation-direction: reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .nova-marquee__track { animation: none; }
+}
