@@ -1,0 +1,109 @@
+/**
+ * NOVA DESIGN TOKENS CONTROLLER
+ * ------------------------------------------------------------------
+ * Single centralized cascade, driven entirely by data-* attributes
+ * on <body> (set from theme settings in layouts/master.twig):
+ *
+ *   Global Settings           →  Component Overrides        →  Render
+ *   -----------------------------------------------------------------
+ *   data-nova-radius           →  data-nova-btn-radius       →  buttons
+ *                               →  data-nova-card-radius     →  product cards
+ *   data-nova-shadow           (component shadows read the same
+ *                                --nova-shadow-* tokens already
+ *                                defined in nova-tokens.scss)
+ *   data-nova-accent           →  --nova-accent (used by buttons,
+ *                                category glow, hero CTA, prices)
+ *
+ * RULE: a component override is only allowed to touch that
+ * component's own radius token. If its setting is "inherit" (the
+ * default), nothing is overridden and the global value applies —
+ * this is what makes Global the default and Component the
+ * exception, per Nova's customization spec.
+ *
+ * No CSS is duplicated: every component (buttons.scss, nova-hero.scss,
+ * nova-product-card.scss, nova-quick-links.scss, nova-features.scss...)
+ * already reads --nova-radius-sm/md/lg/pill and --nova-shadow-sm/md/lg
+ * and --nova-accent. This file ONLY changes what those variables
+ * resolve to. Nothing else needs to change when a merchant picks a
+ * different value.
+ * ------------------------------------------------------------------
+ */
+
+/* ===================== 1. GLOBAL — Radius scale ===================== */
+[data-nova-radius="sharp"] {
+  --nova-radius-sm: .125rem;
+  --nova-radius-md: .25rem;
+  --nova-radius-lg: .375rem;
+}
+[data-nova-radius="soft"] {
+  --nova-radius-sm: .375rem;
+  --nova-radius-md: .625rem;
+  --nova-radius-lg: 1rem;
+}
+[data-nova-radius="round"] {
+  --nova-radius-sm: .75rem;
+  --nova-radius-md: 1.25rem;
+  --nova-radius-lg: 1.75rem;
+}
+
+/* ===================== 2. GLOBAL — Shadow strength ===================== */
+[data-nova-shadow="none"] {
+  --nova-shadow-sm: none;
+  --nova-shadow-md: none;
+  --nova-shadow-lg: none;
+}
+[data-nova-shadow="soft"] {
+  --nova-shadow-sm: 0 1px 2px rgba(16,17,19,.06);
+  --nova-shadow-md: 0 8px 24px rgba(16,17,19,.08);
+  --nova-shadow-lg: 0 16px 48px rgba(16,17,19,.12);
+}
+[data-nova-shadow="bold"] {
+  --nova-shadow-sm: 0 2px 6px rgba(16,17,19,.14);
+  --nova-shadow-md: 0 14px 34px rgba(16,17,19,.22);
+  --nova-shadow-lg: 0 26px 60px rgba(16,17,19,.3);
+}
+
+/* ===================== 3. GLOBAL — Accent color ===================== */
+/* Curated palette (Salla theme settings don't support a free color
+   picker — verified against Salla's docs — so this uses a fixed set
+   of production-tested combinations instead of an open color field). */
+[data-nova-accent="gold"]     { --nova-accent: #C7A15A; --nova-accent-soft: #E9DCC0; }
+[data-nova-accent="navy"]     { --nova-accent: #2C3E60; --nova-accent-soft: #C7CFE0; }
+[data-nova-accent="emerald"]  { --nova-accent: #1F7A5C; --nova-accent-soft: #C8E4D8; }
+[data-nova-accent="rose"]     { --nova-accent: #8C3B4A; --nova-accent-soft: #E9CBD1; }
+[data-nova-accent="graphite"] { --nova-accent: #3A3A3D; --nova-accent-soft: #D8D8DA; }
+
+/* ===================== 4. COMPONENT OVERRIDE — Buttons ===================== */
+/* Applies to salla-button, .btn, the hero CTA and the product-card
+   add-to-cart link — anywhere buttons.scss / nova-hero.scss /
+   nova-product-card.scss already use --nova-radius-sm/pill for a
+   button. "inherit" (default) changes nothing. */
+[data-nova-btn-radius="sharp"] {
+  salla-button, .btn, .nova-hero-slide__btn, salla-add-product-button button {
+    border-radius: .125rem !important;
+  }
+}
+[data-nova-btn-radius="pill"] {
+  salla-button, .btn, .nova-hero-slide__btn, salla-add-product-button button {
+    border-radius: 999px !important;
+  }
+}
+
+/* ===================== 5. COMPONENT OVERRIDE — Product Card ===================== */
+/* Touches ONLY the product card's own radius token, independent of
+   the global scale and independent of the button override above. */
+[data-nova-card-radius="sharp"] custom-salla-product-card.s-product-card-vertical,
+[data-nova-card-radius="sharp"] custom-salla-product-card.s-product-card-horizontal,
+[data-nova-card-radius="sharp"] custom-salla-product-card .s-product-card-image {
+  border-radius: .125rem !important;
+}
+[data-nova-card-radius="soft"] custom-salla-product-card.s-product-card-vertical,
+[data-nova-card-radius="soft"] custom-salla-product-card.s-product-card-horizontal,
+[data-nova-card-radius="soft"] custom-salla-product-card .s-product-card-image {
+  border-radius: .625rem !important;
+}
+[data-nova-card-radius="round"] custom-salla-product-card.s-product-card-vertical,
+[data-nova-card-radius="round"] custom-salla-product-card.s-product-card-horizontal,
+[data-nova-card-radius="round"] custom-salla-product-card .s-product-card-image {
+  border-radius: 1.5rem !important;
+}

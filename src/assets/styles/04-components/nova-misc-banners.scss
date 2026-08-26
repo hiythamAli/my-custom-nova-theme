@@ -51,5 +51,9 @@ body:has(.nova-home-marker) {
   .nova-home-marker .s-block:first-of-type {
     margin-top: 0 !important;
   }
+  /* stick the very next block directly under the hero, no gap */
+  .nova-home-marker .s-block:first-of-type + .s-block {
+    margin-top: 0 !important;
+  }
   .nova-home-marker .s-block--hero-slider:first-of-type .swiper-slide { border-radius: 0 !important; }
 }

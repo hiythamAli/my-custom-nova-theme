@@ -65,7 +65,7 @@
     max-width: 480px;
     margin: 0;
 
-    h2 { @apply text-3xl sm:text-4xl lg:text-5xl; letter-spacing: var(--nova-tracking-tight); }
+    h2 { @apply text-4xl sm:text-5xl lg:text-7xl; letter-spacing: var(--nova-tracking-tight); }
     p { color: var(--nova-text-on-ink-muted); @apply text-base; -webkit-line-clamp: 3; }
   }
 }

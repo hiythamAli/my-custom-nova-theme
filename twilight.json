@@ -460,6 +460,191 @@
                     "key": "f3761e83-f74d-432d-b1ac-760035a7defc"
                 }
             ]
+        },
+        {
+            "id": "nova_radius_scale",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "حدّة الزوايا العامة (Nova)",
+            "description": "يتحكم بدرجة تدوير الزوايا لكل عناصر الثيم (بطاقات، أزرار، صور)",
+            "icon": "sicon-brush",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "حادة (Sharp)",
+                    "value": "sharp",
+                    "key": "88529b2f-6682-4d5a-ac6b-1fb55a389e62"
+                },
+                {
+                    "label": "ناعمة (Soft) - افتراضي",
+                    "value": "soft",
+                    "key": "3243deb7-619c-4d56-a961-23416830c1b2"
+                },
+                {
+                    "label": "مدورة (Round)",
+                    "value": "round",
+                    "key": "559a7690-c6e2-4ee7-978b-4b39ee6f015f"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "ناعمة (Soft) - افتراضي",
+                    "value": "soft",
+                    "key": "3243deb7-619c-4d56-a961-23416830c1b2"
+                }
+            ]
+        },
+        {
+            "id": "nova_shadow_style",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "قوة الظلال العامة (Nova)",
+            "description": "يتحكم بكثافة الظل تحت البطاقات والعناصر البارزة",
+            "icon": "sicon-brush",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "بدون ظل (None)",
+                    "value": "none",
+                    "key": "94e991e4-b29b-4d09-b2cd-54ba40a34390"
+                },
+                {
+                    "label": "خفيف (Soft) - افتراضي",
+                    "value": "soft",
+                    "key": "aaf6b1b3-c8ac-435f-875a-87384cf2a77a"
+                },
+                {
+                    "label": "واضح (Bold)",
+                    "value": "bold",
+                    "key": "5289f087-62c4-4509-bf1d-bdf9a5cf4664"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "خفيف (Soft) - افتراضي",
+                    "value": "soft",
+                    "key": "aaf6b1b3-c8ac-435f-875a-87384cf2a77a"
+                }
+            ]
+        },
+        {
+            "id": "nova_accent_color",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "لون العناصر المميزة (Nova)",
+            "description": "يستخدم لأزرار السلة والتفاصيل الذهبية (منفصل عن اللون الأساسي للمتجر)",
+            "icon": "sicon-brush",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "ذهبي (افتراضي)",
+                    "value": "gold",
+                    "key": "9ee1f495-60cf-4bd8-b435-c15d3742caf6"
+                },
+                {
+                    "label": "كحلي",
+                    "value": "navy",
+                    "key": "164ededa-100c-49d9-add5-b9b03ce66cfb"
+                },
+                {
+                    "label": "زمردي",
+                    "value": "emerald",
+                    "key": "bb850699-b5f5-4bc9-95d1-58f222425060"
+                },
+                {
+                    "label": "وردي غامق",
+                    "value": "rose",
+                    "key": "5399ed6e-a325-411b-8c74-c7af1860aed2"
+                },
+                {
+                    "label": "رمادي غرافيت",
+                    "value": "graphite",
+                    "key": "24e641c1-a797-4c6c-a07b-536fba60936a"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "ذهبي (افتراضي)",
+                    "value": "gold",
+                    "key": "9ee1f495-60cf-4bd8-b435-c15d3742caf6"
+                }
+            ]
+        },
+        {
+            "id": "nova_button_radius",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "زوايا الأزرار (تخصيص، يتجاوز العام)",
+            "description": "اتركه \"وراثة\" ليتبع الإعداد العام أعلاه، أو اختر شكل مختلف للأزرار فقط",
+            "icon": "sicon-brush",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "وراثة من الإعداد العام",
+                    "value": "inherit",
+                    "key": "ee38d6da-1840-4ec9-984e-8ed59cb514b4"
+                },
+                {
+                    "label": "حادة",
+                    "value": "sharp",
+                    "key": "013ceedb-58bd-4812-ac3b-e10d31af0dee"
+                },
+                {
+                    "label": "كبسولة (Pill)",
+                    "value": "pill",
+                    "key": "d25b8d27-0075-4bd6-9880-49eaffe2e858"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "وراثة من الإعداد العام",
+                    "value": "inherit",
+                    "key": "ee38d6da-1840-4ec9-984e-8ed59cb514b4"
+                }
+            ]
+        },
+        {
+            "id": "nova_card_radius",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "زوايا بطاقة المنتج (تخصيص، يتجاوز العام)",
+            "description": "اتركه \"وراثة\" ليتبع الإعداد العام أعلاه، أو اختر شكل مختلف لبطاقة المنتج فقط",
+            "icon": "sicon-brush",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "وراثة من الإعداد العام",
+                    "value": "inherit",
+                    "key": "c9e30931-662e-4675-ac86-94efed1101a1"
+                },
+                {
+                    "label": "حادة",
+                    "value": "sharp",
+                    "key": "94be6cee-8512-4cd5-880b-c746513d3357"
+                },
+                {
+                    "label": "ناعمة",
+                    "value": "soft",
+                    "key": "4257a220-12d3-4110-a5fd-aaa4cfacf1f4"
+                },
+                {
+                    "label": "مدورة",
+                    "value": "round",
+                    "key": "58d934aa-2b91-40ef-ad29-ecb134018499"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "وراثة من الإعداد العام",
+                    "value": "inherit",
+                    "key": "c9e30931-662e-4675-ac86-94efed1101a1"
+                }
+            ]
         }
     ],
     "components": [
