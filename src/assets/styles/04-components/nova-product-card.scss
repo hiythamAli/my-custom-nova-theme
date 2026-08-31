@@ -125,24 +125,20 @@ custom-salla-product-card.s-product-card-vertical,
     transform: translateX(50%) translateY(6px);
     z-index: 3;
     opacity: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    background: rgba(16,17,19,.55) !important;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
     transition: opacity var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
 
-    button {
-      all: unset;
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: rgba(16,17,19,.45) !important;
-      backdrop-filter: blur(4px);
-      cursor: pointer;
-      svg, i {
-        color: #fff !important;
-        fill: #fff !important;
-        width: 20px; height: 20px;
-      }
+    i, .sicon-heart {
+      color: #fff !important;
+      font-size: 17px;
     }
   }
   &:hover .s-product-card-wishlist-btn { opacity: 1; transform: translateX(50%) translateY(0); }
@@ -156,24 +152,24 @@ custom-salla-product-card.s-product-card-vertical,
 
   /* add-to-cart — plain text link, no button chrome at all */
   salla-add-product-button {
+    all: unset;
+    display: flex !important;
+    justify-content: center;
+    width: 100%;
     opacity: 0;
     transform: translateY(6px);
     transition: opacity var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
-    display: flex;
-    justify-content: center;
-
-    button, a, .btn {
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      color: var(--nova-accent) !important;
-      padding: .4rem 0 !important;
-      text-transform: uppercase;
-      letter-spacing: var(--nova-tracking-wide);
-      font-size: .9375rem;
-      font-weight: 700;
-      &:hover { opacity: .7; }
-    }
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: var(--nova-accent) !important;
+    padding: .4rem 0 !important;
+    text-transform: uppercase;
+    letter-spacing: var(--nova-tracking-wide);
+    font-size: .9375rem;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover { opacity: .7 !important; }
   }
   &:hover salla-add-product-button { opacity: 1; transform: translateY(0); }
 }
@@ -209,9 +205,10 @@ custom-salla-product-card.s-product-card-vertical,
     border-radius: 0;
   }
   .s-product-card-content { @apply p-4; background: color-mix(in srgb, var(--nova-surface) 30%, transparent); }
-  .s-product-card-wishlist-btn button {
+  .s-product-card-wishlist-btn {
     background: color-mix(in srgb, var(--nova-surface) 70%, transparent) !important;
     backdrop-filter: blur(6px);
+    i, .sicon-heart { color: var(--nova-ink) !important; }
   }
 }
 
@@ -269,18 +266,25 @@ custom-salla-product-card.s-product-card-vertical,
   .s-product-card-rating,
   .s-product-card-sale-price span { color: var(--nova-text-on-ink-muted) !important; }
 
-  .s-product-card-wishlist-btn { position: static !important; opacity: 1 !important; transform: none !important; margin-top: .5rem; }
+  .s-product-card-wishlist-btn {
+    position: static !important; opacity: 1 !important; transform: none !important;
+    display: inline-flex !important; width: 34px; height: 34px;
+    align-items: center; justify-content: center;
+    border-radius: 999px; background: rgba(255,255,255,.1) !important;
+    margin-top: .5rem;
+    i, .sicon-heart { color: var(--nova-text-on-ink) !important; }
+  }
   salla-add-product-button {
+    display: block !important;
     opacity: 1 !important;
     transform: none !important;
     margin-top: .5rem;
-    button, a, .btn {
-      background: var(--nova-accent) !important;
-      color: var(--nova-ink) !important;
-      border-radius: 999px !important;
-      padding: .5rem 1.1rem !important;
-      font-weight: 700;
-    }
+    background: var(--nova-accent) !important;
+    color: var(--nova-ink) !important;
+    border-radius: 999px !important;
+    padding: .5rem 1.1rem !important;
+    font-weight: 700;
+    text-align: center;
   }
 }
 
@@ -316,16 +320,16 @@ custom-salla-product-card.s-product-card-vertical,
     text-align: start !important;
   }
   salla-add-product-button {
+    display: block !important;
     opacity: 1 !important;
     transform: none !important;
     margin-top: .4rem;
-    button, a, .btn {
-      background: var(--nova-ink) !important;
-      color: #fff !important;
-      border-radius: var(--nova-radius-sm) !important;
-      padding: .5rem 1rem !important;
-      width: 100%;
-    }
+    background: var(--nova-ink) !important;
+    color: #fff !important;
+    border-radius: var(--nova-radius-sm) !important;
+    padding: .5rem 1rem !important;
+    width: 100%;
+    text-align: center;
   }
   .s-product-card-wishlist-btn {
     z-index: 3;
@@ -333,7 +337,13 @@ custom-salla-product-card.s-product-card-vertical,
     right: .6rem !important; left: auto !important;
     transform: none !important;
     opacity: 1 !important;
-    button { background: rgba(255,255,255,.6) !important; backdrop-filter: blur(6px); }
+    display: flex !important;
+    align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.6) !important;
+    backdrop-filter: blur(6px);
+    i, .sicon-heart { color: var(--nova-ink) !important; }
   }
 }
 
@@ -370,23 +380,25 @@ custom-salla-product-card.s-product-card-vertical,
     right: .6rem !important; left: auto !important;
     transform: none !important;
     opacity: 1 !important;
-    button {
-      background: #fff !important;
-      box-shadow: 0 4px 10px rgba(16,17,19,.15);
-      svg, i { color: var(--nova-ink) !important; fill: var(--nova-ink) !important; }
-    }
+    display: flex !important;
+    align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    background: #fff !important;
+    box-shadow: 0 4px 10px rgba(16,17,19,.15);
+    i, .sicon-heart { color: var(--nova-ink) !important; }
   }
   salla-add-product-button {
+    display: block !important;
     opacity: 1 !important;
     transform: none !important;
     margin-top: .6rem;
-    button, a, .btn {
-      background: var(--nova-ink) !important;
-      color: #fff !important;
-      border-radius: var(--nova-radius-sm) !important;
-      padding: .6rem 1rem !important;
-      width: 100%;
-      font-weight: 600;
-    }
+    background: var(--nova-ink) !important;
+    color: #fff !important;
+    border-radius: var(--nova-radius-sm) !important;
+    padding: .6rem 1rem !important;
+    width: 100%;
+    font-weight: 600;
+    text-align: center;
   }
 }
