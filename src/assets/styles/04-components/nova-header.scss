@@ -28,16 +28,30 @@
 }
 
 .main-nav-container {
-  background: var(--nova-ink);
+  background: rgba(10,6,18,.75);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
   border-bottom: 1px solid var(--nova-ink-border);
-  box-shadow: none;
+  box-shadow: 0 1px 0 rgba(168,85,247,.15);
 
   .main-menu > .root-level > a {
     color: var(--nova-text-on-ink);
     font-size: .9rem;
     letter-spacing: var(--nova-tracking-wide);
-    transition: opacity var(--nova-duration) var(--nova-ease);
-    &:hover { opacity: .7; }
+    position: relative;
+    transition: color var(--nova-duration) var(--nova-ease);
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2));
+      transform: scaleX(0);
+      transition: transform var(--nova-duration) var(--nova-ease);
+      box-shadow: var(--nova-glow);
+    }
+    &:hover { color: var(--nova-accent-soft); }
+    &:hover::after { transform: scaleX(1); }
   }
 
   a[data-testid="store-header-mobile-toggle"] i,

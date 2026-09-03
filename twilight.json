@@ -793,6 +793,54 @@
                                     "value": "link"
                                 }
                             ]
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "نص الزر الثاني (Nova) - مثال: Details",
+                            "multilanguage": true,
+                            "id": "slides.button_text_2",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "اتركه فارغًا لإظهار زر واحد بس",
+                            "placeholder": "التفاصيل",
+                            "minLength": 0,
+                            "maxLength": 30
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "رابط الزر الثاني (Nova)",
+                            "id": "slides.button_url_2",
+                            "value": [],
+                            "description": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "link",
+                                    "value": "link"
+                                }
+                            ]
                         }
                     ]
                 }

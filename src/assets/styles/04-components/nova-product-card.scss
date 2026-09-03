@@ -29,7 +29,7 @@
 /* Default = transparent (blends with page bg, no boxy container look).
    The data-attribute rules only kick in if the merchant actively picks
    a section background from theme settings. */
-body#app.theme-raed { background-color: #FFFFFF !important; }
+body#app.theme-raed { background-color: var(--nova-bg) !important; color: var(--nova-text); }
 .s-block,
 .s-block--full-bg,
 .s-block--categories,
@@ -190,13 +190,13 @@ custom-salla-product-card.s-product-card-vertical,
   border: 1px solid rgba(255,255,255,.35);
   border-radius: var(--nova-radius-lg);
   overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(199,161,90,.15), 0 8px 32px rgba(16,17,19,.12);
+  box-shadow: 0 0 0 1px rgba(168,85,247,.15), 0 8px 32px rgba(16,17,19,.12);
   transition: box-shadow var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease), border-color var(--nova-duration) var(--nova-ease);
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(199,161,90,.55);
-    box-shadow: 0 0 0 1px rgba(199,161,90,.4), 0 0 28px 4px rgba(199,161,90,.25), 0 16px 40px rgba(16,17,19,.16);
+    border-color: rgba(168,85,247,.55);
+    box-shadow: 0 0 0 1px rgba(168,85,247,.4), 0 0 28px 4px rgba(168,85,247,.25), 0 16px 40px rgba(16,17,19,.16);
   }
   .s-product-card-image {
     @apply relative;
