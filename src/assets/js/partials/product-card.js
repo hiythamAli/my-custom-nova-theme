@@ -82,6 +82,16 @@ class ProductCard extends HTMLElement {
     return salla.money(price);
   }
 
+  /* NOVA — additive only: computes a discount % badge from existing
+     is_on_sale/sale_price/regular_price fields. Does not change any
+     existing price logic above. */
+  getNovaDiscountBadge() {
+    if (!this.product.is_on_sale || !this.product.regular_price || !this.product.sale_price) return '';
+    const pct = Math.round((1 - (this.product.sale_price / this.product.regular_price)) * 100);
+    if (pct <= 0) return '';
+    return `<div class="nova-discount-badge">-${pct}%</div>`;
+  }
+
   getProductPrice() {
     let price = '';
     if (this.product.is_on_sale) {
@@ -201,6 +211,7 @@ class ProductCard extends HTMLElement {
               loading="lazy"
             />
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
+            ${!this.fullImage && !this.minimal ? this.getNovaDiscountBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
           ${!this.horizontal && !this.fullImage ?
@@ -275,7 +286,8 @@ class ProductCard extends HTMLElement {
 
 
           ${!this.hideAddBtn ?
-            `<div class="s-product-card-content-footer gap-2">
+            `<div class="s-product-card-content-footer gap-2 nova-card-footer">
+              <a href="${this.product?.url}" class="nova-details-btn">${salla.lang.get('pages.products.details') || 'Details'}</a>
               <salla-add-product-button fill="outline" width="wide"
                 product-id="${this.product.id}"
                 product-status="${this.effectiveStatus}"
