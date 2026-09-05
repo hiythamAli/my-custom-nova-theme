@@ -65,6 +65,7 @@ custom-salla-product-card {
     transition: transform 120ms linear;
     position: relative;
     overflow: hidden;
+    border-radius: inherit;
   }
   .s-product-card-image img {
     transition: transform 500ms var(--nova-ease);

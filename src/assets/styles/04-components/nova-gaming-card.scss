@@ -25,22 +25,26 @@ custom-salla-product-card.s-product-card-vertical,
     transform: translateY(-4px);
   }
 
-  /* image shown in full, never cropped */
+  /* image shown in full, never cropped — no black letterbox fill,
+     corners match the card's own radius (top corners), stays clipped
+     correctly even mid-tilt */
   .s-product-card-image {
     aspect-ratio: 4 / 3 !important;
-    border-radius: 0;
-    background: #000 !important;
+    border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
+    background: transparent !important;
   }
   .s-product-card-image img {
     object-fit: contain !important;
   }
-  .s-product-card-image::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,6,18,0) 65%, rgba(10,6,18,.7) 100%);
-    z-index: 1;
-    pointer-events: none;
+
+  /* wishlist icon — Raed's default outline/light salla-button reads
+     as an ugly dark square on this dark card; strip the background
+     only, keep the icon visible */
+  .s-product-card-wishlist-btn {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    i, .sicon-heart { color: #fff !important; }
   }
 
   .s-product-card-content { padding: .9rem 1rem 1.1rem !important; }
@@ -70,30 +74,32 @@ custom-salla-product-card.s-product-card-vertical,
 /* discount badge — contained inside the card, no overflow past edges */
 .nova-discount-badge {
   position: absolute;
-  top: .5rem;
-  left: .5rem;
+  top: 0;
+  left: 0;
   z-index: 2;
   background: #FFFFFF;
   color: #5B4FE0;
   font-size: .7rem;
   font-weight: 800;
-  padding: .2rem .55rem;
-  border-radius: var(--nova-radius-sm);
+  padding: .3rem .65rem;
+  border-radius: var(--nova-radius-md) 0 var(--nova-radius-sm) 0;
   box-shadow: 0 2px 8px rgba(0,0,0,.35);
-  [dir="rtl"] & { left: auto; right: .5rem; }
+  [dir="rtl"] & { left: auto; right: 0; border-radius: 0 var(--nova-radius-md) 0 var(--nova-radius-sm); }
 }
 
-/* footer: Details + Buy/Pre-order side by side — smaller, tidy */
+/* footer: Details + Buy/Pre-order side by side — same height/shape */
 .nova-card-footer {
   display: flex !important;
   gap: .4rem;
+  align-items: stretch;
 }
 .nova-details-btn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .4rem .5rem;
+  height: 34px;
+  padding: 0 .5rem;
   border-radius: var(--nova-radius-sm);
   border: 1.5px solid var(--nova-accent);
   color: #FFFFFF !important;
@@ -102,6 +108,7 @@ custom-salla-product-card.s-product-card-vertical,
   text-transform: uppercase;
   letter-spacing: .02em;
   text-decoration: none;
+  box-sizing: border-box;
   transition: background var(--nova-duration) var(--nova-ease);
   &:hover { background: rgba(168,85,247,.15); }
 }
@@ -112,13 +119,22 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   align-items: center;
   justify-content: center;
   gap: .3rem;
+  height: 34px;
+  box-sizing: border-box;
   background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2)) !important;
   border-radius: var(--nova-radius-sm) !important;
-  padding: .4rem .5rem !important;
+  padding: 0 .5rem !important;
   font-size: .6875rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .02em;
+  /* force every internal element Salla renders to match this exact
+     shape instead of its own default pill/rounded button */
+  * {
+    border-radius: var(--nova-radius-sm) !important;
+    height: auto !important;
+    background: transparent !important;
+  }
   text-align: center;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(168,85,247,.3);

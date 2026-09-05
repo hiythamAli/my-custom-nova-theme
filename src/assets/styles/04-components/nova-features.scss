@@ -1,19 +1,17 @@
 /**
- * NOVA STORE FEATURES — auto-sliding marquee strip
+ * NOVA STORE FEATURES — independent boxed cards, auto-sliding
  * ------------------------------------------------------------------
- * Redesigned as pill-style items with an icon badge, separated by
- * dots, scrolling continuously. display:flex is set explicitly on
- * every level so nothing collapses back to block layout.
+ * Each feature is now its own standalone rounded box (border+bg),
+ * not a plain inline strip. Still auto-scrolls continuously (same
+ * duplicated-group technique), matching the CardZone box language.
  * ------------------------------------------------------------------
  */
 
 [data-testid="store-home-features"].s-block--features {
   max-width: none;
   width: 100%;
-  background: linear-gradient(90deg, rgba(168,85,247,.08), rgba(224,64,251,.05));
-  border-top: 1px solid var(--nova-ink-border);
-  border-bottom: 1px solid var(--nova-ink-border);
-  padding: 1.1rem 0;
+  background: transparent;
+  padding: 1.25rem 0;
   overflow: hidden;
 }
 
@@ -25,13 +23,15 @@
 }
 .nova-marquee__track {
   display: flex !important;
-  align-items: center;
+  align-items: stretch;
   width: max-content;
   animation: novaMarquee 26s linear infinite;
 }
 .nova-marquee__group {
   display: flex !important;
-  align-items: center;
+  align-items: stretch;
+  gap: .9rem;
+  padding-inline-end: .9rem;
   flex-shrink: 0;
 }
 
@@ -39,44 +39,43 @@
   display: flex !important;
   flex-direction: row;
   align-items: center;
-  gap: .6rem;
-  padding: 0 1.75rem;
+  gap: .75rem;
   white-space: nowrap;
   flex-shrink: 0;
+  background: var(--nova-card);
+  border: 1px solid var(--nova-border);
+  border-radius: var(--nova-radius-md);
+  padding: .85rem 1.25rem;
+  transition: border-color var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
 
-  &::after {
-    content: '';
-    width: 4px; height: 4px;
-    border-radius: 999px;
-    background: rgba(168,85,247,.5);
-    margin-inline-start: 1.75rem;
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--nova-border-strong);
   }
 
   .feature-icon {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--nova-accent), var(--nova-accent-2));
-    box-shadow: 0 0 14px rgba(168,85,247,.5);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nova-accent) 50%, transparent);
     flex-shrink: 0;
     i { color: #fff; font-size: 1.05rem; }
   }
 
   h2 {
-    color: #fff;
-    font-size: .875rem;
+    color: var(--nova-text);
+    font-size: .8125rem;
     font-weight: 700;
     margin: 0;
-    display: inline;
   }
   p {
-    color: var(--nova-text-on-ink-muted);
-    font-size: .8125rem;
-    margin: 0 0 0 .35rem;
-    display: inline;
+    color: var(--nova-text-muted);
+    font-size: .75rem;
+    margin: 0;
   }
 }
 

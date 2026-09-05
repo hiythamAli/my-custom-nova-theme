@@ -1,0 +1,129 @@
+/**
+ * CARDZONE SKIN
+ * ------------------------------------------------------------------
+ * Pure color/identity layer. Imported LAST in app.scss so it wins
+ * the cascade as an override, without editing any component file's
+ * layout, spacing, radius, sizing, or animation logic.
+ *
+ * How it works:
+ *  1. Defines the requested --cz-* palette as the single source of
+ *     truth.
+ *  2. Re-points every existing --nova-* token (already used by every
+ *     component in this theme — header, footer, hero, categories,
+ *     features, testimonials, brands, buttons, product cards) to a
+ *     --cz-* value. Since components read --nova-* variables rather
+ *     than hardcoded colors, this alone re-skins the whole theme with
+ *     zero Twig/component edits — new Partners Portal components that
+ *     use these same tokens inherit it automatically too.
+ *  3. A short list of colors that were hardcoded (not tokenized) in
+ *     earlier component CSS — glow/shadow tints, the product-card
+ *     background, the discount-badge text — are re-pointed here by
+ *     selector, changing ONLY color/background-color/border-color/
+ *     box-shadow-color. No property that affects shape, size, spacing,
+ *     radius, position, or animation timing is touched anywhere in
+ *     this file.
+ *
+ * Explicitly exempt: home/fixed-banner.twig ("wide banner") and its
+ * wrapper (.nova-full-bleed) — no rule here targets it, preserving its
+ * exact current dimensions/aspect-ratio/layout/radius/positioning.
+ * ------------------------------------------------------------------
+ */
+
+:root {
+  /* ---- 1. CardZone source palette (as specified) ---- */
+  --cz-bg: #0a0e1a;
+  --cz-bg2: #0f1528;
+  --cz-card: #131928;
+  --cz-card-hover: #1a2235;
+  --cz-gold: #f5c518;
+  --cz-blue: #1a6dff;
+  --cz-purple: #7c3aed;
+  --cz-text: #ffffff;
+  --cz-secondary: #8b9cc8;
+  --cz-border: #1e2d4a;
+
+  /* ---- 2. Re-point every existing Nova token to CardZone values ----
+     Every component in this theme already consumes --nova-* — this
+     is the entire "skin" for all of them, with no other edits. */
+  --nova-bg: var(--cz-bg);
+  --nova-surface: var(--cz-bg2);
+  --nova-card: var(--cz-card);
+  --nova-border: var(--cz-border);
+  --nova-border-strong: var(--cz-blue);
+
+  --nova-ink: var(--cz-bg);
+  --nova-ink-soft: var(--cz-bg2);
+  --nova-ink-border: var(--cz-border);
+
+  --nova-text: var(--cz-text);
+  --nova-text-muted: var(--cz-secondary);
+  --nova-text-on-ink: var(--cz-text);
+  --nova-text-on-ink-muted: var(--cz-secondary);
+
+  --nova-accent: var(--cz-gold);
+  --nova-accent-2: var(--cz-purple);
+  --nova-accent-soft: color-mix(in srgb, var(--cz-gold) 30%, transparent);
+
+  --nova-glow: 0 0 26px color-mix(in srgb, var(--cz-blue) 55%, transparent);
+  --nova-glow-strong: 0 0 40px color-mix(in srgb, var(--cz-blue) 70%, transparent), 0 0 16px color-mix(in srgb, var(--cz-purple) 55%, transparent);
+
+  --nova-success: #22C55E;
+  --nova-warning: var(--cz-gold);
+  --nova-error: #F43F5E;
+}
+
+/* ---- 3. Hardcoded colors that weren't tokenized — color only ---- */
+
+/* Product card background (shape/size/radius/hover-animation untouched) */
+custom-salla-product-card.s-product-card-vertical,
+[data-nova-pc="modern"] custom-salla-product-card.s-product-card-vertical {
+  background: var(--cz-card) !important;
+}
+custom-salla-product-card.s-product-card-vertical:hover,
+[data-nova-pc="modern"] custom-salla-product-card.s-product-card-vertical:hover {
+  background: var(--cz-card-hover) !important;
+}
+/* discount badge — keep its exact size/position/radius, recolor only */
+.nova-discount-badge {
+  background: var(--cz-gold);
+  color: var(--cz-bg);
+}
+/* product-card "Details" button hover tint + add-to-cart shadow color */
+.nova-details-btn:hover { background: color-mix(in srgb, var(--cz-blue) 15%, transparent) !important; }
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--cz-blue) 35%, transparent) !important;
+}
+
+/* header underline glow + nav bottom hairline tint */
+.main-nav-container { box-shadow: 0 1px 0 color-mix(in srgb, var(--cz-blue) 25%, transparent) !important; }
+.main-nav-container .main-menu > .root-level > a::after {
+  background: linear-gradient(90deg, var(--cz-gold), var(--cz-purple)) !important;
+}
+
+/* store-features strip tint + separators + icon glow */
+[data-testid="store-home-features"].s-block--features {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--cz-blue) 10%, transparent), color-mix(in srgb, var(--cz-purple) 8%, transparent)) !important;
+}
+.s-block--features__item::after { background: color-mix(in srgb, var(--cz-gold) 55%, transparent) !important; }
+.s-block--features__item .feature-icon {
+  background: linear-gradient(135deg, var(--cz-blue), var(--cz-purple)) !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--cz-blue) 55%, transparent) !important;
+}
+
+/* category tile hover glow (shape/size untouched) */
+[data-testid="store-home-main-links"] .slide--cat-entry:hover i,
+[data-testid="store-home-main-links"] .slide--cat-entry:hover img {
+  border-color: color-mix(in srgb, var(--cz-blue) 60%, transparent) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 35%, transparent), 0 0 22px 4px color-mix(in srgb, var(--cz-blue) 35%, transparent) !important;
+}
+
+/* glass-style card border/shadow tint (only if that style is selected) */
+[data-nova-pc="glass"] custom-salla-product-card.s-product-card-vertical,
+[data-nova-pc="glass"] custom-salla-product-card.s-product-card-entry {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 15%, transparent), 0 8px 32px rgba(0,0,0,.4) !important;
+}
+[data-nova-pc="glass"] custom-salla-product-card.s-product-card-vertical:hover,
+[data-nova-pc="glass"] custom-salla-product-card.s-product-card-entry:hover {
+  border-color: color-mix(in srgb, var(--cz-blue) 55%, transparent) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 40%, transparent), 0 0 28px 4px color-mix(in srgb, var(--cz-purple) 25%, transparent), 0 16px 40px rgba(0,0,0,.5) !important;
+}

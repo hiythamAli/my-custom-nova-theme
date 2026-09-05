@@ -189,5 +189,40 @@
     window.addEventListener('load', function () { setTimeout(run, 300); });
   })();
 </script>
+<script>
+  // NOVA — scroll-reveal fade/pop-in for product cards, feature boxes,
+  // and category tiles. Pure presentation: adds a class when an
+  // element enters the viewport, no interference with Salla's own
+  // rendering/events. Re-observes on DOM mutations so cards added
+  // later (pagination, "load more", AJAX re-renders) are covered too.
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('nova-in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    function observeAll() {
+      document.querySelectorAll(
+        'custom-salla-product-card:not(.nova-in-view):not(.nova-observed), ' +
+        '.s-block--features__item:not(.nova-in-view):not(.nova-observed), ' +
+        '.nova-category-tile:not(.nova-in-view):not(.nova-observed), ' +
+        '[data-testid="store-home-main-links"] .slide--cat-entry:not(.nova-in-view):not(.nova-observed)'
+      ).forEach(function (el) {
+        el.classList.add('nova-observed', 'nova-reveal');
+        io.observe(el);
+      });
+    }
+
+    observeAll();
+    var mo = new MutationObserver(function () { observeAll(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
 </body>
 </html>
