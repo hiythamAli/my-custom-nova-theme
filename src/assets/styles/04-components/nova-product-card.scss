@@ -112,36 +112,9 @@ custom-salla-product-card.s-product-card-vertical,
     aspect-ratio: 1 / 1;
     border-radius: var(--nova-radius-md);
     background: transparent !important;
-  } /* wishlist heart — reset ALL default positioning/box, then place a
-     small round pill (icon-sized, not a big square) at the bottom
-     of the image, hidden until hover */
-  .s-product-card-wishlist-btn {
-    all: unset;
-    position: absolute !important;
-    top: auto !important;
-    right: 50% !important;
-    left: auto !important;
-    bottom: .6rem !important;
-    transform: translateX(50%) translateY(6px);
-    z-index: 3;
-    opacity: 0;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 999px;
-    background: rgba(16,17,19,.55) !important;
-    backdrop-filter: blur(4px);
-    cursor: pointer;
-    transition: opacity var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
-
-    i, .sicon-heart {
-      color: #fff !important;
-      font-size: 17px;
-    }
   }
-  &:hover .s-product-card-wishlist-btn { opacity: 1; transform: translateX(50%) translateY(0); }
+  /* wishlist heart — intentionally NOT styled here anymore.
+     Reverted to Raed's original stock appearance, per request. */
 
   .s-product-card-content {
     @apply px-2 pt-3 pb-2;
@@ -205,11 +178,7 @@ custom-salla-product-card.s-product-card-vertical,
     border-radius: 0;
   }
   .s-product-card-content { @apply p-4; background: color-mix(in srgb, var(--nova-surface) 30%, transparent); }
-  .s-product-card-wishlist-btn {
-    background: color-mix(in srgb, var(--nova-surface) 70%, transparent) !important;
-    backdrop-filter: blur(6px);
-    i, .sicon-heart { color: var(--nova-ink) !important; }
-  }
+  /* wishlist heart — not styled, reverted to Raed's stock look */
 }
 
 /* ================= Style C — Horizontal ================= */

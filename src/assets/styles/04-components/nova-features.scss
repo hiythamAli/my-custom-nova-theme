@@ -10,8 +10,10 @@
 [data-testid="store-home-features"].s-block--features {
   max-width: none;
   width: 100%;
-  background: var(--nova-ink);
-  padding: .95rem 0;
+  background: linear-gradient(90deg, rgba(168,85,247,.08), rgba(224,64,251,.05));
+  border-top: 1px solid var(--nova-ink-border);
+  border-bottom: 1px solid var(--nova-ink-border);
+  padding: 1.1rem 0;
   overflow: hidden;
 }
 
@@ -54,25 +56,25 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
     border-radius: 999px;
-    background: rgba(168,85,247,.12);
-    border: 1px solid rgba(168,85,247,.3);
+    background: linear-gradient(135deg, var(--nova-accent), var(--nova-accent-2));
+    box-shadow: 0 0 14px rgba(168,85,247,.5);
     flex-shrink: 0;
-    i { color: var(--nova-accent); font-size: 1rem; }
+    i { color: #fff; font-size: 1.05rem; }
   }
 
   h2 {
-    color: var(--nova-text-on-ink);
-    font-size: .8125rem;
-    font-weight: 600;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 700;
     margin: 0;
     display: inline;
   }
   p {
     color: var(--nova-text-on-ink-muted);
-    font-size: .75rem;
+    font-size: .8125rem;
     margin: 0 0 0 .35rem;
     display: inline;
   }
