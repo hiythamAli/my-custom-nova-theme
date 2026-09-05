@@ -25,15 +25,19 @@ custom-salla-product-card.s-product-card-vertical,
     transform: translateY(-4px);
   }
 
-  /* image shown in full, never cropped — no black letterbox fill,
-     corners match the card's own radius (top corners), stays clipped
-     correctly even mid-tilt */
+  /* image shown in full, never cropped, never scaled-in on hover —
+     width matches the card's left/right edges, height follows the
+     image's own natural proportions so nothing is cut off */
   .s-product-card-image {
-    aspect-ratio: 4 / 3 !important;
+    aspect-ratio: auto !important;
     border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
     background: transparent !important;
+    overflow: visible !important;
   }
   .s-product-card-image img {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
     object-fit: contain !important;
   }
 

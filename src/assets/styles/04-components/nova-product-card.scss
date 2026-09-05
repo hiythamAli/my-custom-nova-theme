@@ -71,7 +71,7 @@ custom-salla-product-card {
     transition: transform 500ms var(--nova-ease);
     pointer-events: none;
   }
-  &:hover .s-product-card-image img { transform: scale(1.06); }
+  &:hover .s-product-card-image img { transform: none; }
 
   /* shine sweep on hover — every style */
   .s-product-card-image::after {
