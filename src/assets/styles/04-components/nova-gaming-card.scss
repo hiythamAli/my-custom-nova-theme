@@ -130,6 +130,8 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   height: 34px;
   box-sizing: border-box;
   background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2)) !important;
+  border: 0 !important;
+  outline: 0 !important;
   border-radius: var(--nova-radius-sm) !important;
   padding: 0 .5rem !important;
   font-size: .6875rem;
@@ -139,6 +141,9 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   /* force every internal element Salla renders to match this exact
      shape instead of its own default pill/rounded button */
   * {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
     border-radius: var(--nova-radius-sm) !important;
     height: auto !important;
     background: transparent !important;

@@ -20,6 +20,7 @@
   .slide--cat-entry {
     background: transparent;
     border: 0;
+    outline: 0;
     box-shadow: none !important;
     border-radius: 0;
     height: auto;
@@ -51,9 +52,40 @@
     }
     &:hover i, &:hover img {
       transform: translateY(-4px);
-      filter: drop-shadow(0 0 8px color-mix(in srgb, var(--nova-accent) 55%, transparent));
+      box-shadow: 0 0 10px color-mix(in srgb, var(--nova-accent) 60%, transparent);
     }
 
     h2 { font-size: .875rem; font-weight: 500; color: var(--nova-text); text-align: center; }
   }
+}
+
+/* ---- continuous marquee variant (5+ categories) ---- */
+.nova-cat-marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0 14px;
+}
+.nova-cat-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: novaCatMarquee 30s linear infinite;
+}
+.nova-cat-marquee__group {
+  display: flex;
+  gap: 1.75rem;
+  padding-inline-end: 1.75rem;
+  flex-shrink: 0;
+}
+.nova-cat-marquee__item {
+  flex-shrink: 0;
+  width: 96px;
+}
+.nova-cat-marquee .slide--cat-entry { display: block; }
+@keyframes novaCatMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+[dir="rtl"] .nova-cat-marquee__track { animation-direction: reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .nova-cat-marquee__track { animation: none; }
 }

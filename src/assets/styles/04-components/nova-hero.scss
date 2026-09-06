@@ -31,32 +31,45 @@
   }
 
   &-slide__btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: .9rem 2.25rem;
-    border-radius: 4px;
     font-size: .8125rem;
     font-weight: 700;
     letter-spacing: var(--nova-tracking-wide);
     text-transform: uppercase;
     text-decoration: none;
-    transform: skewX(-8deg);
-    transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease), background var(--nova-duration) var(--nova-ease);
-    &--outline {
+    color: #fff;
+    background: transparent;
+    border: 0;
+
+    /* the SHAPE (background/border/skew) lives on this pseudo-element,
+       so the text above stays straight and perfectly centered */
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      transform: skewX(-8deg);
+      transition: box-shadow var(--nova-duration) var(--nova-ease), background var(--nova-duration) var(--nova-ease);
+      z-index: 0;
+    }
+    span, i { position: relative; z-index: 1; }
+
+    &--outline::before {
       background: transparent;
-      color: #fff;
       border: 1.5px solid var(--nova-accent);
-      box-shadow: 0 0 0 rgba(168,85,247,0);
-      &:hover { background: rgba(168,85,247,.12); box-shadow: var(--nova-glow); }
     }
-    &--glow {
+    &--outline:hover::before { background: rgba(168,85,247,.12); box-shadow: var(--nova-glow); }
+
+    &--glow::before {
       background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2));
-      color: #fff;
-      border: 0;
       box-shadow: var(--nova-glow);
-      &:hover { transform: skewX(-8deg) translateY(-2px); box-shadow: var(--nova-glow-strong); }
     }
+    &--glow:hover { transform: translateY(-2px); }
+    &--glow:hover::before { box-shadow: var(--nova-glow-strong); }
   }
 }
 

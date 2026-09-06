@@ -12,43 +12,85 @@
 #}
 {% set cat_count = component.show_cats ? (component.categories|length) : (component.links|length) %}
 <section data-testid="store-home-main-links" class="s-block s-block--categories nova-quick-links {{ component.merge_with_top_component and position ?'merge-with-top-component' : '' }} {{ not component.title and component.merge_with_top_component ? 'merged-has-no-title' : '' }}">
-    <div class="container">
-      <salla-slider  
-        type="carousel"
-        {% if(component.title) or (component.merge_with_top_component) %}
-            block-title="{{ component.title }}"
+    {% if cat_count > 5 %}
+        {# Continuous CSS marquee — starts immediately, loops forever,
+           no dependency on Salla's step-based slider autoplay. Content
+           is rendered twice (group 1 + group 2) so the loop is seamless;
+           this is plain duplicated Twig output, not a macro/include. #}
+        {% if component.title %}
+            <div class="container"><div class="s-block__title"><div class="right-side"><h2>{{ component.title }}</h2></div></div></div>
         {% endif %}
-        controls-outer
-        show-controls="{{ component.show_controls ? 'true' : 'false'}}"
-        {{ cat_count > 5 ? 'auto-play loop' : '' }}
-        id="main-links-{{ position }}">
-          <div slot="items">
-              {% if component.show_cats %}
-                {% for cat in component.categories %}
-                    <div class="swiper-slide slide--one-sixth">
-                        <a href="{{ cat.url }}" class="slide--cat-entry">
-                            {% if cat.image %}
-                              <img src="{{ cat.image ? cat.image : 'images/placeholder.png' | asset }}" class="w-16 h-16 object-cover rounded-full mb-2.5 {{ cat.image ? '' : 'has-placeholder'}}" width="64" height="64" alt="{{ menu.title }}"/>
-                            {% else %}
-                              <i class="{{ cat.icon }}"></i>
-                            {% endif %}
-                            <h2>{{ cat.name }}</h2>
-                        </a>
+        <div class="nova-cat-marquee">
+            <div class="nova-cat-marquee__track">
+                {% for i in 1..2 %}
+                    <div class="nova-cat-marquee__group">
+                        {% if component.show_cats %}
+                            {% for cat in component.categories %}
+                                <div class="nova-cat-marquee__item">
+                                    <a href="{{ cat.url }}" class="slide--cat-entry">
+                                        {% if cat.image %}
+                                          <img src="{{ cat.image ? cat.image : 'images/placeholder.png' | asset }}" class="w-16 h-16 object-cover rounded-full mb-2.5 {{ cat.image ? '' : 'has-placeholder'}}" width="64" height="64" alt="{{ cat.name }}"/>
+                                        {% else %}
+                                          <i class="{{ cat.icon }}"></i>
+                                        {% endif %}
+                                        <h2>{{ cat.name }}</h2>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {% for link in component.links %}
+                                {% if link.title %}
+                                    <div class="nova-cat-marquee__item">
+                                        <a href="{{ link.url }}" class="slide--cat-entry">
+                                            <i class="{{ link.icon }}"></i>
+                                            <h2>{{ link.title }}</h2>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 {% endfor %}
-              {% else %}
-                {% for link in component.links %}
-                  {% if link.title %}
-                    <div class="swiper-slide slide--one-sixth">
-                        <a href="{{ link.url }}" class="slide--cat-entry">
-                            <i class="{{ link.icon }}"></i>
-                            <h2>{{ link.title }}</h2>
-                        </a>
-                    </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+          <salla-slider
+            type="carousel"
+            {% if(component.title) or (component.merge_with_top_component) %}
+                block-title="{{ component.title }}"
+            {% endif %}
+            controls-outer
+            show-controls="{{ component.show_controls ? 'true' : 'false'}}"
+            id="main-links-{{ position }}">
+              <div slot="items">
+                  {% if component.show_cats %}
+                    {% for cat in component.categories %}
+                        <div class="swiper-slide slide--one-sixth">
+                            <a href="{{ cat.url }}" class="slide--cat-entry">
+                                {% if cat.image %}
+                                  <img src="{{ cat.image ? cat.image : 'images/placeholder.png' | asset }}" class="w-16 h-16 object-cover rounded-full mb-2.5 {{ cat.image ? '' : 'has-placeholder'}}" width="64" height="64" alt="{{ cat.name }}"/>
+                                {% else %}
+                                  <i class="{{ cat.icon }}"></i>
+                                {% endif %}
+                                <h2>{{ cat.name }}</h2>
+                            </a>
+                        </div>
+                    {% endfor %}
+                  {% else %}
+                    {% for link in component.links %}
+                      {% if link.title %}
+                        <div class="swiper-slide slide--one-sixth">
+                            <a href="{{ link.url }}" class="slide--cat-entry">
+                                <i class="{{ link.icon }}"></i>
+                                <h2>{{ link.title }}</h2>
+                            </a>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
                   {% endif %}
-                {% endfor %}
-              {% endif %}
-          </div>
-      </salla-slider>
-    </div>
-</section> 
+              </div>
+          </salla-slider>
+        </div>
+    {% endif %}
+</section>
