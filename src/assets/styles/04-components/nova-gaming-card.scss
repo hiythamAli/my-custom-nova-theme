@@ -51,7 +51,11 @@ custom-salla-product-card.s-product-card-vertical,
     i, .sicon-heart { color: #fff !important; }
   }
 
-  .s-product-card-content { padding: .9rem 1rem 1.1rem !important; }
+  .s-product-card-content {
+    padding: .9rem 1rem 1.1rem !important;
+    position: relative;
+    background: linear-gradient(180deg, transparent 0, var(--nova-card) 22px) !important;
+  }
 
   .s-product-card-content-subtitle {
     color: var(--nova-accent) !important;

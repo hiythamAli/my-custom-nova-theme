@@ -1,7 +1,11 @@
 /**
- * NOVA QUICK LINKS (home/main-links.twig)
- * This is the actual component in use for the category icons row
- * (confirmed via live preview — not square-photos.twig).
+ * NOVA QUICK LINKS (home/main-links.twig) — pure image tiles
+ * ------------------------------------------------------------------
+ * No card border/frame/background — just the merchant's uploaded
+ * artwork, shown in full (never cropped), rounded corners only.
+ * Works for any image shape (square, portrait, landscape) since
+ * height follows the image's own ratio instead of a forced square.
+ * ------------------------------------------------------------------
  */
 [data-testid="store-home-main-links"] {
   background: transparent !important;
@@ -15,7 +19,6 @@
     overflow: visible !important;
     justify-content: center;
   }
-  .swiper-wrapper { }
 
   .slide--cat-entry {
     background: transparent;
@@ -27,26 +30,31 @@
 
     i, img {
       color: var(--nova-text);
-      background: var(--nova-card);
-      border: 1px solid var(--nova-border);
+      background: transparent;
+      border: 0;
       width: 100%;
-      aspect-ratio: 1 / 1;
       height: auto;
+      aspect-ratio: auto;
       max-width: none !important;
       max-height: none !important;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: var(--nova-radius-lg) !important;
+      display: block;
+      font-size: 2rem;
+      margin: 0 0 .85rem;
+      transition: transform var(--nova-duration) var(--nova-ease), filter var(--nova-duration) var(--nova-ease);
+    }
+    /* icon-font fallback (no image uploaded) still needs a box to sit in */
+    i {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      margin: 0 0 .85rem;
-      transition: box-shadow var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease), border-color var(--nova-duration) var(--nova-ease);
+      aspect-ratio: 1 / 1;
+      background: var(--nova-card);
     }
     &:hover i, &:hover img {
-      transform: translateY(-3px);
-      border-color: rgba(168,85,247,.6);
-      box-shadow: 0 0 0 1px rgba(168,85,247,.35), 0 0 22px 4px rgba(168,85,247,.35);
+      transform: translateY(-4px);
+      filter: drop-shadow(0 0 14px color-mix(in srgb, var(--nova-accent) 45%, transparent));
     }
 
     h2 { font-size: .875rem; font-weight: 500; color: var(--nova-text); text-align: center; }

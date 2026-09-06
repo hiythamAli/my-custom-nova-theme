@@ -10199,7 +10199,7 @@ custom-salla-product-card .s-product-card-image img {
   pointer-events: none;
 }
 custom-salla-product-card:hover .s-product-card-image img {
-  transform: scale(1.06);
+  transform: none;
 }
 custom-salla-product-card {
   /* shine sweep on hover — every style */
@@ -10660,19 +10660,23 @@ custom-salla-product-card.s-product-card-vertical:hover,
 }
 custom-salla-product-card.s-product-card-vertical,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical {
-  /* image shown in full, never cropped — no black letterbox fill,
-     corners match the card's own radius (top corners), stays clipped
-     correctly even mid-tilt */
+  /* image shown in full, never cropped, never scaled-in on hover —
+     width matches the card's left/right edges, height follows the
+     image's own natural proportions so nothing is cut off */
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
-  aspect-ratio: 4/3 !important;
+  aspect-ratio: auto !important;
   border-radius: .875rem .875rem 0 0 !important;
   border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
   background: transparent !important;
+  overflow: visible !important;
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image img,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image img {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
   -o-object-fit: contain !important;
      object-fit: contain !important;
 }
@@ -11225,19 +11229,21 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   background: transparent;
   padding: 1.25rem 0;
   overflow: hidden;
+  overflow-x: hidden;
 }
 .nova-marquee {
   overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  max-width: 100vw;
 }
 .nova-marquee__track {
   display: flex !important;
   align-items: stretch;
   width: -moz-max-content;
   width: max-content;
-  animation: novaMarquee 26s linear infinite;
+  will-change: transform;
+  animation: novaMarquee 26s linear infinite !important;
 }
 .nova-marquee__group {
   display: flex !important;

@@ -70,3 +70,22 @@
 
 /* logo area keeps merchant's own image untouched — only vertical rhythm */
 .navbar-brand img { max-height: 34px; }
+
+/* Floating rounded navbar — matches reference: inset margin,
+   pill-rounded corners, subtle border, sits above the page content
+   instead of running edge-to-edge. Sticky-scroll behavior untouched
+   (Raed's existing #mainnav.fixed-header class still handled). */
+.main-nav-container {
+  margin: .65rem 1rem 0;
+  border-radius: var(--nova-radius-pill);
+  border: 1px solid var(--nova-border);
+  max-width: calc(100% - 2rem);
+}
+#mainnav.fixed-header.main-nav-container {
+  margin: .5rem auto 0;
+  max-width: 1100px;
+  left: 0; right: 0;
+}
+@media (max-width: 639px) {
+  .main-nav-container { margin: .5rem .5rem 0; border-radius: var(--nova-radius-lg); max-width: calc(100% - 1rem); }
+}
