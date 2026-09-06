@@ -10,6 +10,7 @@
 | component.links[].url              | string   |                                                                              |
 | position                           | int      | Sorting number start from zero                                               |
 #}
+{% set cat_count = component.show_cats ? (component.categories|length) : (component.links|length) %}
 <section data-testid="store-home-main-links" class="s-block s-block--categories nova-quick-links {{ component.merge_with_top_component and position ?'merge-with-top-component' : '' }} {{ not component.title and component.merge_with_top_component ? 'merged-has-no-title' : '' }}">
     <div class="container">
       <salla-slider  
@@ -18,7 +19,8 @@
             block-title="{{ component.title }}"
         {% endif %}
         controls-outer
-        show-controls="{{ component.show_controls ? 'true' : 'false'}}" 
+        show-controls="{{ component.show_controls ? 'true' : 'false'}}"
+        {{ cat_count > 5 ? 'auto-play loop' : '' }}
         id="main-links-{{ position }}">
           <div slot="items">
               {% if component.show_cats %}

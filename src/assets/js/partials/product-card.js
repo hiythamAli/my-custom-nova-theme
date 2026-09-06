@@ -287,7 +287,7 @@ class ProductCard extends HTMLElement {
 
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer gap-2 nova-card-footer">
-              <a href="${this.product?.url}" class="nova-details-btn">${salla.lang.get('pages.products.details') || 'Details'}</a>
+              <a href="${this.product?.url}" class="nova-details-btn">عرض التفاصيل</a>
               <salla-add-product-button fill="outline" width="wide"
                 product-id="${this.product.id}"
                 product-status="${this.effectiveStatus}"

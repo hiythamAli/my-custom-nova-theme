@@ -35,14 +35,14 @@
     align-items: center;
     justify-content: center;
     padding: .9rem 2.25rem;
-    border-radius: var(--nova-radius-pill);
+    border-radius: 4px;
     font-size: .8125rem;
     font-weight: 700;
     letter-spacing: var(--nova-tracking-wide);
     text-transform: uppercase;
     text-decoration: none;
+    transform: skewX(-8deg);
     transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease), background var(--nova-duration) var(--nova-ease);
-
     &--outline {
       background: transparent;
       color: #fff;
@@ -55,7 +55,7 @@
       color: #fff;
       border: 0;
       box-shadow: var(--nova-glow);
-      &:hover { transform: translateY(-2px); box-shadow: var(--nova-glow-strong); }
+      &:hover { transform: skewX(-8deg) translateY(-2px); box-shadow: var(--nova-glow-strong); }
     }
   }
 }

@@ -9,14 +9,11 @@
  */
 [data-testid="store-home-main-links"] {
   background: transparent !important;
-  overflow: visible !important;
   padding-top: 10px;
+  padding-bottom: 14px; /* room for the hover glow so it never clips */
 
   .s-slider-container,
-  .swiper,
-  .swiper-wrapper,
-  .swiper-container {
-    overflow: visible !important;
+  .swiper {
     justify-content: center;
   }
 
@@ -54,7 +51,7 @@
     }
     &:hover i, &:hover img {
       transform: translateY(-4px);
-      filter: drop-shadow(0 0 14px color-mix(in srgb, var(--nova-accent) 45%, transparent));
+      filter: drop-shadow(0 0 8px color-mix(in srgb, var(--nova-accent) 55%, transparent));
     }
 
     h2 { font-size: .875rem; font-weight: 500; color: var(--nova-text); text-align: center; }
