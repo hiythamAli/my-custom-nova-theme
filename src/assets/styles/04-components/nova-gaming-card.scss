@@ -28,16 +28,21 @@ custom-salla-product-card.s-product-card-vertical,
   /* image shown in full, never cropped, never scaled-in on hover —
      width matches the card's left/right edges, height follows the
      image's own natural proportions so nothing is cut off */
+  /* image capped to a reasonable, consistent card height — full
+     artwork always visible (object-fit: contain, no crop), letterbox
+     fill matches the card's own background so there's no visible
+     black bar; left/right edges match the card exactly */
   .s-product-card-image {
-    aspect-ratio: auto !important;
+    aspect-ratio: 4 / 3 !important;
     border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
+    background: var(--cz-card, var(--nova-card)) !important;
+    overflow: hidden !important;
   }
   .s-product-card-image img {
-    position: static !important;
+    position: absolute !important;
+    inset: 0;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     object-fit: contain !important;
   }
 

@@ -455,9 +455,9 @@
             ],
             "selected": [
                 {
-                    "label": "تحريري (Editorial) — نص جانبي + خلفية داكنة",
-                    "value": "editorial",
-                    "key": "f3761e83-f74d-432d-b1ac-760035a7defc"
+                    "label": "غامر (Immersive) — صورة كاملة مع نص متمركز",
+                    "value": "immersive",
+                    "key": "d911b561-063f-49c2-81ab-9ddf3a3983e1"
                 }
             ]
         },

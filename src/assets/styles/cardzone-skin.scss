@@ -127,3 +127,30 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   border-color: color-mix(in srgb, var(--cz-blue) 55%, transparent) !important;
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 40%, transparent), 0 0 28px 4px color-mix(in srgb, var(--cz-purple) 25%, transparent), 0 16px 40px rgba(0,0,0,.5) !important;
 }
+
+/* footer — Raed's original footer.scss uses static Tailwind classes
+   (bg-darker/bg-dark) instead of --nova-* tokens, so they need an
+   explicit color override here too */
+.store-footer {
+  background-color: var(--cz-bg) !important;
+  &__inner { background-color: var(--cz-bg2) !important; border-bottom-color: var(--cz-border) !important; }
+  .social-link { border-color: var(--cz-border) !important; }
+  .contact-social { border-top-color: var(--cz-border) !important; }
+}
+
+/* header icons (cart/user) — CardZone gold accent */
+.header-btn__icon,
+salla-cart-summary .s-cart-summary-total,
+.main-nav-container a[data-testid="store-header-mobile-toggle"] i {
+  color: var(--cz-gold) !important;
+}
+
+/* Add-to-cart button — light blue with a soft glow, per request,
+   instead of the purple/magenta gradient */
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
+  background: linear-gradient(90deg, var(--cz-blue), color-mix(in srgb, var(--cz-blue) 60%, #7fb2ff)) !important;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--cz-blue) 45%, transparent) !important;
+}
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button:hover {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--cz-blue) 65%, transparent) !important;
+}

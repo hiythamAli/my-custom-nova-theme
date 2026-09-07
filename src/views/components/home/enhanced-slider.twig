@@ -30,10 +30,10 @@
                             {% if slide.button_text or slide.button_text_2 %}
                                 <div class="nova-hero-slide__btns">
                                     {% if slide.button_text %}
-                                        <a href="{{ slide.button_url|default('#') }}" data-swiper-parallax="-200" class="nova-hero-slide__btn nova-hero-slide__btn--outline">{{ slide.button_text }}</a>
+                                        <a href="{{ slide.button_url|default('#') }}" data-swiper-parallax="-200" class="nova-hero-slide__btn nova-hero-slide__btn--outline"><span>{{ slide.button_text }}</span></a>
                                     {% endif %}
                                     {% if slide.button_text_2 %}
-                                        <a href="{{ slide.button_url_2|default('#') }}" data-swiper-parallax="-200" class="nova-hero-slide__btn nova-hero-slide__btn--glow">{{ slide.button_text_2 }}</a>
+                                        <a href="{{ slide.button_url_2|default('#') }}" data-swiper-parallax="-200" class="nova-hero-slide__btn nova-hero-slide__btn--glow"><span>{{ slide.button_text_2 }}</span></a>
                                     {% endif %}
                                 </div>
                             {% endif %}

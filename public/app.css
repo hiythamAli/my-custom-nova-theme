@@ -10804,6 +10804,8 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   box-sizing: border-box;
   background: linear-gradient(90deg, #f5c518, #7c3aed) !important;
   background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2)) !important;
+  border: 0 !important;
+  outline: 0 !important;
   border-radius: .5rem !important;
   border-radius: var(--nova-radius-sm) !important;
   padding: 0 0.5rem !important;
@@ -10815,6 +10817,9 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
      shape instead of its own default pill/rounded button */
 }
 custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button * {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
   border-radius: .5rem !important;
   border-radius: var(--nova-radius-sm) !important;
   height: auto !important;
@@ -10872,11 +10877,11 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   flex-wrap: wrap;
 }
 .nova-hero-slide__btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.9rem 2.25rem;
-  border-radius: 4px;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -10884,32 +10889,49 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   text-transform: uppercase;
   -webkit-text-decoration: none;
   text-decoration: none;
-  transform: skewX(-8deg);
-  transition: transform 240ms cubic-bezier(.4,0,.2,1), box-shadow 240ms cubic-bezier(.4,0,.2,1), background 240ms cubic-bezier(.4,0,.2,1);
-  transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease), background var(--nova-duration) var(--nova-ease);
-}
-.nova-hero-slide__btn--outline {
-  background: transparent;
   color: #fff;
+  background: transparent;
+  border: 0;
+  /* the SHAPE (background/border/skew) lives on this pseudo-element,
+     so the text above stays straight and perfectly centered */
+}
+.nova-hero-slide__btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  transform: skewX(-8deg);
+  transition: box-shadow 240ms cubic-bezier(.4,0,.2,1), background 240ms cubic-bezier(.4,0,.2,1);
+  transition: box-shadow var(--nova-duration) var(--nova-ease), background var(--nova-duration) var(--nova-ease);
+  z-index: 0;
+}
+.nova-hero-slide__btn span, .nova-hero-slide__btn i {
+  position: relative;
+  z-index: 1;
+}
+.nova-hero-slide__btn--outline::before {
+  background: transparent;
   border: 1.5px solid #f5c518;
   border: 1.5px solid var(--nova-accent);
-  box-shadow: 0 0 0 rgba(168, 85, 247, 0);
 }
-.nova-hero-slide__btn--outline:hover {
+.nova-hero-slide__btn--outline:hover::before {
   background: rgba(168, 85, 247, 0.12);
   box-shadow: 0 0 26px rgba(26, 109, 255, 0.55);
   box-shadow: var(--nova-glow);
 }
-.nova-hero-slide__btn--glow {
+.nova-hero-slide__btn--glow::before {
   background: linear-gradient(90deg, #f5c518, #7c3aed);
   background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2));
-  color: #fff;
-  border: 0;
   box-shadow: 0 0 26px rgba(26, 109, 255, 0.55);
   box-shadow: var(--nova-glow);
 }
 .nova-hero-slide__btn--glow:hover {
-  transform: skewX(-8deg) translateY(-2px);
+  transform: translateY(-2px);
+}
+.nova-hero-slide__btn--glow:hover::before {
   box-shadow: 0 0 40px rgba(26, 109, 255, 0.7), 0 0 16px rgba(124, 58, 237, 0.55);
   box-shadow: var(--nova-glow-strong);
 }
@@ -11649,6 +11671,7 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 [data-testid=store-home-main-links] .slide--cat-entry {
   background: transparent;
   border: 0;
+  outline: 0;
   box-shadow: none !important;
   border-radius: 0;
   height: auto;
@@ -11687,11 +11710,11 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 }
 [data-testid=store-home-main-links] .slide--cat-entry:hover i, [data-testid=store-home-main-links] .slide--cat-entry:hover img {
   transform: translateY(-4px);
-  filter: drop-shadow(0 0 8px rgba(245, 197, 24, 0.55));
+  box-shadow: 0 0 10px rgba(245, 197, 24, 0.6);
 }
 @supports (color: color-mix(in lch, red, blue)){
 [data-testid=store-home-main-links] .slide--cat-entry:hover i, [data-testid=store-home-main-links] .slide--cat-entry:hover img {
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--nova-accent) 55%, transparent));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--nova-accent) 60%, transparent);
 }
 }
 [data-testid=store-home-main-links] .slide--cat-entry h2 {
@@ -11700,6 +11723,47 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   color: #ffffff;
   color: var(--nova-text);
   text-align: center;
+}
+/* ---- continuous marquee variant (5+ categories) ---- */
+.nova-cat-marquee {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0 14px;
+}
+.nova-cat-marquee__track {
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  animation: novaCatMarquee 30s linear infinite;
+}
+.nova-cat-marquee__group {
+  display: flex;
+  gap: 1.75rem;
+  padding-right: 1.75rem;
+  flex-shrink: 0;
+}
+.nova-cat-marquee__item {
+  flex-shrink: 0;
+  width: 96px;
+}
+.nova-cat-marquee .slide--cat-entry {
+  display: block;
+}
+@keyframes novaCatMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+[dir=rtl] .nova-cat-marquee__track {
+  animation-direction: reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-cat-marquee__track {
+    animation: none;
+  }
 }
 /**
  * NOVA — full-bleed banner + transparent header-over-hero
