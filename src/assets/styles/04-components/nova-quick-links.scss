@@ -1,93 +1,93 @@
 /**
- * NOVA QUICK LINKS (home/main-links.twig) — pure image tiles
+ * NOVA CATEGORIES / QUICK LINKS
  * ------------------------------------------------------------------
- * No card border/frame/background — just the merchant's uploaded
- * artwork, shown in full (never cropped), rounded corners only.
- * Works for any image shape (square, portrait, landscape) since
- * height follows the image's own ratio instead of a forced square.
+ * Two display modes, switched by the "nova_categories_display" theme
+ * setting via the "nova-cats--grid" / "nova-cats--marquee" class on
+ * the section:
+ *   - grid:    static responsive grid, no animation.
+ *   - marquee: plain-div continuous strip (no swiper/JS dependency),
+ *              guaranteed to animate since it's pure CSS.
+ * Fixed, reasonable tile sizes (not "auto up to X") so results stay
+ * consistent regardless of what the merchant uploads. Works for both
+ * tall/portrait card art and circular icons — image edges match the
+ * tile edges exactly (no padding gap on left/right), height auto-fits
+ * on top of that.
  * ------------------------------------------------------------------
  */
+
+$nova-cat-w: 116px;
+$nova-cat-w-mobile: 92px;
+
 [data-testid="store-home-main-links"] {
   background: transparent !important;
-  padding-top: 10px;
-  padding-bottom: 14px; /* room for the hover glow so it never clips */
-
-  .s-slider-container,
-  .swiper {
-    justify-content: center;
-  }
+  padding: 10px 0 16px;
 
   .slide--cat-entry {
-    background: transparent;
-    border: 0;
-    outline: 0;
-    box-shadow: none !important;
-    border-radius: 0;
-    height: auto;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--nova-text);
+    width: $nova-cat-w;
+    flex-shrink: 0;
 
-    i, img {
-      color: var(--nova-text);
-      background: transparent;
-      border: 0;
+    img, i {
       width: 100%;
       height: auto;
-      aspect-ratio: auto;
-      max-width: none !important;
-      max-height: none !important;
+      max-height: $nova-cat-w * 1.35; /* allows portrait card art without going huge */
       object-fit: contain;
-      border-radius: var(--nova-radius-lg) !important;
+      border-radius: var(--nova-radius-md);
       display: block;
-      font-size: 2rem;
-      margin: 0 0 .85rem;
-      transition: transform var(--nova-duration) var(--nova-ease), filter var(--nova-duration) var(--nova-ease);
+      margin: 0 0 .5rem;
+      transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease);
     }
-    /* icon-font fallback (no image uploaded) still needs a box to sit in */
     i {
       display: flex;
       align-items: center;
       justify-content: center;
       aspect-ratio: 1 / 1;
       background: var(--nova-card);
+      font-size: 1.75rem;
     }
-    &:hover i, &:hover img {
-      transform: translateY(-4px);
+    &:hover img, &:hover i {
+      transform: translateY(-3px);
       box-shadow: 0 0 10px color-mix(in srgb, var(--nova-accent) 60%, transparent);
     }
 
-    h2 { font-size: .875rem; font-weight: 500; color: var(--nova-text); text-align: center; }
+    h2 {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--nova-text);
+      text-align: center;
+      line-height: 1.3;
+    }
   }
 }
 
-/* ---- continuous marquee variant (5+ categories) ---- */
+/* ================= GRID mode ================= */
+.nova-cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* ================= MARQUEE mode ================= */
 .nova-cat-marquee {
   overflow: hidden;
   width: 100%;
-  padding: 10px 0 14px;
 }
 .nova-cat-marquee__track {
   display: flex;
   width: max-content;
-  animation: novaCatMarquee 30s linear infinite;
+  animation: novaCatMarquee 28s linear infinite;
 }
 .nova-cat-marquee__group {
   display: flex;
-  gap: 1.75rem;
-  padding-inline-end: 1.75rem;
+  gap: 14px;
+  padding-inline-end: 14px;
   flex-shrink: 0;
 }
-.nova-cat-marquee__item {
-  flex-shrink: 0;
-  width: auto;
-  max-width: 220px;
-}
-[data-testid="store-home-main-links"] .nova-cat-marquee__item img,
-[data-testid="store-home-main-links"] .nova-cat-marquee__item i {
-  width: auto !important;
-  max-width: 220px;
-  max-height: 220px;
-}
-.nova-cat-marquee .slide--cat-entry { display: block; }
 @keyframes novaCatMarquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -97,11 +97,14 @@
   .nova-cat-marquee__track { animation: none; }
 }
 
+/* ================= mobile ================= */
 @media (max-width: 639px) {
-  [data-testid="store-home-main-links"] .nova-cat-marquee__item,
-  [data-testid="store-home-main-links"] .nova-cat-marquee__item img,
-  [data-testid="store-home-main-links"] .nova-cat-marquee__item i {
-    max-width: 130px;
-    max-height: 130px;
+  [data-testid="store-home-main-links"] .slide--cat-entry {
+    width: $nova-cat-w-mobile;
   }
+  [data-testid="store-home-main-links"] .slide--cat-entry img,
+  [data-testid="store-home-main-links"] .slide--cat-entry i {
+    max-height: $nova-cat-w-mobile * 1.35;
+  }
+  .nova-cat-grid, .nova-cat-marquee__group { gap: 10px; }
 }

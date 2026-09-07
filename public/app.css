@@ -10663,20 +10663,29 @@ custom-salla-product-card.s-product-card-vertical,
   /* image shown in full, never cropped, never scaled-in on hover —
      width matches the card's left/right edges, height follows the
      image's own natural proportions so nothing is cut off */
+  /* image capped to a reasonable, consistent card height — full
+     artwork always visible (object-fit: contain, no crop), letterbox
+     fill matches the card's own background so there's no visible
+     black bar; left/right edges match the card exactly */
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
-  aspect-ratio: auto !important;
+  aspect-ratio: 4/3 !important;
   border-radius: .875rem .875rem 0 0 !important;
   border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
-  background: transparent !important;
-  overflow: visible !important;
+  background: #131928 !important;
+  background: var(--cz-card, var(--nova-card)) !important;
+  overflow: hidden !important;
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image img,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image img {
-  position: static !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   -o-object-fit: contain !important;
      object-fit: contain !important;
 }
@@ -10875,6 +10884,8 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   gap: 0.9rem;
   margin-top: 1.75rem;
   flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 .nova-hero-slide__btn {
   position: relative;
@@ -11744,7 +11755,14 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 }
 .nova-cat-marquee__item {
   flex-shrink: 0;
-  width: 96px;
+  width: auto;
+  max-width: 220px;
+}
+[data-testid=store-home-main-links] .nova-cat-marquee__item img,
+[data-testid=store-home-main-links] .nova-cat-marquee__item i {
+  width: auto !important;
+  max-width: 220px;
+  max-height: 220px;
 }
 .nova-cat-marquee .slide--cat-entry {
   display: block;
@@ -11763,6 +11781,14 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 @media (prefers-reduced-motion: reduce) {
   .nova-cat-marquee__track {
     animation: none;
+  }
+}
+@media (max-width: 639px) {
+  [data-testid=store-home-main-links] .nova-cat-marquee__item,
+  [data-testid=store-home-main-links] .nova-cat-marquee__item img,
+  [data-testid=store-home-main-links] .nova-cat-marquee__item i {
+    max-width: 130px;
+    max-height: 130px;
   }
 }
 /**
@@ -12284,6 +12310,54 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 [data-nova-pc=glass] custom-salla-product-card.s-product-card-entry:hover {
   border-color: color-mix(in srgb, var(--cz-blue) 55%, transparent) !important;
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 40%, transparent), 0 0 28px 4px color-mix(in srgb, var(--cz-purple) 25%, transparent), 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+}
+}
+/* footer — Raed's original footer.scss uses static Tailwind classes
+   (bg-darker/bg-dark) instead of --nova-* tokens, so they need an
+   explicit color override here too */
+.store-footer {
+  background-color: #0a0e1a !important;
+  background-color: var(--cz-bg) !important;
+}
+.store-footer__inner {
+  background-color: #0f1528 !important;
+  background-color: var(--cz-bg2) !important;
+  border-bottom-color: #1e2d4a !important;
+  border-bottom-color: var(--cz-border) !important;
+}
+.store-footer .social-link {
+  border-color: #1e2d4a !important;
+  border-color: var(--cz-border) !important;
+}
+.store-footer .contact-social {
+  border-top-color: #1e2d4a !important;
+  border-top-color: var(--cz-border) !important;
+}
+/* header icons (cart/user) — CardZone gold accent */
+.header-btn__icon,
+salla-cart-summary .s-cart-summary-total,
+.main-nav-container a[data-testid=store-header-mobile-toggle] i {
+  color: #f5c518 !important;
+  color: var(--cz-gold) !important;
+}
+/* Add-to-cart button — light blue with a soft glow, per request,
+   instead of the purple/magenta gradient */
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
+  background: linear-gradient(90deg, #1a6dff, rgb(66, 137, 255)) !important;
+  box-shadow: 0 4px 16px rgba(26, 109, 255, 0.45) !important;
+}
+@supports (color: color-mix(in lch, red, blue)){
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
+  background: linear-gradient(90deg, var(--cz-blue), color-mix(in srgb, var(--cz-blue) 60%, #7fb2ff)) !important;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--cz-blue) 45%, transparent) !important;
+}
+}
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button:hover {
+  box-shadow: 0 0 24px rgba(26, 109, 255, 0.65) !important;
+}
+@supports (color: color-mix(in lch, red, blue)){
+custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button:hover {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--cz-blue) 65%, transparent) !important;
 }
 }
 .before\:text-orange-300::before{

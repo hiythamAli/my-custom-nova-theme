@@ -645,6 +645,35 @@
                     "key": "c9e30931-662e-4675-ac86-94efed1101a1"
                 }
             ]
+        },
+        {
+            "id": "nova_categories_display",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض التصنيفات/الروابط السريعة (Nova)",
+            "description": "شبكة ثابتة، أو شريط متحرك بحركة مستمرة بدون توقف",
+            "icon": "sicon-grid",
+            "source": "Manual",
+            "required": true,
+            "options": [
+                {
+                    "label": "شبكة (Grid)",
+                    "value": "grid",
+                    "key": "feb3b6a2-8ce6-4932-b396-b28465ded4a0"
+                },
+                {
+                    "label": "شريط متحرك مستمر (Marquee)",
+                    "value": "marquee",
+                    "key": "d684fee3-2782-450c-942c-a5e3c84b1308"
+                }
+            ],
+            "selected": [
+                {
+                    "label": "شبكة (Grid)",
+                    "value": "grid",
+                    "key": "feb3b6a2-8ce6-4932-b396-b28465ded4a0"
+                }
+            ]
         }
     ],
     "components": [
