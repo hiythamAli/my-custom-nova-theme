@@ -645,35 +645,6 @@
                     "key": "c9e30931-662e-4675-ac86-94efed1101a1"
                 }
             ]
-        },
-        {
-            "id": "nova_categories_display",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "طريقة عرض التصنيفات/الروابط السريعة (Nova)",
-            "description": "شبكة ثابتة، أو شريط متحرك بحركة مستمرة بدون توقف",
-            "icon": "sicon-grid",
-            "source": "Manual",
-            "required": true,
-            "options": [
-                {
-                    "label": "شبكة (Grid)",
-                    "value": "grid",
-                    "key": "feb3b6a2-8ce6-4932-b396-b28465ded4a0"
-                },
-                {
-                    "label": "شريط متحرك مستمر (Marquee)",
-                    "value": "marquee",
-                    "key": "d684fee3-2782-450c-942c-a5e3c84b1308"
-                }
-            ],
-            "selected": [
-                {
-                    "label": "شبكة (Grid)",
-                    "value": "grid",
-                    "key": "feb3b6a2-8ce6-4932-b396-b28465ded4a0"
-                }
-            ]
         }
     ],
     "components": [
@@ -1133,6 +1104,144 @@
                             "value": false
                         }
                     ]
+                },
+                {
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-grid",
+                    "label": "طريقة العرض (Nova)",
+                    "description": "شبكة ثابتة أو شريط متحرك مستمر لهذا العنصر تحديدًا",
+                    "id": "nova_display_mode",
+                    "source": "Manual",
+                    "required": true,
+                    "options": [
+                        {
+                            "label": "شبكة (Grid)",
+                            "value": "grid",
+                            "key": "b8b2def2-cca8-4f51-88d9-0c87cc58b78b"
+                        },
+                        {
+                            "label": "شريط متحرك مستمر (Marquee)",
+                            "value": "marquee",
+                            "key": "3a6f5f09-f2f1-4c8f-9819-c52fc01f17d2"
+                        }
+                    ],
+                    "selected": [
+                        {
+                            "label": "شبكة (Grid)",
+                            "value": "grid",
+                            "key": "b8b2def2-cca8-4f51-88d9-0c87cc58b78b"
+                        }
+                    ]
+                },
+                {
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-image",
+                    "label": "حجم الصورة (Nova)",
+                    "description": "طبيعي (تظهر الصورة كما رفعتها) أو صغير",
+                    "id": "nova_image_size",
+                    "source": "Manual",
+                    "required": true,
+                    "options": [
+                        {
+                            "label": "طبيعي",
+                            "value": "normal",
+                            "key": "064d6c7d-8178-4667-bafd-8e508e64a672"
+                        },
+                        {
+                            "label": "صغير",
+                            "value": "small",
+                            "key": "3aa331e7-f31f-4995-ba46-a06cdb3478b2"
+                        }
+                    ],
+                    "selected": [
+                        {
+                            "label": "طبيعي",
+                            "value": "normal",
+                            "key": "064d6c7d-8178-4667-bafd-8e508e64a672"
+                        }
+                    ]
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "إظهار حدود حول الصورة (Nova)",
+                    "description": "إيقافه يخلي الصورة شفافة تمامًا بدون أي حدود، بس بظل خفيف عند التمرير",
+                    "id": "nova_show_border",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-grid",
+                    "label": "طريقة العرض (Nova)",
+                    "id": "nova_display_mode",
+                    "value": null,
+                    "required": false,
+                    "description": "شبكة ثابتة، أو شريط متحرك مستمر بدون توقف",
+                    "options": [
+                        {
+                            "label": "شبكة (Grid)",
+                            "value": "grid",
+                            "key": "cd00d562-fe87-4692-b5f7-30ded5a0ae39"
+                        },
+                        {
+                            "label": "شريط متحرك مستمر (Marquee)",
+                            "value": "marquee",
+                            "key": "818db6a8-04af-4daf-bfeb-c97b87c07bc6"
+                        }
+                    ],
+                    "selected": [
+                        {
+                            "label": "شبكة (Grid)",
+                            "value": "grid",
+                            "key": "cd00d562-fe87-4692-b5f7-30ded5a0ae39"
+                        }
+                    ]
+                },
+                {
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-maximize",
+                    "label": "حجم الصورة (Nova)",
+                    "id": "nova_image_size",
+                    "value": null,
+                    "required": false,
+                    "description": "حجم طبيعي، أو حجم صغير مضغوط",
+                    "options": [
+                        {
+                            "label": "حجم طبيعي",
+                            "value": "normal",
+                            "key": "74a07de4-10bc-42ca-a62f-af2ab6b2c220"
+                        },
+                        {
+                            "label": "حجم صغير",
+                            "value": "small",
+                            "key": "d09eeb93-397f-44bb-8d3b-c76239b0eb98"
+                        }
+                    ],
+                    "selected": [
+                        {
+                            "label": "حجم طبيعي",
+                            "value": "normal",
+                            "key": "74a07de4-10bc-42ca-a62f-af2ab6b2c220"
+                        }
+                    ]
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-square",
+                    "label": "إظهار حدود حول البطاقة (Nova)",
+                    "description": "إيقافه يخلي البطاقة شفافة تمامًا بدون أي حدود (بس تحتفظ بالظل عند التحديد)",
+                    "id": "nova_show_border",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
                 }
             ]
         },
