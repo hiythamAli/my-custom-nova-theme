@@ -1,124 +1,362 @@
 /**
- * NOVA CATEGORIES / QUICK LINKS
- * ------------------------------------------------------------------
- * All settings are per-component-instance (nova_display_mode,
- * nova_image_size, nova_show_border — twilight.json component fields,
- * configurable separately each time this block is added).
- *
- * Grid mode: fixed 4 columns desktop / 2 columns mobile, wraps below.
- * Marquee mode: single row, continuous, never stops (brand-logos style).
- * "Normal" size = image shown at its own natural size, untouched,
- * no crop/resize forced — only capped so it can't break the layout.
- * ------------------------------------------------------------------
+ * NOVA QUICK LINKS / CATEGORIES
  */
 
-[data-testid="store-home-main-links"] {
-  background: transparent !important;
-  padding: 10px 0 16px;
+/* ==========================================================
+   MAIN
+   ========================================================== */
+
+   [data-testid="store-home-main-links"] {
+    background: transparent !important;
+    padding: 10px 0 20px !important;
 }
 
-.slide--cat-entry {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: var(--nova-text);
-  min-width: 0;
 
-  img, i {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-    border-radius: var(--nova-radius-md);
-    display: block;
-    margin: 0 auto .5rem;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease);
-  }
-  i {
+/* ==========================================================
+   CATEGORY ITEM
+   ========================================================== */
+
+[data-testid="store-home-main-links"] .slide--cat-entry {
     display: flex;
+
+    flex-direction: column;
+
     align-items: center;
+
+    justify-content: flex-start;
+
+    width: 100%;
+
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    text-decoration: none !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    padding: 0 !important;
+
+    color: var(--nova-text);
+}
+
+
+/* ==========================================================
+   CATEGORY IMAGE
+   ========================================================== */
+
+[data-testid="store-home-main-links"] .slide--cat-entry img {
+    display: block;
+
+    width: auto !important;
+
+    height: auto !important;
+
+    max-width: 100% !important;
+
+    max-height: 220px;
+
+    object-fit: contain !important;
+
+    object-position: center;
+
+    margin: 0 auto 8px !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    border-radius: 0;
+
+    transition: transform .25s ease;
+}
+
+
+/* ==========================================================
+   ICON FALLBACK
+   ========================================================== */
+
+[data-testid="store-home-main-links"] .slide--cat-entry i {
+    display: flex;
+
+    align-items: center;
+
     justify-content: center;
+
     width: 64px;
+
     height: 64px;
+
     font-size: 1.75rem;
-  }
-  &:hover img, &:hover i {
-    transform: translateY(-3px);
-    box-shadow: 0 0 12px color-mix(in srgb, var(--nova-accent) 55%, transparent);
-  }
 
-  h2 {
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    transition: transform .25s ease;
+}
+
+
+/* ==========================================================
+   TITLE
+   ========================================================== */
+
+[data-testid="store-home-main-links"] .slide--cat-entry h2 {
+    margin: 0;
+
     font-size: .75rem;
+
     font-weight: 500;
-    text-align: center;
+
     line-height: 1.3;
-  }
+
+    text-align: center;
+
+    color: var(--nova-text);
 }
 
-/* bordered variant — opt-in via component setting (default is off) */
-.nova-cats-border--bordered .slide--cat-entry img,
-.nova-cats-border--bordered .slide--cat-entry i {
-  border: 1px solid var(--nova-border);
-  background: var(--nova-card);
-  padding: 6px;
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
+[data-testid="store-home-main-links"] .slide--cat-entry:hover img,
+[data-testid="store-home-main-links"] .slide--cat-entry:hover i {
+    transform: translateY(-3px);
 }
 
-/* size variants */
-.nova-cats-size--normal .slide--cat-entry img { max-height: 220px; }
-.nova-cats-size--small .slide--cat-entry img { max-height: 90px; }
-.nova-cats-size--small .slide--cat-entry i { width: 48px; height: 48px; font-size: 1.25rem; }
-.nova-cats-size--small .slide--cat-entry h2 { font-size: .6875rem; }
 
-/* ================= GRID mode: 4 desktop / 2 mobile, fixed columns ================= */
+/* ==========================================================
+   BORDER / BACKGROUND ENABLED
+   ========================================================== */
+
+.nova-cats-border--bordered
+.slide--cat-entry img,
+.nova-cats-border--bordered
+.slide--cat-entry i {
+
+    border: 1px solid var(--nova-border) !important;
+
+    background: var(--nova-card) !important;
+
+    padding: 6px;
+}
+
+
+/* ==========================================================
+   IMAGE SIZE
+   ========================================================== */
+
+.nova-cats-size--normal
+.slide--cat-entry img {
+
+    max-height: 220px !important;
+}
+
+
+.nova-cats-size--small
+.slide--cat-entry img {
+
+    max-height: 90px !important;
+}
+
+
+.nova-cats-size--small
+.slide--cat-entry i {
+
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 1.25rem;
+}
+
+
+.nova-cats-size--small
+.slide--cat-entry h2 {
+
+    font-size: .6875rem;
+}
+
+
+/* ==========================================================
+   GRID
+   ========================================================== */
+
 .nova-cat-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  justify-items: center;
-  align-items: start;
-}
-@media (max-width: 639px) {
-  .nova-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+
+    align-items: start;
+
+    justify-items: center;
 }
 
-/* ================= MARQUEE mode: single row, continuous, never stops ================= */
+
+.nova-cat-grid
+.slide--cat-entry {
+
+    width: 100%;
+
+    max-width: 100%;
+}
+
+
+/* ==========================================================
+   MARQUEE
+   ========================================================== */
+
 .nova-cat-marquee {
-  overflow: hidden;
-  width: 100vw;
-  max-width: 100%;
-}
-.nova-cat-marquee__track {
-  display: flex;
-  align-items: flex-start;
-  width: max-content;
-  animation-name: novaCatScroll;
-  animation-duration: 25s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.nova-cat-marquee__group {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  gap: 28px;
-  padding-inline-end: 28px;
-  flex-shrink: 0;
-}
-.nova-cat-marquee .slide--cat-entry {
-  flex-shrink: 0;
-}
-@keyframes novaCatScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-[dir="rtl"] .nova-cat-marquee__track { animation-direction: reverse; }
 
-/* mobile tweaks */
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.nova-cat-marquee__track {
+
+    display: flex;
+
+    width: max-content;
+
+    align-items: flex-start;
+
+    will-change: transform;
+
+    animation:
+
+        novaCatScroll
+
+        30s
+
+        linear
+
+        infinite;
+}
+
+
+.nova-cat-marquee__group {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    flex-wrap: nowrap;
+
+    gap: 28px;
+
+    padding-inline-end: 28px;
+
+    flex-shrink: 0;
+}
+
+
+.nova-cat-marquee
+.slide--cat-entry {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 120px;
+}
+
+
+/* ==========================================================
+   CONTINUOUS ANIMATION
+   ========================================================== */
+
+@keyframes novaCatScroll {
+
+    from {
+
+        transform: translateX(0);
+
+    }
+
+    to {
+
+        transform: translateX(-50%);
+
+    }
+
+}
+
+
+/* ==========================================================
+   RTL
+   ========================================================== */
+
+[dir="rtl"]
+.nova-cat-marquee__track {
+
+    animation-direction: reverse;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
 @media (max-width: 639px) {
-  .nova-cat-marquee .slide--cat-entry img { max-height: 130px; }
-  .nova-cat-marquee__group { gap: 16px; padding-inline-end: 16px; }
+
+    .nova-cat-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+
+    .nova-cats-size--normal
+    .slide--cat-entry img {
+
+        max-height: 150px !important;
+    }
+
+
+    .nova-cat-marquee__group {
+
+        gap: 16px;
+
+        padding-inline-end: 16px;
+    }
+
+
+    .nova-cat-marquee
+    .slide--cat-entry {
+
+        min-width: 92px;
+    }
+
+
+    .nova-cat-marquee
+    .slide--cat-entry img {
+
+        max-height: 130px !important;
+    }
+
 }

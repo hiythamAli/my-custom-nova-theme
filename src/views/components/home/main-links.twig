@@ -1,77 +1,185 @@
 {#
-| Variable                | Type     | Description                                                    |
-|-------------------------|----------|------------------------------------------------------------------|
-| component               | object   | fields from twilight.json `components` section for this block  |
-| component.title         | ?string  |                                                                  |
-| component.links         | object[] | list of links                                                    |
-| component.nova_display_mode | string | "grid" or "marquee" — set per this block instance            |
-| component.nova_image_size   | string | "normal" or "small" — set per this block instance             |
-| component.nova_show_border  | bool   | show a border/card background, or fully transparent           |
-| position                | int      | Sorting number start from zero                                 |
+| Variable                    | Type     | Description |
+|-----------------------------|----------|-------------|
+| component                   | object   | Main links component |
+| component.title             | ?string  | Section title |
+| component.links             | object[] | Custom links |
+| component.categories        | object[] | Selected categories |
+| component.show_cats         | bool     | Show categories |
+| component.nova_display_mode | string   | grid / marquee |
+| component.nova_image_size   | string   | normal / small |
+| component.nova_show_border  | bool     | Show card background/border |
+| position                    | int      | Component position |
 #}
+
 {% set display_mode = component.nova_display_mode|default('grid') %}
 {% set image_size = component.nova_image_size|default('normal') %}
 {% set show_border = component.nova_show_border ? 'bordered' : 'borderless' %}
-<section data-testid="store-home-main-links" class="s-block s-block--categories nova-quick-links nova-cats--{{ display_mode }} nova-cats-size--{{ image_size }} nova-cats-border--{{ show_border }} {{ component.merge_with_top_component and position ?'merge-with-top-component' : '' }} {{ not component.title and component.merge_with_top_component ? 'merged-has-no-title' : '' }}">
+
+<section
+    component-id="{{ componentId }}"
+    data-testid="store-home-main-links"
+    class="s-block s-block--categories nova-quick-links nova-cats--{{ display_mode }} nova-cats-size--{{ image_size }} nova-cats-border--{{ show_border }} {{ component.merge_with_top_component and position ? 'merge-with-top-component' : '' }} {{ not component.title and component.merge_with_top_component ? 'merged-has-no-title' : '' }}"
+>
+
     {% if component.title %}
-        <div class="container"><div class="s-block__title"><div class="right-side"><h2>{{ component.title }}</h2></div></div></div>
+        <div class="container">
+            <div class="s-block__title">
+                <div class="right-side">
+                    <h2>{{ component.title }}</h2>
+                </div>
+            </div>
+        </div>
     {% endif %}
 
+
+    {# ==========================================================
+       MARQUEE
+       ========================================================== #}
+
     {% if display_mode == 'marquee' %}
+
         <div class="nova-cat-marquee">
+
             <div class="nova-cat-marquee__track">
-                {% for i in 1..2 %}
+
+                {# نكرر التصنيفات مرتين حتى يكون التحريك مستمرًا #}
+
+                {% for copy in 1..2 %}
+
                     <div class="nova-cat-marquee__group">
+
                         {% if component.show_cats %}
+
                             {% for cat in component.categories %}
-                                <a href="{{ cat.url }}" class="slide--cat-entry">
+
+                                <a
+                                    href="{{ cat.url }}"
+                                    class="slide--cat-entry"
+                                >
+
                                     {% if cat.image %}
-                                      <img src="{{ cat.image ? cat.image : 'images/placeholder.png' | asset }}" width="120" height="120" alt="{{ cat.name }}"/>
+
+                                        <img
+                                            src="{{ cat.image }}"
+                                            width="120"
+                                            height="120"
+                                            alt="{{ cat.name }}"
+                                            loading="lazy"
+                                        >
+
                                     {% else %}
-                                      <i class="{{ cat.icon }}"></i>
+
+                                        <i class="{{ cat.icon }}"></i>
+
                                     {% endif %}
+
                                     <h2>{{ cat.name }}</h2>
+
                                 </a>
+
                             {% endfor %}
+
                         {% else %}
+
                             {% for link in component.links %}
+
                                 {% if link.title %}
-                                    <a href="{{ link.url }}" class="slide--cat-entry">
+
+                                    <a
+                                        href="{{ link.url }}"
+                                        class="slide--cat-entry"
+                                    >
+
                                         <i class="{{ link.icon }}"></i>
+
                                         <h2>{{ link.title }}</h2>
+
                                     </a>
+
                                 {% endif %}
+
                             {% endfor %}
+
                         {% endif %}
+
                     </div>
+
                 {% endfor %}
+
             </div>
+
         </div>
+
+
+    {# ==========================================================
+       GRID
+       ========================================================== #}
+
     {% else %}
+
         <div class="container">
+
             <div class="nova-cat-grid">
+
                 {% if component.show_cats %}
+
                     {% for cat in component.categories %}
-                        <a href="{{ cat.url }}" class="slide--cat-entry">
+
+                        <a
+                            href="{{ cat.url }}"
+                            class="slide--cat-entry"
+                        >
+
                             {% if cat.image %}
-                              <img src="{{ cat.image ? cat.image : 'images/placeholder.png' | asset }}" width="120" height="120" alt="{{ cat.name }}"/>
+
+                                <img
+                                    src="{{ cat.image }}"
+                                    width="120"
+                                    height="120"
+                                    alt="{{ cat.name }}"
+                                    loading="lazy"
+                                >
+
                             {% else %}
-                              <i class="{{ cat.icon }}"></i>
+
+                                <i class="{{ cat.icon }}"></i>
+
                             {% endif %}
+
                             <h2>{{ cat.name }}</h2>
+
                         </a>
+
                     {% endfor %}
+
                 {% else %}
+
                     {% for link in component.links %}
+
                         {% if link.title %}
-                            <a href="{{ link.url }}" class="slide--cat-entry">
+
+                            <a
+                                href="{{ link.url }}"
+                                class="slide--cat-entry"
+                            >
+
                                 <i class="{{ link.icon }}"></i>
+
                                 <h2>{{ link.title }}</h2>
+
                             </a>
+
                         {% endif %}
+
                     {% endfor %}
+
                 {% endif %}
+
             </div>
+
         </div>
+
     {% endif %}
+
 </section>
