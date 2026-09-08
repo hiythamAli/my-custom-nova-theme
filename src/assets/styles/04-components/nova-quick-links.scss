@@ -1,17 +1,14 @@
 /**
  * NOVA CATEGORIES / QUICK LINKS
  * ------------------------------------------------------------------
- * ALL settings below are per-component-instance now (nova_display_mode,
- * nova_image_size, nova_show_border set from twilight.json component
- * fields — configurable separately every time this block is added
- * from Partners Portal), read via classes on the section:
- *   nova-cats--grid | nova-cats--marquee
- *   nova-cats-size--normal | nova-cats-size--small
- *   nova-cats-border--bordered | nova-cats-border--borderless
+ * All settings are per-component-instance (nova_display_mode,
+ * nova_image_size, nova_show_border — twilight.json component fields,
+ * configurable separately each time this block is added).
  *
- * Zero borders by default (borderless): only a glow shadow on hover,
- * no border/outline anywhere. The marquee is the simplest possible
- * CSS — one animation, one selector, nothing else can compete with it.
+ * Grid mode: fixed 4 columns desktop / 2 columns mobile, wraps below.
+ * Marquee mode: single row, continuous, never stops (brand-logos style).
+ * "Normal" size = image shown at its own natural size, untouched,
+ * no crop/resize forced — only capped so it can't break the layout.
  * ------------------------------------------------------------------
  */
 
@@ -26,17 +23,16 @@
   align-items: center;
   text-decoration: none;
   color: var(--nova-text);
-  flex-shrink: 0;
-  width: 130px;
+  min-width: 0;
 
   img, i {
-    width: 100%;
+    width: auto;
     height: auto;
-    max-height: 175px;
+    max-width: 100%;
     object-fit: contain;
     border-radius: var(--nova-radius-md);
     display: block;
-    margin: 0 0 .5rem;
+    margin: 0 auto .5rem;
     background: transparent;
     border: 0;
     box-shadow: none;
@@ -46,7 +42,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1 / 1;
+    width: 64px;
+    height: 64px;
     font-size: 1.75rem;
   }
   &:hover img, &:hover i {
@@ -62,28 +59,33 @@
   }
 }
 
-/* bordered variant — opt-in via component setting */
-.nova-cats-border--bordered .slide--cat-entry {
-  img, i { border: 1px solid var(--nova-border); background: var(--nova-card); padding: 6px; }
+/* bordered variant — opt-in via component setting (default is off) */
+.nova-cats-border--bordered .slide--cat-entry img,
+.nova-cats-border--bordered .slide--cat-entry i {
+  border: 1px solid var(--nova-border);
+  background: var(--nova-card);
+  padding: 6px;
 }
 
-/* small size variant */
-.nova-cats-size--small .slide--cat-entry {
-  width: 88px;
-  img, i { max-height: 110px; }
-  i { font-size: 1.25rem; }
-  h2 { font-size: .6875rem; }
-}
+/* size variants */
+.nova-cats-size--normal .slide--cat-entry img { max-height: 220px; }
+.nova-cats-size--small .slide--cat-entry img { max-height: 90px; }
+.nova-cats-size--small .slide--cat-entry i { width: 48px; height: 48px; font-size: 1.25rem; }
+.nova-cats-size--small .slide--cat-entry h2 { font-size: .6875rem; }
 
-/* ================= GRID mode ================= */
+/* ================= GRID mode: 4 desktop / 2 mobile, fixed columns ================= */
 .nova-cat-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+}
+@media (max-width: 639px) {
+  .nova-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
 
-/* ================= MARQUEE mode — single, simple, guaranteed animation ================= */
+/* ================= MARQUEE mode: single row, continuous, never stops ================= */
 .nova-cat-marquee {
   overflow: hidden;
   width: 100vw;
@@ -91,6 +93,7 @@
 }
 .nova-cat-marquee__track {
   display: flex;
+  align-items: flex-start;
   width: max-content;
   animation-name: novaCatScroll;
   animation-duration: 25s;
@@ -99,8 +102,14 @@
 }
 .nova-cat-marquee__group {
   display: flex;
-  gap: 16px;
-  padding-inline-end: 16px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 28px;
+  padding-inline-end: 28px;
+  flex-shrink: 0;
+}
+.nova-cat-marquee .slide--cat-entry {
+  flex-shrink: 0;
 }
 @keyframes novaCatScroll {
   0%   { transform: translateX(0); }
@@ -108,10 +117,8 @@
 }
 [dir="rtl"] .nova-cat-marquee__track { animation-direction: reverse; }
 
-/* mobile */
+/* mobile tweaks */
 @media (max-width: 639px) {
-  .slide--cat-entry { width: 100px; }
-  .slide--cat-entry img, .slide--cat-entry i { max-height: 135px; }
-  .nova-cats-size--small .slide--cat-entry { width: 76px; }
-  .nova-cat-grid, .nova-cat-marquee__group { gap: 10px; }
+  .nova-cat-marquee .slide--cat-entry img { max-height: 130px; }
+  .nova-cat-marquee__group { gap: 16px; padding-inline-end: 16px; }
 }

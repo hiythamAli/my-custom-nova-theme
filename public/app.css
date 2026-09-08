@@ -10663,7 +10663,10 @@ custom-salla-product-card.s-product-card-vertical,
   /* image capped to a reasonable, consistent card height — full
      artwork always visible (object-fit: contain, no crop), letterbox
      fill matches the card's own background so there's no visible
-     black bar; left/right edges match the card exactly */
+     black bar; left/right edges match the card exactly. A drop-shadow
+     filter (not box-shadow) is used so the "lifted" shadow can bleed
+     into the gap below without needing overflow:visible — which would
+     otherwise let the 3D-tilt image escape its rounded top corners. */
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
@@ -10673,6 +10676,9 @@ custom-salla-product-card.s-product-card-vertical .s-product-card-image,
   background: #131928 !important;
   background: var(--cz-card, var(--nova-card)) !important;
   overflow: hidden !important;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.5));
 }
 custom-salla-product-card.s-product-card-vertical .s-product-card-image img,
 [data-nova-pc=modern] custom-salla-product-card.s-product-card-vertical .s-product-card-image img {
@@ -10768,14 +10774,22 @@ custom-salla-product-card.s-product-card-vertical .s-product-card-rating,
   border-radius: 0 .875rem 0 .5rem;
   border-radius: 0 var(--nova-radius-md) 0 var(--nova-radius-sm);
 }
-/* footer: Details + Buy/Pre-order side by side — same height/shape */
+/* footer: Buy/Add-to-cart ABOVE, Details BELOW — stacked so full
+   button text always shows, no truncation on any screen size */
 .nova-card-footer {
   display: flex !important;
+  flex-direction: column;
   gap: 0.4rem;
   align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 .nova-details-btn {
-  flex: 1;
+  order: 2;
+  width: 100%;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10801,10 +10815,13 @@ custom-salla-product-card.s-product-card-vertical .s-product-card-rating,
 }
 custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
   all: unset;
-  flex: 1;
+  order: 1;
+  width: 100%;
+  min-width: 0;
   display: flex !important;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   gap: 0.3rem;
   height: 34px;
   box-sizing: border-box;
@@ -11661,24 +11678,21 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 /**
  * NOVA CATEGORIES / QUICK LINKS
  * ------------------------------------------------------------------
- * Two display modes, switched by the "nova_categories_display" theme
- * setting via the "nova-cats--grid" / "nova-cats--marquee" class on
- * the section:
- *   - grid:    static responsive grid, no animation.
- *   - marquee: plain-div continuous strip (no swiper/JS dependency),
- *              guaranteed to animate since it's pure CSS.
- * Fixed, reasonable tile sizes (not "auto up to X") so results stay
- * consistent regardless of what the merchant uploads. Works for both
- * tall/portrait card art and circular icons — image edges match the
- * tile edges exactly (no padding gap on left/right), height auto-fits
- * on top of that.
+ * All settings are per-component-instance (nova_display_mode,
+ * nova_image_size, nova_show_border — twilight.json component fields,
+ * configurable separately each time this block is added).
+ *
+ * Grid mode: fixed 4 columns desktop / 2 columns mobile, wraps below.
+ * Marquee mode: single row, continuous, never stops (brand-logos style).
+ * "Normal" size = image shown at its own natural size, untouched,
+ * no crop/resize forced — only capped so it can't break the layout.
  * ------------------------------------------------------------------
  */
 [data-testid=store-home-main-links] {
   background: transparent !important;
   padding: 10px 0 16px;
 }
-[data-testid=store-home-main-links] .slide--cat-entry {
+.slide--cat-entry {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11686,99 +11700,132 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   text-decoration: none;
   color: #ffffff;
   color: var(--nova-text);
-  width: 116px;
-  flex-shrink: 0;
+  min-width: 0;
 }
-[data-testid=store-home-main-links] .slide--cat-entry img, [data-testid=store-home-main-links] .slide--cat-entry i {
-  width: 100%;
+.slide--cat-entry img, .slide--cat-entry i {
+  width: auto;
   height: auto;
-  max-height: 156.6px; /* allows portrait card art without going huge */
+  max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: .875rem;
   border-radius: var(--nova-radius-md);
   display: block;
-  margin: 0 0 0.5rem;
+  margin: 0 auto 0.5rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   transition: transform 240ms cubic-bezier(.4,0,.2,1), box-shadow 240ms cubic-bezier(.4,0,.2,1);
   transition: transform var(--nova-duration) var(--nova-ease), box-shadow var(--nova-duration) var(--nova-ease);
 }
-[data-testid=store-home-main-links] .slide--cat-entry i {
+.slide--cat-entry i {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1/1;
-  background: #131928;
-  background: var(--nova-card);
+  width: 64px;
+  height: 64px;
   font-size: 1.75rem;
 }
-[data-testid=store-home-main-links] .slide--cat-entry:hover img, [data-testid=store-home-main-links] .slide--cat-entry:hover i {
+.slide--cat-entry:hover img, .slide--cat-entry:hover i {
   transform: translateY(-3px);
-  box-shadow: 0 0 10px rgba(245, 197, 24, 0.6);
+  box-shadow: 0 0 12px rgba(245, 197, 24, 0.55);
 }
 @supports (color: color-mix(in lch, red, blue)){
-[data-testid=store-home-main-links] .slide--cat-entry:hover img, [data-testid=store-home-main-links] .slide--cat-entry:hover i {
-  box-shadow: 0 0 10px color-mix(in srgb, var(--nova-accent) 60%, transparent);
+.slide--cat-entry:hover img, .slide--cat-entry:hover i {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--nova-accent) 55%, transparent);
 }
 }
-[data-testid=store-home-main-links] .slide--cat-entry h2 {
+.slide--cat-entry h2 {
   font-size: 0.75rem;
   font-weight: 500;
-  color: #ffffff;
-  color: var(--nova-text);
   text-align: center;
   line-height: 1.3;
 }
-/* ================= GRID mode ================= */
-.nova-cat-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
+/* bordered variant — opt-in via component setting (default is off) */
+.nova-cats-border--bordered .slide--cat-entry img,
+.nova-cats-border--bordered .slide--cat-entry i {
+  border: 1px solid #1e2d4a;
+  border: 1px solid var(--nova-border);
+  background: #131928;
+  background: var(--nova-card);
+  padding: 6px;
 }
-/* ================= MARQUEE mode ================= */
+/* size variants */
+.nova-cats-size--normal .slide--cat-entry img {
+  max-height: 220px;
+}
+.nova-cats-size--small .slide--cat-entry img {
+  max-height: 90px;
+}
+.nova-cats-size--small .slide--cat-entry i {
+  width: 48px;
+  height: 48px;
+  font-size: 1.25rem;
+}
+.nova-cats-size--small .slide--cat-entry h2 {
+  font-size: 0.6875rem;
+}
+/* ================= GRID mode: 4 desktop / 2 mobile, fixed columns ================= */
+.nova-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+}
+@media (max-width: 639px) {
+  .nova-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+/* ================= MARQUEE mode: single row, continuous, never stops ================= */
 .nova-cat-marquee {
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
 }
 .nova-cat-marquee__track {
   display: flex;
+  align-items: flex-start;
   width: -moz-max-content;
   width: max-content;
-  animation: novaCatMarquee 28s linear infinite;
+  animation-name: novaCatScroll;
+  animation-duration: 25s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 .nova-cat-marquee__group {
   display: flex;
-  gap: 14px;
-  padding-right: 14px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 28px;
+  padding-right: 28px;
   flex-shrink: 0;
 }
-@keyframes novaCatMarquee {
-  from {
+.nova-cat-marquee .slide--cat-entry {
+  flex-shrink: 0;
+}
+@keyframes novaCatScroll {
+  0% {
     transform: translateX(0);
   }
-  to {
+  100% {
     transform: translateX(-50%);
   }
 }
 [dir=rtl] .nova-cat-marquee__track {
   animation-direction: reverse;
 }
-@media (prefers-reduced-motion: reduce) {
-  .nova-cat-marquee__track {
-    animation: none;
-  }
-}
-/* ================= mobile ================= */
+/* mobile tweaks */
 @media (max-width: 639px) {
-  [data-testid=store-home-main-links] .slide--cat-entry {
-    width: 92px;
+  .nova-cat-marquee .slide--cat-entry img {
+    max-height: 130px;
   }
-  [data-testid=store-home-main-links] .slide--cat-entry img,
-  [data-testid=store-home-main-links] .slide--cat-entry i {
-    max-height: 124.2px;
-  }
-  .nova-cat-grid, .nova-cat-marquee__group {
-    gap: 10px;
+  .nova-cat-marquee__group {
+    gap: 16px;
+    padding-right: 16px;
   }
 }
 /**

@@ -31,12 +31,18 @@ custom-salla-product-card.s-product-card-vertical,
   /* image capped to a reasonable, consistent card height — full
      artwork always visible (object-fit: contain, no crop), letterbox
      fill matches the card's own background so there's no visible
-     black bar; left/right edges match the card exactly */
+     black bar; left/right edges match the card exactly. A drop-shadow
+     filter (not box-shadow) is used so the "lifted" shadow can bleed
+     into the gap below without needing overflow:visible — which would
+     otherwise let the 3D-tilt image escape its rounded top corners. */
   .s-product-card-image {
     aspect-ratio: 4 / 3 !important;
     border-radius: var(--nova-radius-md) var(--nova-radius-md) 0 0 !important;
     background: var(--cz-card, var(--nova-card)) !important;
     overflow: hidden !important;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,.5));
   }
   .s-product-card-image img {
     position: absolute !important;
@@ -100,9 +106,11 @@ custom-salla-product-card.s-product-card-vertical,
   [dir="rtl"] & { left: auto; right: 0; border-radius: 0 var(--nova-radius-md) 0 var(--nova-radius-sm); }
 }
 
-/* footer: Details + Buy/Pre-order side by side — same height/shape */
+/* footer: Buy/Add-to-cart ABOVE, Details BELOW — stacked so full
+   button text always shows, no truncation on any screen size */
 .nova-card-footer {
   display: flex !important;
+  flex-direction: column;
   gap: .4rem;
   align-items: stretch;
   width: 100%;
@@ -111,7 +119,8 @@ custom-salla-product-card.s-product-card-vertical,
   box-sizing: border-box;
 }
 .nova-details-btn {
-  flex: 1;
+  order: 2;
+  width: 100%;
   min-width: 0;
   display: flex;
   align-items: center;
@@ -132,7 +141,8 @@ custom-salla-product-card.s-product-card-vertical,
 }
 custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button {
   all: unset;
-  flex: 1;
+  order: 1;
+  width: 100%;
   min-width: 0;
   display: flex !important;
   align-items: center;
