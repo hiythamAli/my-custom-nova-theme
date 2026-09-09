@@ -90,3 +90,20 @@
   .s-block--features__item h2 { font-size: .8125rem; }
   .s-block--features__item p { font-size: .6875rem; }
 }
+
+
+/* Extra mobile safety for Salla's variable-length feature content. */
+@media (max-width: 639px) {
+  [data-testid="store-home-features"].s-block--features {
+    overflow: hidden;
+  }
+
+  [data-testid="store-home-features"] .s-block--features__item {
+    min-width: 0;
+  }
+
+  [data-testid="store-home-features"] .s-block--features__item h2,
+  [data-testid="store-home-features"] .s-block--features__item p {
+    overflow-wrap: anywhere;
+  }
+}
