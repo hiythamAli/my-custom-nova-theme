@@ -79,8 +79,14 @@
 }
 
 @media (max-width: 639px) {
-  .nova-marquee__track { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
-  .s-block--features__item { padding: .85rem .5rem; }
-  .s-block--features__item h2 { font-size: .7rem; }
-  .s-block--features__item p { font-size: .625rem; }
+  .nova-marquee { padding: 0 .75rem; }
+  .nova-marquee__track { grid-template-columns: 1fr; gap: .6rem; }
+  .s-block--features__item {
+    flex-direction: row;
+    text-align: start;
+    padding: .85rem 1rem;
+    gap: .75rem;
+  }
+  .s-block--features__item h2 { font-size: .8125rem; }
+  .s-block--features__item p { font-size: .6875rem; }
 }

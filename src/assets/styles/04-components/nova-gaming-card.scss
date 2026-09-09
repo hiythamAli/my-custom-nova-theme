@@ -42,7 +42,6 @@ custom-salla-product-card.s-product-card-vertical,
     overflow: hidden !important;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 10px 14px rgba(0,0,0,.5));
   }
   .s-product-card-image img {
     position: absolute !important;
@@ -65,7 +64,7 @@ custom-salla-product-card.s-product-card-vertical,
   .s-product-card-content {
     padding: .9rem 1rem 1.1rem !important;
     position: relative;
-    background: linear-gradient(180deg, transparent 0, var(--nova-card) 22px) !important;
+    background: var(--cz-card, var(--nova-card)) !important;
   }
 
   .s-product-card-content-subtitle {
