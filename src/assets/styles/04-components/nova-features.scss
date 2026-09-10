@@ -1,16 +1,15 @@
 /**
- * NOVA STORE FEATURES — static grid (no motion)
- * ------------------------------------------------------------------
- * Replaces the marquee/ticker with a clean, fixed 3-column grid of
- * independent boxes — matching the reference exactly. No animation,
- * no duplicated-content track, no possible stutter/gap.
- * ------------------------------------------------------------------
+ * NOVA STORE FEATURES — FINAL RESPONSIVE FIX
+ * Desktop: 3 equal cards.
+ * Mobile: 3 equal cards stacked vertically.
  */
+
 [data-testid="store-home-features"].s-block--features {
   max-width: none;
   width: 100%;
   background: transparent;
   padding: 1.5rem 0;
+  overflow: hidden;
 }
 
 .nova-marquee {
@@ -20,32 +19,41 @@
   margin: 0 auto;
   padding: 0 1rem;
 }
+
 .nova-marquee__track {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   width: 100%;
-  animation: none !important;
 }
-/* only render the first duplicated group (Twig still renders 2 for
-   backward compatibility with the marquee markup); hide the 2nd */
-.nova-marquee__group:nth-child(2) { display: none !important; }
+
 .nova-marquee__group {
   display: contents !important;
+}
+
+/* The feature Twig contains two compatibility groups; render only one. */
+.nova-marquee__group:nth-child(2) {
+  display: none !important;
 }
 
 .s-block--features__item {
   display: flex !important;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+  min-height: 112px;
+  box-sizing: border-box;
+  padding: 1rem;
   gap: .5rem;
+  text-align: center;
+  white-space: normal;
   background: var(--nova-card);
   border: 1px solid var(--nova-border);
   border-radius: var(--nova-radius-md);
-  padding: 1.25rem 1rem;
-  white-space: normal;
-  transition: border-color var(--nova-duration) var(--nova-ease), transform var(--nova-duration) var(--nova-ease);
+  transition: border-color var(--nova-duration) var(--nova-ease),
+              transform var(--nova-duration) var(--nova-ease);
 
   &:hover {
     transform: translateY(-3px);
@@ -58,52 +66,80 @@
     justify-content: center;
     width: 46px;
     height: 46px;
+    flex: 0 0 46px;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--nova-accent), var(--nova-accent-2));
     box-shadow: 0 0 14px color-mix(in srgb, var(--nova-accent) 50%, transparent);
-    flex-shrink: 0;
-    i { color: #fff; font-size: 1.15rem; }
+
+    i {
+      color: #fff;
+      font-size: 1.15rem;
+    }
   }
 
   h2 {
+    margin: 0;
     color: var(--nova-text);
     font-size: .875rem;
     font-weight: 700;
-    margin: 0;
+    line-height: 1.25;
   }
+
   p {
+    margin: 0;
     color: var(--nova-text-muted);
     font-size: .75rem;
-    margin: 0;
+    line-height: 1.35;
   }
 }
 
-@media (max-width: 639px) {
-  .nova-marquee { padding: 0 .75rem; }
-  .nova-marquee__track { grid-template-columns: 1fr; gap: .6rem; }
-  .s-block--features__item {
-    flex-direction: row;
-    text-align: start;
-    padding: .85rem 1rem;
-    gap: .75rem;
-  }
-  .s-block--features__item h2 { font-size: .8125rem; }
-  .s-block--features__item p { font-size: .6875rem; }
-}
-
-
-/* Extra mobile safety for Salla's variable-length feature content. */
 @media (max-width: 639px) {
   [data-testid="store-home-features"].s-block--features {
-    overflow: hidden;
+    padding: .75rem 0 1rem;
+  }
+
+  [data-testid="store-home-features"] .nova-marquee {
+    max-width: none;
+    padding: 0 .75rem;
+  }
+
+  [data-testid="store-home-features"] .nova-marquee__track {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-auto-rows: auto;
+    gap: .7rem !important;
   }
 
   [data-testid="store-home-features"] .s-block--features__item {
-    min-width: 0;
+    width: 100% !important;
+    min-height: 76px;
+    height: 76px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: .8rem;
+    padding: .75rem 1rem;
+    text-align: start;
+    border-radius: var(--nova-radius-md);
   }
 
-  [data-testid="store-home-features"] .s-block--features__item h2,
+  [data-testid="store-home-features"] .s-block--features__item .feature-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  [data-testid="store-home-features"] .s-block--features__item .feature-icon i {
+    font-size: .95rem;
+  }
+
+  [data-testid="store-home-features"] .s-block--features__item h2 {
+    font-size: .8rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   [data-testid="store-home-features"] .s-block--features__item p {
-    overflow-wrap: anywhere;
+    display: none !important;
   }
 }

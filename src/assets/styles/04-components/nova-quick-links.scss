@@ -1,22 +1,15 @@
 /**
- * NOVA QUICK LINKS / CATEGORIES
- * ------------------------------------------------------------------
- * Layout is controlled per component instance from twilight.json:
- * - Grid: 4 items per row on desktop.
- * - Marquee: smooth, seamless infinite horizontal loop.
- * Image sizing:
- * - Natural: no forced 64x64 box / no crop.
- * - Small: compact fixed image box with contain (never crop).
- * ------------------------------------------------------------------
+ * NOVA QUICK LINKS / CATEGORIES — FINAL LAYOUT FIX
+ * Only visual/layout rules. Salla category source + twilight settings stay untouched.
  */
 
 [data-testid="store-home-main-links"].nova-quick-links {
   background: transparent !important;
-  padding: 10px 0 16px;
+  padding: 12px 0 22px;
   overflow: hidden;
 
   .s-block__title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .slide--cat-entry {
@@ -24,21 +17,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
     text-decoration: none;
     color: var(--nova-text);
-    min-width: 0;
 
     img {
       display: block;
-      width: auto;
-      height: auto;
+      width: auto !important;
+      height: auto !important;
       max-width: 100%;
-      object-fit: contain;
+      object-fit: contain !important;
+      object-position: center;
       border-radius: var(--nova-radius-md);
-      margin: 0 auto .55rem;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
+      margin: 0 auto .75rem;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
       transition: transform var(--nova-duration) var(--nova-ease),
                   box-shadow var(--nova-duration) var(--nova-ease);
     }
@@ -49,99 +44,135 @@
       justify-content: center;
       width: 64px;
       height: 64px;
-      margin: 0 auto .55rem;
+      margin: 0 auto .75rem;
       font-size: 1.75rem;
     }
 
     &:hover img,
     &:hover i {
       transform: translateY(-3px);
-      box-shadow: 0 0 12px color-mix(in srgb, var(--nova-accent) 45%, transparent);
+      box-shadow: 0 10px 28px color-mix(in srgb, var(--nova-accent) 35%, transparent);
     }
 
     h2 {
+      display: block;
+      width: 100%;
       margin: 0;
+      color: var(--nova-text);
       font-size: .8rem;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.4;
       text-align: center;
-      color: var(--nova-text);
+      white-space: normal;
+      overflow: visible;
     }
   }
 
-  /* ---------------------------------------------------------------
-     GRID — 4 categories per row
-     --------------------------------------------------------------- */
+  /* ==============================================================
+     GRID — 4 equal columns, comfortable store spacing
+     ============================================================== */
   .nova-quick-links__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.25rem 1rem;
+    column-gap: 1.25rem;
+    row-gap: 2.75rem;
     align-items: start;
   }
 
-  /* ---------------------------------------------------------------
-     MARQUEE — seamless infinite loop
-     --------------------------------------------------------------- */
+  .nova-quick-links__grid .nova-quick-links__item {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Natural: noticeably larger, original aspect ratio, never cropped. */
+  &.nova-quick-links--natural-images {
+    .nova-quick-links__grid .slide--cat-entry img {
+      width: auto !important;
+      height: auto !important;
+      max-width: min(100%, 190px);
+      max-height: 190px;
+      object-fit: contain !important;
+    }
+  }
+
+  /* Small: compact and close enough to feel like one group. */
+  &.nova-quick-links--small-images {
+    .nova-quick-links__grid .slide--cat-entry img {
+      width: 72px !important;
+      height: 72px !important;
+      max-width: 72px;
+      max-height: 72px;
+      object-fit: contain !important;
+      flex: 0 0 72px;
+    }
+  }
+
+  /* ==============================================================
+     MARQUEE — CSS-only, starts immediately and loops forever
+     ============================================================== */
   .nova-quick-links__viewport {
     width: 100%;
     overflow: hidden;
     position: relative;
     direction: ltr;
-    mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      #000 4%,
-      #000 96%,
-      transparent 100%
-    );
+    mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
   }
 
   .nova-quick-links__track {
-    display: flex;
-    width: max-content;
-    animation: nova-quick-links-marquee 28s linear infinite;
+    display: flex !important;
+    width: max-content !important;
+    max-width: none !important;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    animation: nova-quick-links-marquee 24s linear infinite !important;
+    animation-play-state: running !important;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
   }
 
   .nova-quick-links__group {
     display: flex;
     align-items: flex-start;
     flex-shrink: 0;
-    gap: 1.25rem;
-    padding-inline: .65rem;
+    gap: 1rem;
+    padding-inline: .5rem;
     direction: rtl;
   }
 
   .nova-quick-links__group .nova-quick-links__item {
-    width: clamp(88px, 11vw, 132px);
-    flex: 0 0 clamp(88px, 11vw, 132px);
+    width: clamp(108px, 11vw, 150px);
+    flex: 0 0 clamp(108px, 11vw, 150px);
   }
 
-  .nova-quick-links__viewport:hover .nova-quick-links__track {
-    animation-play-state: paused;
-  }
-
-  /* ---------------------------------------------------------------
-     IMAGE SIZES
-     --------------------------------------------------------------- */
-  &.nova-quick-links--natural-images {
-    .nova-quick-links__grid .slide--cat-entry img {
-      /* Keep the source image at its natural aspect ratio.
-         Nothing forces it into a square/cropped box. */
+  &.nova-quick-links--marquee {
+    .nova-quick-links__group .slide--cat-entry img {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100%;
       max-height: 150px;
+      object-fit: contain !important;
+    }
+  }
+
+  /* Small marquee spacing — intentionally compact. */
+  &.nova-quick-links--marquee.nova-quick-links--small-images {
+    .nova-quick-links__group {
+      gap: .65rem;
+      padding-inline: .35rem;
+    }
+
+    .nova-quick-links__group .nova-quick-links__item {
+      width: 84px;
+      flex-basis: 84px;
     }
 
     .nova-quick-links__group .slide--cat-entry img {
-      max-height: 110px;
-    }
-  }
-
-  &.nova-quick-links--small-images {
-    .slide--cat-entry img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      flex: 0 0 64px;
+      width: 64px !important;
+      height: 64px !important;
+      max-width: 64px;
+      max-height: 64px;
+      object-fit: contain !important;
     }
   }
 }
@@ -155,46 +186,71 @@
   }
 }
 
-/* Respect reduced-motion preferences. */
-@media (prefers-reduced-motion: reduce) {
-  [data-testid="store-home-main-links"].nova-quick-links {
-    .nova-quick-links__track {
-      animation: none;
-    }
-  }
-}
+/* Do not disable the store marquee because of OS/browser reduced-motion settings. */
 
 @media (max-width: 767px) {
   [data-testid="store-home-main-links"].nova-quick-links {
-    padding: 8px 0 14px;
+    padding: 8px 0 18px;
 
     .nova-quick-links__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem .75rem;
+      column-gap: .85rem;
+      row-gap: 2.25rem;
     }
 
-    .nova-quick-links__group {
-      gap: .8rem;
-      padding-inline: .4rem;
+    &.nova-quick-links--natural-images {
+      .nova-quick-links__grid .slide--cat-entry img {
+        max-width: min(100%, 155px);
+        max-height: 155px;
+      }
     }
 
-    .nova-quick-links__group .nova-quick-links__item {
-      width: 88px;
-      flex-basis: 88px;
-    }
-
-    .nova-quick-links--natural-images .nova-quick-links__group .slide--cat-entry img {
-      max-height: 82px;
-    }
-
-    .nova-quick-links--small-images .slide--cat-entry img {
-      width: 52px;
-      height: 52px;
-      flex-basis: 52px;
+    &.nova-quick-links--small-images {
+      .nova-quick-links__grid .slide--cat-entry img {
+        width: 64px !important;
+        height: 64px !important;
+        max-width: 64px;
+        max-height: 64px;
+      }
     }
 
     .slide--cat-entry h2 {
       font-size: .75rem;
+      line-height: 1.35;
+    }
+
+    .nova-quick-links__group {
+      gap: .5rem;
+      padding-inline: .2rem;
+    }
+
+    .nova-quick-links__group .nova-quick-links__item {
+      width: 82px;
+      flex-basis: 82px;
+    }
+
+    &.nova-quick-links--marquee {
+      .nova-quick-links__group .slide--cat-entry img {
+        max-height: 92px;
+      }
+    }
+
+    &.nova-quick-links--marquee.nova-quick-links--small-images {
+      .nova-quick-links__group {
+        gap: .4rem;
+      }
+
+      .nova-quick-links__group .nova-quick-links__item {
+        width: 72px;
+        flex-basis: 72px;
+      }
+
+      .nova-quick-links__group .slide--cat-entry img {
+        width: 56px !important;
+        height: 56px !important;
+        max-width: 56px;
+        max-height: 56px;
+      }
     }
   }
 }
@@ -202,13 +258,8 @@
 @media (max-width: 639px) {
   [data-testid="store-home-main-links"].nova-quick-links {
     .nova-quick-links__viewport {
-      mask-image: linear-gradient(
-        to right,
-        transparent 0,
-        #000 8%,
-        #000 92%,
-        transparent 100%
-      );
+      mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
     }
   }
 }
