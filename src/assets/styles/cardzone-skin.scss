@@ -110,11 +110,13 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
   box-shadow: 0 0 14px color-mix(in srgb, var(--cz-blue) 55%, transparent) !important;
 }
 
-/* category tile hover glow (shape/size untouched) */
-[data-testid="store-home-main-links"] .slide--cat-entry:hover i,
-[data-testid="store-home-main-links"] .slide--cat-entry:hover img {
-  border-color: color-mix(in srgb, var(--cz-blue) 60%, transparent) !important;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cz-blue) 35%, transparent), 0 0 22px 4px color-mix(in srgb, var(--cz-blue) 35%, transparent) !important;
+/* Category media stays completely clean; hover motion is handled by nova-quick-links.scss. */
+[data-testid="store-home-main-links"] .slide--cat-entry img,
+[data-testid="store-home-main-links"] .slide--cat-entry:hover img,
+[data-testid="store-home-main-links"] .slide--cat-entry:focus-visible img {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 
 /* glass-style card border/shadow tint (only if that style is selected) */
@@ -153,23 +155,4 @@ custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-pr
 }
 custom-salla-product-card.s-product-card-vertical .nova-card-footer salla-add-product-button:hover {
   box-shadow: 0 0 24px color-mix(in srgb, var(--cz-blue) 65%, transparent) !important;
-}
-
-
-/* Final overrides for the customizable Quick Links categories. */
-[data-testid="store-home-main-links"].nova-quick-links .slide--cat-entry {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .18) !important;
-}
-
-[data-testid="store-home-main-links"].nova-quick-links .slide--cat-entry img {
-  background: transparent !important;
-  border: 0 !important;
-}
-
-[data-testid="store-home-main-links"].nova-quick-links .slide--cat-entry:hover,
-[data-testid="store-home-main-links"].nova-quick-links .slide--cat-entry:hover img {
-  border: 0 !important;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, .28) !important;
 }

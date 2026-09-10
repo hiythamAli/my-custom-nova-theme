@@ -1002,6 +1002,24 @@
                     ]
                 },
                 {
+                    "id": "show_cat_titles",
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض عناوين التصنيفات",
+                    "description": "إظهار أو إخفاء اسم كل تصنيف أسفل الصورة.",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true,
+                    "conditions": [
+                        {
+                            "id": "show_cats",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "categories",
                     "type": "items",
                     "format": "dropdown-list",

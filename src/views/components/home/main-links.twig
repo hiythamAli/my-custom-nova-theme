@@ -9,12 +9,14 @@
 | component.links                    | object[] | list of links                                                                  |
 | component.layout                   | string   | grid / marquee                                                                 |
 | component.image_size               | string   | natural / small                                                                |
+| component.show_cat_titles           | bool     | show / hide category titles                                                    |
 | position                           | int      | Sorting number start from zero                                                |
 #}
 
 {% set items = component.show_cats ? component.categories : component.links %}
 {% set section_classes = component.layout == 'marquee' ? 'nova-quick-links--marquee' : 'nova-quick-links--grid' %}
-{% set section_classes = section_classes ~ (component.image_size == 'small' ? ' nova-quick-links--small-images' : ' nova-quick-links--natural-images') %}
+{% set section_classes = section_classes ~ (component.image_size == 'small' ? ' nova-quick-links--small-images' : 'nova-quick-links--natural-images') %}
+{% set section_classes = section_classes ~ (component.show_cats and component.show_cat_titles == false ? ' nova-quick-links--hide-titles' : '') %}
 
 <section data-testid="store-home-main-links"
          class="s-block s-block--categories nova-quick-links {{ section_classes }} {{ component.merge_with_top_component and position ? 'merge-with-top-component' : '' }} {{ not component.title and component.merge_with_top_component ? 'merged-has-no-title' : '' }}">
@@ -40,7 +42,9 @@
                                         {% elseif item.icon %}
                                             <i class="{{ item.icon }}"></i>
                                         {% endif %}
-                                        <h2>{{ item.name|default(item.title) }}</h2>
+                                        {% if not component.show_cats or component.show_cat_titles != false %}
+                                            <h2>{{ item.name|default(item.title) }}</h2>
+                                        {% endif %}
                                     </a>
                                 {% endif %}
                             {% endfor %}
@@ -58,7 +62,9 @@
                             {% elseif item.icon %}
                                 <i class="{{ item.icon }}"></i>
                             {% endif %}
-                            <h2>{{ item.name|default(item.title) }}</h2>
+                            {% if not component.show_cats or component.show_cat_titles != false %}
+                                <h2>{{ item.name|default(item.title) }}</h2>
+                            {% endif %}
                         </a>
                     {% endif %}
                 {% endfor %}
