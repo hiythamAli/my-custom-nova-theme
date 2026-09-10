@@ -12,7 +12,7 @@
 
 [data-testid="store-home-main-links"].nova-quick-links {
   background: transparent !important;
-  padding: 10px 0 16px;
+  padding: 18px 12px 24px !important;
   overflow: hidden;
 
   .s-block__title {
@@ -27,6 +27,12 @@
     text-decoration: none;
     color: var(--nova-text);
     min-width: 0;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
 
     img {
       display: block;
@@ -38,9 +44,8 @@
       margin: 0 auto .55rem;
       background: transparent !important;
       border: 0 !important;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
-      transition: transform var(--nova-duration) var(--nova-ease),
-                  box-shadow var(--nova-duration) var(--nova-ease);
+      box-shadow: none !important;
+      transition: transform var(--nova-duration) var(--nova-ease);
     }
 
     i {
@@ -55,8 +60,8 @@
 
     &:hover img,
     &:hover i {
-      transform: translateY(-3px);
-      box-shadow: 0 0 12px color-mix(in srgb, var(--nova-accent) 45%, transparent);
+      transform: translateY(-4px) scale(1.025);
+      box-shadow: none !important;
     }
 
     h2 {
@@ -75,7 +80,7 @@
   .nova-quick-links__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.25rem 1rem;
+    gap: 3.25rem 1.15rem;
     align-items: start;
   }
 
@@ -126,7 +131,7 @@
       /* Large, uncropped presentation: preserve the source ratio. */
       width: auto;
       height: auto;
-      max-width: min(100%, 180px);
+      max-width: min(100%, 220px);
       max-height: none;
     }
 
@@ -149,6 +154,30 @@
   }
 }
 
+/* Hard overrides for Raed's original .slide--cat-entry utility styles.
+   These MUST win over bg-white / h-36 / p-3 from home-blocks.scss. */
+[data-testid="store-home-main-links"] .slide--cat-entry {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+[data-testid="store-home-main-links"] .slide--cat-entry img,
+[data-testid="store-home-main-links"] .slide--cat-entry i {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+[data-testid="store-home-main-links"] .nova-quick-links__grid .slide--cat-entry {
+  overflow: visible !important;
+}
+
 @keyframes nova-quick-links-marquee {
   from {
     transform: translate3d(0, 0, 0);
@@ -164,7 +193,7 @@
 
     .nova-quick-links__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem .75rem;
+      gap: 2.75rem .8rem;
     }
 
     .nova-quick-links__group {
@@ -217,7 +246,7 @@
   }
 
   .nova-quick-links__grid {
-    row-gap: 2rem;
+    row-gap: 2.25rem;
   }
 
   .nova-quick-links__group .slide--cat-entry img {
@@ -228,7 +257,7 @@
 @media (max-width: 767px) {
   [data-testid="store-home-main-links"].nova-quick-links.nova-quick-links--hide-titles {
     .nova-quick-links__grid {
-      row-gap: 1.25rem;
+      row-gap: 1.75rem;
     }
   }
 }
