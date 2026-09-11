@@ -78,6 +78,41 @@
             "format": "line"
         },
         {
+            "id": "store_theme",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "ثيم المتجر",
+            "description": "اختر الهوية اللونية العامة للمتجر. لا يغيّر ترتيب أو حجم العناصر.",
+            "labelHTML": null,
+            "icon": "sicon-palette",
+            "selected": [
+                {
+                    "label": "CardZone",
+                    "value": "cardzone",
+                    "key": "2ebc8c95-fbcf-43cf-88ef-876038967627"
+                }
+            ],
+            "options": [
+                {
+                    "label": "CardZone — الحالي",
+                    "value": "cardzone",
+                    "key": "d60f0cd1-833b-4b2b-9439-69561c06718f"
+                },
+                {
+                    "label": "Dark — داكن",
+                    "value": "dark",
+                    "key": "628c4ce1-bd66-4e1f-85af-32eb370451b1"
+                },
+                {
+                    "label": "Light — أبيض وأسود",
+                    "value": "light",
+                    "key": "7226d3c8-1ba7-462e-aded-bb3f80363bd3"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "static-label2",
