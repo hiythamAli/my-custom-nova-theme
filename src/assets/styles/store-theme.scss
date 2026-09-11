@@ -1,0 +1,267 @@
+/**
+ * NOVA GLOBAL STORE THEME
+ * Color/identity layer only. Imported after CardZone skin.
+ * Does NOT change layout, spacing, sizing, DOM structure, radius or motion.
+ */
+
+/* ---------- Palette overrides ---------- */
+[data-store-theme="dark"] {
+  --cz-bg: #0b0d12;
+  --cz-bg2: #121722;
+  --cz-card: #171c27;
+  --cz-card-hover: #202736;
+  --cz-gold: #8ab4ff;
+  --cz-blue: #5b8cff;
+  --cz-purple: #8b5cf6;
+  --cz-text: #f7f8fb;
+  --cz-secondary: #aab3c5;
+  --cz-border: #2a3344;
+}
+
+[data-store-theme="light"] {
+  --cz-bg: #ffffff;
+  --cz-bg2: #f7f8fa;
+  --cz-card: #ffffff;
+  --cz-card-hover: #f4f6f8;
+  --cz-gold: #1f5fd1;
+  --cz-blue: #2563eb;
+  --cz-purple: #6d4aff;
+  --cz-text: #111827;
+  --cz-secondary: #667085;
+  --cz-border: #e5e7eb;
+}
+
+/* Keep Current/CardZone exactly on the existing skin. */
+[data-store-theme="cardzone"] {
+  color-scheme: dark;
+}
+
+/* ---------- Global page/surface colors ---------- */
+[data-store-theme="dark"] body,
+[data-store-theme="light"] body,
+[data-store-theme="dark"] #app,
+[data-store-theme="light"] #app {
+  background-color: var(--nova-bg) !important;
+  color: var(--nova-text) !important;
+}
+
+[data-store-theme="dark"] .s-block,
+[data-store-theme="light"] .s-block,
+[data-store-theme="dark"] .s-block--full-bg,
+[data-store-theme="light"] .s-block--full-bg,
+[data-store-theme="dark"] .container--product-details,
+[data-store-theme="light"] .container--product-details {
+  color: var(--nova-text);
+}
+
+/* ---------- Common Tailwind surfaces that were previously hardcoded ---------- */
+[data-store-theme="dark"] .bg-white,
+[data-store-theme="dark"] .bg-gray-50,
+[data-store-theme="dark"] .bg-gray-100,
+[data-store-theme="dark"] .bg-gray-200,
+[data-store-theme="light"] .bg-white,
+[data-store-theme="light"] .bg-gray-50,
+[data-store-theme="light"] .bg-gray-100,
+[data-store-theme="light"] .bg-gray-200 {
+  background-color: var(--nova-card) !important;
+}
+
+[data-store-theme="dark"] .text-gray-800,
+[data-store-theme="dark"] .text-gray-700,
+[data-store-theme="dark"] .text-gray-600,
+[data-store-theme="dark"] .text-gray-500,
+[data-store-theme="dark"] .text-gray-400,
+[data-store-theme="light"] .text-gray-800,
+[data-store-theme="light"] .text-gray-700,
+[data-store-theme="light"] .text-gray-600,
+[data-store-theme="light"] .text-gray-500,
+[data-store-theme="light"] .text-gray-400 {
+  color: var(--nova-text-muted) !important;
+}
+
+[data-store-theme="dark"] .text-gray-900,
+[data-store-theme="dark"] .text-black,
+[data-store-theme="light"] .text-gray-900,
+[data-store-theme="light"] .text-black {
+  color: var(--nova-text) !important;
+}
+
+[data-store-theme="dark"] .border-gray-100,
+[data-store-theme="dark"] .border-gray-200,
+[data-store-theme="dark"] .border-gray-300,
+[data-store-theme="light"] .border-gray-100,
+[data-store-theme="light"] .border-gray-200,
+[data-store-theme="light"] .border-gray-300 {
+  border-color: var(--nova-border) !important;
+}
+
+/* Light must remain genuinely white; dark must remain genuinely dark. */
+[data-store-theme="light"] .bg-white,
+[data-store-theme="light"] .bg-gray-50 {
+  background-color: #fff !important;
+}
+[data-store-theme="light"] .bg-gray-100,
+[data-store-theme="light"] .bg-gray-200 {
+  background-color: #f7f8fa !important;
+}
+[data-store-theme="light"] .text-gray-900,
+[data-store-theme="light"] .text-black {
+  color: #111827 !important;
+}
+[data-store-theme="light"] .text-gray-800,
+[data-store-theme="light"] .text-gray-700,
+[data-store-theme="light"] .text-gray-600 {
+  color: #344054 !important;
+}
+[data-store-theme="light"] .text-gray-500,
+[data-store-theme="light"] .text-gray-400 {
+  color: #667085 !important;
+}
+
+/* ---------- Header / menus / search ---------- */
+[data-store-theme="dark"] .main-nav-container,
+[data-store-theme="light"] .main-nav-container,
+[data-store-theme="dark"] .sub-menu,
+[data-store-theme="light"] .sub-menu,
+[data-store-theme="dark"] .dropdown__menu,
+[data-store-theme="light"] .dropdown__menu,
+[data-store-theme="dark"] .mm-menu,
+[data-store-theme="light"] .mm-menu {
+  background-color: var(--nova-surface) !important;
+  color: var(--nova-text) !important;
+  border-color: var(--nova-border) !important;
+}
+
+[data-store-theme="dark"] .main-nav-container a,
+[data-store-theme="dark"] .sub-menu a,
+[data-store-theme="dark"] .dropdown__menu a,
+[data-store-theme="light"] .main-nav-container a,
+[data-store-theme="light"] .sub-menu a,
+[data-store-theme="light"] .dropdown__menu a {
+  color: var(--nova-text) !important;
+}
+
+[data-store-theme="dark"] salla-search,
+[data-store-theme="light"] salla-search,
+[data-store-theme="dark"] .s-search,
+[data-store-theme="light"] .s-search {
+  --s-search-bg: var(--nova-card);
+  --s-search-text: var(--nova-text);
+  color: var(--nova-text) !important;
+}
+
+/* ---------- Product page / options / forms ---------- */
+[data-store-theme="dark"] .container--product-details section.bg-white,
+[data-store-theme="dark"] .container--product-details div.bg-white,
+[data-store-theme="light"] .container--product-details section.bg-white,
+[data-store-theme="light"] .container--product-details div.bg-white {
+  background-color: var(--nova-card) !important;
+  color: var(--nova-text) !important;
+  border-color: var(--nova-border) !important;
+}
+
+[data-store-theme="dark"] .s-form-control,
+[data-store-theme="dark"] input,
+[data-store-theme="dark"] select,
+[data-store-theme="dark"] textarea,
+[data-store-theme="light"] .s-form-control,
+[data-store-theme="light"] input,
+[data-store-theme="light"] select,
+[data-store-theme="light"] textarea {
+  background-color: var(--nova-card) !important;
+  color: var(--nova-text) !important;
+  border-color: var(--nova-border) !important;
+}
+
+/* ---------- Cart page / free-shipping / notices ---------- */
+[data-store-theme="dark"] .cart-item,
+[data-store-theme="dark"] #free-shipping,
+[data-store-theme="dark"] .cart-summary,
+[data-store-theme="dark"] .cart-options,
+[data-store-theme="light"] .cart-item,
+[data-store-theme="light"] #free-shipping,
+[data-store-theme="light"] .cart-summary,
+[data-store-theme="light"] .cart-options {
+  background-color: var(--nova-card) !important;
+  color: var(--nova-text) !important;
+  border-color: var(--nova-border) !important;
+}
+
+/* ---------- Toast / SweetAlert / modal surfaces ---------- */
+[data-store-theme="dark"] .s-add-product-toast,
+[data-store-theme="dark"] .swal2-popup,
+[data-store-theme="dark"] .swal2-container,
+[data-store-theme="light"] .s-add-product-toast,
+[data-store-theme="light"] .swal2-popup,
+[data-store-theme="light"] .swal2-container {
+  background-color: var(--nova-card) !important;
+  color: var(--nova-text) !important;
+  border-color: var(--nova-border) !important;
+}
+
+[data-store-theme="dark"] .s-add-product-toast *,
+[data-store-theme="dark"] .swal2-popup *,
+[data-store-theme="light"] .s-add-product-toast *,
+[data-store-theme="light"] .swal2-popup * {
+  border-color: var(--nova-border);
+}
+
+/* ---------- Footer ---------- */
+[data-store-theme="dark"] .store-footer,
+[data-store-theme="light"] .store-footer {
+  background-color: var(--nova-ink) !important;
+  color: var(--nova-text-on-ink) !important;
+}
+[data-store-theme="dark"] .store-footer__inner,
+[data-store-theme="light"] .store-footer__inner {
+  background-color: var(--nova-surface) !important;
+  border-color: var(--nova-border) !important;
+}
+
+/* ---------- Salla component hosts: use the theme tokens where exposed ---------- */
+[data-store-theme="dark"] salla-user-menu,
+[data-store-theme="dark"] salla-cart-summary,
+[data-store-theme="dark"] salla-product-options,
+[data-store-theme="dark"] salla-cart-summary-card,
+[data-store-theme="dark"] salla-quantity-input,
+[data-store-theme="light"] salla-user-menu,
+[data-store-theme="light"] salla-cart-summary,
+[data-store-theme="light"] salla-product-options,
+[data-store-theme="light"] salla-cart-summary-card,
+[data-store-theme="light"] salla-quantity-input {
+  color: var(--nova-text) !important;
+  --color-primary: var(--nova-accent);
+  --color-text: var(--nova-text);
+  --color-text-muted: var(--nova-text-muted);
+  --color-background: var(--nova-card);
+  --color-border: var(--nova-border);
+}
+
+/* Never change component geometry here. Only colors/backgrounds/borders. */
+
+/* Product-card variants: color only; geometry remains owned by nova-product-card.scss. */
+[data-store-theme="dark"] custom-salla-product-card .s-product-card-image,
+[data-store-theme="dark"] custom-salla-product-card.s-product-card-vertical .s-product-card-image,
+[data-store-theme="light"] custom-salla-product-card .s-product-card-image,
+[data-store-theme="light"] custom-salla-product-card.s-product-card-vertical .s-product-card-image {
+  background-color: var(--nova-card) !important;
+}
+[data-store-theme="dark"] [data-nova-pc="horizontal"] .s-product-card-image,
+[data-store-theme="light"] [data-nova-pc="horizontal"] .s-product-card-image,
+[data-store-theme="dark"] [data-nova-pc="floating"] .s-product-card-image,
+[data-store-theme="light"] [data-nova-pc="floating"] .s-product-card-image {
+  background-color: var(--nova-card) !important;
+}
+[data-store-theme="dark"] [data-nova-pc="overlay-blur"] .s-product-card-content,
+[data-store-theme="light"] [data-nova-pc="overlay-blur"] .s-product-card-content {
+  background-color: color-mix(in srgb, var(--nova-card) 82%, transparent) !important;
+  color: var(--nova-text) !important;
+}
+[data-store-theme="dark"] [data-nova-pc="floating"] .s-product-card-wishlist-btn,
+[data-store-theme="light"] [data-nova-pc="floating"] .s-product-card-wishlist-btn {
+  background-color: var(--nova-card) !important;
+}
+[data-store-theme="dark"] [data-nova-pc="overlay-blur"] .s-product-card-wishlist-btn,
+[data-store-theme="light"] [data-nova-pc="overlay-blur"] .s-product-card-wishlist-btn {
+  background-color: var(--nova-card) !important;
+}

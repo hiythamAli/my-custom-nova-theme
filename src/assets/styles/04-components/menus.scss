@@ -249,3 +249,18 @@
     }
   }
 }
+/* More dropdown: keep moved category/menu links visible and usable. */
+#more-menu-dropdown > .sub-menu {
+  min-width: 14rem;
+  max-width: min(24rem, 80vw);
+  z-index: 1000 !important;
+  overflow-y: auto;
+}
+#more-menu-dropdown > .sub-menu > ul > li,
+#more-menu-dropdown > .sub-menu > ul > li > a {
+  display: block !important;
+  visibility: visible !important;
+}
+#more-menu-dropdown > .sub-menu > ul > li > a {
+  white-space: nowrap;
+}

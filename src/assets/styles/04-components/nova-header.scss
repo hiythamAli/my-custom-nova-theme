@@ -91,3 +91,23 @@
 @media (max-width: 639px) {
   .main-nav-container { margin: .5rem .5rem 0; border-radius: var(--nova-radius-lg); max-width: calc(100% - 1rem); }
 }
+
+/* NOVA header behavior: solid at page load, glass only after sticky state. */
+#mainnav.main-nav-container {
+  background: var(--nova-ink-soft) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: .65rem 1.25rem !important;
+}
+#mainnav.main-nav-container.fixed-header {
+  background: color-mix(in srgb, var(--nova-ink-soft) 82%, transparent) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+#mainnav.main-nav-container .inner,
+#mainnav.main-nav-container .container {
+  background: transparent !important;
+}
+@media (max-width: 639px) {
+  #mainnav.main-nav-container { padding: .55rem .8rem !important; }
+}

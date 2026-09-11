@@ -212,10 +212,7 @@ class NavigationMenu extends HTMLElement {
             }
         });
 
-        // Reserve only the real controls around the menu plus a compact slot
-        // for the More trigger. The previous fixed 300px buffer hid too many
-        // categories on medium/large screens and could leave an empty More menu.
-        const moreReserve = 120;
+        const moreReserve = 140;
         const availableWidth = Math.max(0, containerWidth - usedWidth - moreReserve);
         let currentWidth = 0;
         let visibleCount = 0;
