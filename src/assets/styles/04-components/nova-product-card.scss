@@ -372,3 +372,592 @@ custom-salla-product-card.s-product-card-vertical,
     text-align: center;
   }
 }
+
+/* =====================================================================
+   NOVA 5 REFERENCE CARD STYLES
+   Per-element only: controlled by [data-nova-card-style] on the element.
+   Modern remains untouched. These styles are additive and theme-aware.
+   ===================================================================== */
+
+/* Shared tokens for the five reference styles. */
+[data-nova-card-style="nova-profile"],
+[data-nova-card-style="nova-dark"],
+[data-nova-card-style="nova-clean"],
+[data-nova-card-style="nova-overlay"],
+[data-nova-card-style="nova-horizontal"] {
+  --nova-ref-button-bg: linear-gradient(90deg, var(--cz-blue), color-mix(in srgb, var(--cz-blue) 60%, #7fb2ff));
+  --nova-ref-button-shadow: 0 4px 16px color-mix(in srgb, var(--cz-blue) 45%, transparent);
+  --nova-ref-card: var(--cz-card);
+  --nova-ref-surface: var(--cz-bg2);
+  --nova-ref-text: var(--cz-text);
+  --nova-ref-muted: var(--cz-secondary);
+  --nova-ref-border: var(--cz-border);
+}
+
+[data-store-theme="light"] [data-nova-card-style="nova-profile"],
+[data-store-theme="light"] [data-nova-card-style="nova-dark"],
+[data-store-theme="light"] [data-nova-card-style="nova-clean"],
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"],
+[data-store-theme="light"] [data-nova-card-style="nova-horizontal"] {
+  --nova-ref-card: #fff;
+  --nova-ref-surface: #f7f8fa;
+  --nova-ref-text: #111827;
+  --nova-ref-muted: #667085;
+  --nova-ref-border: #e5e7eb;
+}
+
+[data-store-theme="dark"] [data-nova-card-style="nova-profile"],
+[data-store-theme="dark"] [data-nova-card-style="nova-dark"],
+[data-store-theme="dark"] [data-nova-card-style="nova-clean"],
+[data-store-theme="dark"] [data-nova-card-style="nova-overlay"],
+[data-store-theme="dark"] [data-nova-card-style="nova-horizontal"] {
+  --nova-ref-card: #171c27;
+  --nova-ref-surface: #121722;
+  --nova-ref-text: #f7f8fb;
+  --nova-ref-muted: #aab3c5;
+  --nova-ref-border: #2a3344;
+}
+
+/* ---------- Style 1: Profile / Social reference ---------- */
+[data-nova-card-style="nova-profile"] custom-salla-product-card.s-product-card-vertical {
+  background: var(--nova-ref-card) !important;
+  color: var(--nova-ref-text) !important;
+  border: 1px solid var(--nova-ref-border) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.12) !important;
+  text-align: center !important;
+
+  .s-product-card-image {
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: var(--nova-ref-surface) !important;
+  }
+
+  .s-product-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .s-product-card-content {
+    padding: 1rem 1rem .95rem !important;
+    background: var(--nova-ref-card) !important;
+    text-align: center !important;
+  }
+
+  .s-product-card-content-title a,
+  .s-product-card-price,
+  .s-product-card-sale-price h4,
+  .s-product-card-starting-price h4 {
+    color: var(--nova-ref-text) !important;
+  }
+
+  .s-product-card-content-subtitle,
+  .s-product-card-rating,
+  .s-product-card-sale-price span {
+    color: var(--nova-ref-muted) !important;
+  }
+
+  .s-product-card-content-sub {
+    justify-content: center !important;
+    gap: .65rem !important;
+    margin-top: .35rem;
+  }
+
+  .s-product-card-wishlist-btn {
+    top: .75rem !important;
+    right: .75rem !important;
+    left: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 999px !important;
+    background: rgba(0,0,0,.58) !important;
+    border: 0 !important;
+    i, .sicon-heart { color: #fff !important; }
+  }
+
+  .nova-card-footer {
+    display: flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    margin-top: .8rem !important;
+  }
+
+  .nova-details-btn { display: none !important; }
+
+  salla-add-product-button {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+    min-height: 46px !important;
+    padding: .65rem 1rem !important;
+    border-radius: 999px !important;
+    background: var(--nova-ref-button-bg) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-ref-button-shadow) !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ---------- Style 2: Dark product reference ---------- */
+[data-nova-card-style="nova-dark"] custom-salla-product-card.s-product-card-vertical {
+  background: var(--nova-ref-card) !important;
+  color: var(--nova-ref-text) !important;
+  border: 1px solid var(--nova-ref-border) !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,.14) !important;
+
+  .s-product-card-image {
+    aspect-ratio: 1 / 1 !important;
+    margin: 8px 8px 0 !important;
+    width: calc(100% - 16px) !important;
+    border-radius: 18px !important;
+    background: var(--nova-ref-surface) !important;
+    overflow: hidden !important;
+  }
+
+  .s-product-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .s-product-card-content {
+    padding: .95rem 1rem 1rem !important;
+    background: var(--nova-ref-card) !important;
+    text-align: start !important;
+  }
+
+  .s-product-card-content-title a,
+  .s-product-card-price,
+  .s-product-card-sale-price h4,
+  .s-product-card-starting-price h4 {
+    color: var(--nova-ref-text) !important;
+  }
+
+  .s-product-card-content-subtitle,
+  .s-product-card-rating,
+  .s-product-card-sale-price span {
+    color: var(--nova-ref-muted) !important;
+  }
+
+  .s-product-card-wishlist-btn {
+    top: 17px !important;
+    right: 17px !important;
+    left: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 999px !important;
+    background: var(--nova-ref-card) !important;
+    border: 0 !important;
+    box-shadow: 0 5px 16px rgba(0,0,0,.16) !important;
+    i, .sicon-heart { color: var(--nova-ref-text) !important; }
+  }
+
+  .nova-card-footer {
+    margin-top: .85rem !important;
+  }
+
+  .nova-details-btn { display: none !important; }
+
+  salla-add-product-button {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+    min-height: 48px !important;
+    justify-content: center !important;
+    padding: .65rem 1rem !important;
+    border-radius: 14px !important;
+    background: var(--nova-ref-button-bg) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-ref-button-shadow) !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ---------- Style 3: Clean product reference ---------- */
+[data-nova-card-style="nova-clean"] custom-salla-product-card.s-product-card-vertical {
+  background: var(--nova-ref-card) !important;
+  color: var(--nova-ref-text) !important;
+  border: 1px solid var(--nova-ref-border) !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08) !important;
+
+  .s-product-card-image {
+    aspect-ratio: 1 / 1 !important;
+    margin: 10px 10px 0 !important;
+    width: calc(100% - 20px) !important;
+    border-radius: 20px !important;
+    background: var(--nova-ref-surface) !important;
+  }
+
+  .s-product-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .s-product-card-content {
+    padding: .9rem 1rem 1rem !important;
+    background: var(--nova-ref-card) !important;
+    text-align: start !important;
+  }
+
+  .s-product-card-content-title a,
+  .s-product-card-price,
+  .s-product-card-sale-price h4,
+  .s-product-card-starting-price h4 {
+    color: var(--nova-ref-text) !important;
+  }
+
+  .s-product-card-content-subtitle,
+  .s-product-card-rating,
+  .s-product-card-sale-price span {
+    color: var(--nova-ref-muted) !important;
+  }
+
+  .s-product-card-content-main { min-height: 62px; }
+  .s-product-card-content-sub { margin-top: .35rem; }
+
+  .s-product-card-wishlist-btn {
+    top: 18px !important;
+    right: 18px !important;
+    left: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.92) !important;
+    border: 0 !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12) !important;
+    i, .sicon-heart { color: #111827 !important; }
+  }
+
+  .nova-details-btn { display: none !important; }
+
+  salla-add-product-button {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    justify-content: center !important;
+    padding: .6rem 1rem !important;
+    border-radius: 999px !important;
+    background: var(--nova-ref-button-bg) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-ref-button-shadow) !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ---------- Style 4: Full-image overlay reference ---------- */
+[data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical {
+  position: relative !important;
+  background: var(--nova-ref-surface) !important;
+  color: var(--nova-ref-text) !important;
+  border: 0 !important;
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  aspect-ratio: 4 / 5 !important;
+  min-height: 0 !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.14) !important;
+
+  .s-product-card-image {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: var(--nova-ref-surface) !important;
+    z-index: 0 !important;
+  }
+
+  .s-product-card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .s-product-card-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 32%, rgba(0,0,0,.10) 46%, rgba(0,0,0,.86) 100%);
+    pointer-events: none;
+  }
+
+  .s-product-card-content {
+    position: absolute !important;
+    inset: auto .8rem .8rem !important;
+    z-index: 3 !important;
+    padding: 1rem !important;
+    border-radius: 20px !important;
+    background: rgba(10,14,26,.72) !important;
+    backdrop-filter: blur(12px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+    color: #fff !important;
+    text-align: start !important;
+  }
+
+  .s-product-card-content-title a,
+  .s-product-card-price,
+  .s-product-card-sale-price h4,
+  .s-product-card-starting-price h4,
+  .s-product-card-content-subtitle,
+  .s-product-card-rating,
+  .s-product-card-sale-price span {
+    color: #fff !important;
+  }
+
+  .s-product-card-content-main { min-width: 0; }
+  .s-product-card-content-title a { display: block; }
+
+  .s-product-card-wishlist-btn {
+    top: .8rem !important;
+    right: .8rem !important;
+    left: auto !important;
+    z-index: 5 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.92) !important;
+    border: 0 !important;
+    i, .sicon-heart { color: #111827 !important; }
+  }
+
+  .nova-details-btn { display: none !important; }
+
+  salla-add-product-button {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    justify-content: center !important;
+    margin-top: .65rem !important;
+    padding: .6rem 1rem !important;
+    border-radius: 999px !important;
+    background: var(--nova-ref-button-bg) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-ref-button-shadow) !important;
+    font-weight: 700 !important;
+  }
+}
+
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-content {
+  background: rgba(255,255,255,.82) !important;
+  color: #111827 !important;
+}
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-content-title a,
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-price,
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-sale-price h4,
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-content-subtitle,
+[data-store-theme="light"] [data-nova-card-style="nova-overlay"] custom-salla-product-card.s-product-card-vertical .s-product-card-rating {
+  color: #111827 !important;
+}
+
+/* ---------- Style 5: Horizontal reference ---------- */
+[data-nova-card-style="nova-horizontal"] .s-products-list-wrapper {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+[data-nova-card-style="nova-horizontal"] custom-salla-product-card.s-product-card-entry {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  background: var(--nova-ref-card) !important;
+  color: var(--nova-ref-text) !important;
+  border: 1px solid var(--nova-ref-border) !important;
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.10) !important;
+
+  .s-product-card-image,
+  .s-product-card-image-full {
+    position: relative !important;
+    flex: 0 0 38% !important;
+    width: 38% !important;
+    height: auto !important;
+    min-height: 190px !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    background: var(--nova-ref-surface) !important;
+    overflow: hidden !important;
+  }
+
+  .s-product-card-image img,
+  .s-product-card-image-full img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .s-product-card-content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    padding: 1rem 1.1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    background: var(--nova-ref-card) !important;
+    text-align: start !important;
+  }
+
+  .s-product-card-content-title a,
+  .s-product-card-price,
+  .s-product-card-sale-price h4,
+  .s-product-card-starting-price h4 { color: var(--nova-ref-text) !important; }
+  .s-product-card-content-subtitle,
+  .s-product-card-rating,
+  .s-product-card-sale-price span { color: var(--nova-ref-muted) !important; }
+
+  .s-product-card-content-main { min-width: 0; }
+
+  .s-product-card-wishlist-btn {
+    top: auto !important;
+    right: .7rem !important;
+    bottom: .7rem !important;
+    left: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 999px !important;
+    background: rgba(0,0,0,.58) !important;
+    border: 0 !important;
+    z-index: 4 !important;
+    i, .sicon-heart { color: #fff !important; }
+  }
+
+  .nova-card-footer {
+    display: flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    margin-top: .75rem !important;
+  }
+
+  .nova-details-btn { display: none !important; }
+
+  salla-add-product-button {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    padding: .55rem .9rem !important;
+    border-radius: 12px !important;
+    background: var(--nova-ref-button-bg) !important;
+    color: #fff !important;
+    box-shadow: var(--nova-ref-button-shadow) !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* Horizontal: two cards on desktop, one card on mobile, with no shrink-to-fit. */
+@media (max-width: 640px) {
+  [data-nova-card-style="nova-horizontal"] .s-products-list-wrapper {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 4px;
+  }
+
+  [data-nova-card-style="nova-horizontal"] .s-products-list-wrapper > custom-salla-product-card,
+  [data-nova-card-style="nova-horizontal"] .s-products-list-wrapper > * {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-snap-align: start;
+  }
+
+  [data-nova-card-style="nova-horizontal"] custom-salla-product-card.s-product-card-entry {
+    min-height: 170px !important;
+  }
+
+  [data-nova-card-style="nova-horizontal"] custom-salla-product-card.s-product-card-entry .s-product-card-image,
+  [data-nova-card-style="nova-horizontal"] custom-salla-product-card.s-product-card-entry .s-product-card-image-full {
+    flex-basis: 42% !important;
+    width: 42% !important;
+    min-height: 170px !important;
+  }
+}
+
+/* Product sliders: desktop shows exactly two horizontal cards; mobile one. */
+[data-nova-card-style="nova-horizontal"] salla-products-slider .swiper-slide {
+  width: calc(50% - 9px) !important;
+}
+[data-nova-card-style="nova-horizontal"] salla-products-slider .swiper-wrapper {
+  gap: 18px !important;
+}
+@media (max-width: 640px) {
+  [data-nova-card-style="nova-horizontal"] salla-products-slider .swiper-slide {
+    width: 100% !important;
+  }
+  [data-nova-card-style="nova-horizontal"] salla-products-slider .swiper-wrapper {
+    gap: 12px !important;
+  }
+}
+
+/* Any five-style product block keeps the reference card width stable. */
+[data-nova-card-style="nova-profile"] .s-products-list-wrapper,
+[data-nova-card-style="nova-dark"] .s-products-list-wrapper,
+[data-nova-card-style="nova-clean"] .s-products-list-wrapper,
+[data-nova-card-style="nova-overlay"] .s-products-list-wrapper {
+  align-items: start !important;
+}
+
+/* Horizontal style also normalizes the native tab/grid layouts used by
+   feature blocks, so the element itself remains two-up on desktop and one-up on mobile. */
+[data-nova-card-style="nova-horizontal"] .tabs__item {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+[data-nova-card-style="nova-horizontal"] .tabs__item > custom-salla-product-card {
+  min-width: 0 !important;
+}
+[data-nova-card-style="nova-horizontal"] .s-block--features-products .grid {
+  grid-template-columns: 1fr !important;
+}
+@media (min-width: 1024px) {
+  [data-nova-card-style="nova-horizontal"] .s-block--features-products .grid > custom-salla-product-card,
+  [data-nova-card-style="nova-horizontal"] .s-block--features-products .grid > div > custom-salla-product-card {
+    width: 100% !important;
+  }
+}
+@media (max-width: 640px) {
+  [data-nova-card-style="nova-horizontal"] .tabs__item {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  [data-nova-card-style="nova-horizontal"] .s-block--features-products .grid {
+    grid-template-columns: 1fr !important;
+  }
+}

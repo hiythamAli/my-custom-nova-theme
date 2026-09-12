@@ -17,7 +17,7 @@
 | position                 | int       | sorting block                                                       |
 #}
 {% set component_id='featured-products-style1-' ~ position %}
-<section data-testid="store-home-featured-products" class="s-block s-block-tabs s-block--special-products container" id="{{ component_id }}">
+<section data-testid="store-home-featured-products" class="s-block s-block-tabs s-block--special-products container" id="{{ component_id }}" data-nova-card-style="{{ theme.settings.get('product_card_style', 'modern') }}">
     <div class="s-block__title"> 
       <div class="right-side">
         <h2>{{ main_product.title }}</h2>
@@ -62,7 +62,6 @@
                         {% for product in section.products|slice(0,main_product?4:8) %}
                             <custom-salla-product-card
                                 product="{{product}}"
-                                {{ theme.settings.get('product_card_style') == 'horizontal' ? 'horizontal' : '' }}
                             ></custom-salla-product-card>
                         {% endfor %}
                     </div>

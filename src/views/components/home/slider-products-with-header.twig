@@ -8,7 +8,7 @@
 | component.products    | Product[] *Collection | @see views/pages/product.twig                                                |
 | position              | int                   | Sorting number start from zero                                               |
 #}
-<section data-testid="store-home-slider-products-header" class="s-block s-block--slider-with-bg s-block--full-bg">
+<section data-testid="store-home-slider-products-header" class="s-block s-block--slider-with-bg s-block--full-bg" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
     <div class="slider-bg" style="background-image: url('{{ component.background }}');">
         <div class="container pt-8 sm:pt-20 relative">
             <div>
@@ -35,6 +35,7 @@
             {% endif %}
             block-title=" " 
             slider-id="slider-with-bg-{{ position }}"
+            product-card-component="custom-salla-product-card"
         ></salla-products-slider>
     </div>
 </section>

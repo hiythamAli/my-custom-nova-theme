@@ -265,3 +265,87 @@
 [data-store-theme="light"] [data-nova-pc="overlay-blur"] .s-product-card-wishlist-btn {
   background-color: var(--nova-card) !important;
 }
+
+
+/* ================================================================
+   FINAL POLISH — LIGHT HEADER / MORE / USER TRIGGER
+   ================================================================ */
+
+/* Light mode: use a premium translucent white header instead of a
+   heavy black block. It remains readable over the hero while matching
+   Raed's light visual language. */
+body[data-store-theme="light"] #mainnav.main-nav-container,
+body[data-store-theme="light"] #mainnav.main-nav-container.has-bg,
+body[data-store-theme="light"] #mainnav.main-nav-container.fixed-header {
+  background: rgba(255,255,255,.84) !important;
+  color: #111827 !important;
+  border-color: rgba(17,24,39,.10) !important;
+  box-shadow: 0 8px 28px rgba(17,24,39,.08) !important;
+  backdrop-filter: blur(16px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
+}
+body[data-store-theme="light"] #mainnav.main-nav-container a,
+body[data-store-theme="light"] #mainnav.main-nav-container .main-menu > .root-level > a,
+body[data-store-theme="light"] #mainnav.main-nav-container .header-btn__icon,
+body[data-store-theme="light"] #mainnav.main-nav-container .s-cart-summary-total,
+body[data-store-theme="light"] #mainnav.main-nav-container i,
+body[data-store-theme="light"] #mainnav.main-nav-container svg {
+  color: #111827 !important;
+}
+body[data-store-theme="light"] #mainnav.main-nav-container .main-menu > .root-level > a::after {
+  background: linear-gradient(90deg, #2563eb, #6d4aff) !important;
+  box-shadow: none !important;
+}
+
+/* Homepage header sits over the hero; keep the same light glass treatment
+   instead of letting the hero's transparent-header rule make it invisible. */
+body[data-store-theme="light"]:has(.nova-home-marker) #mainnav.main-nav-container,
+body[data-store-theme="light"]:has(.nova-home-marker) #mainnav.main-nav-container.has-bg,
+body[data-store-theme="light"]:has(.nova-home-marker) #mainnav.main-nav-container.fixed-header {
+  background: rgba(255,255,255,.82) !important;
+  border-bottom: 1px solid rgba(17,24,39,.10) !important;
+  box-shadow: 0 8px 28px rgba(17,24,39,.08) !important;
+  backdrop-filter: blur(16px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
+}
+
+/* User-menu trigger: transparent host + component color tokens. The
+   component hook below also removes the internal white trigger surface
+   when the current Twilight build exposes it through shadow DOM. */
+body[data-store-theme="light"] salla-user-menu[data-testid="store-header-user-menu"],
+body[data-store-theme="dark"] salla-user-menu[data-testid="store-header-user-menu"],
+body[data-store-theme="cardzone"] salla-user-menu[data-testid="store-header-user-menu"] {
+  background: transparent !important;
+  --color-background: transparent !important;
+  --color-background-hover: transparent !important;
+  --color-primary: currentColor !important;
+  --color-text: currentColor !important;
+  --color-border: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* More is always CardZone-dark and never inherits Light's white surfaces. */
+#more-menu-dropdown > .sub-menu,
+#more-menu-dropdown > .sub-menu .sub-menu {
+  background: #131928 !important;
+  color: #fff !important;
+  border-color: #1e2d4a !important;
+}
+#more-menu-dropdown > .sub-menu a,
+#more-menu-dropdown > .sub-menu span,
+#more-menu-dropdown > .sub-menu i,
+#more-menu-dropdown > .sub-menu svg {
+  color: #fff !important;
+}
+
+/* Official Salla Slider property disables navigation arrows for this
+   component; these selectors remain as a harmless fallback for versions
+   that render controls in the light DOM. */
+[data-testid="store-home-photos-slider"] salla-slider .swiper-button-prev,
+[data-testid="store-home-photos-slider"] salla-slider .swiper-button-next,
+[data-testid="store-home-photos-slider"] salla-slider .s-slider-block__nav,
+[data-testid="store-home-photos-slider"] .swiper-button-prev,
+[data-testid="store-home-photos-slider"] .swiper-button-next {
+  display: none !important;
+}

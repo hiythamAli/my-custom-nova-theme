@@ -10,7 +10,7 @@
 | limit                 | int       | Number of products to be shown                                   |
 #}
 
-<section data-testid="store-home-products-slider" id="best-offers-{{ position }}-slider" class="s-block s-block--best-offers container overflow-hidden">
+<section data-testid="store-home-products-slider" id="best-offers-{{ position }}-slider" class="s-block s-block--best-offers container overflow-hidden" data-nova-card-style="{{ theme.settings.get('product_card_style', 'modern') }}">
   {% if products|length %}
     <salla-products-slider
             data-testid="store-home-products-slider-widget"
@@ -22,6 +22,7 @@
             block-title="{{ title }}"
             block-subTitle="{{ sub_title|raw }}"
             slider-id="slider-with-bg-{{ position }}"
+            product-card-component="custom-salla-product-card"
     ></salla-products-slider>
   {% endif %}
 </section>

@@ -100,8 +100,23 @@
       }
     }
 
-    // More dropdown specific styles
+    // More is controlled by its own trigger so nearby page areas never open it.
     #more-menu-dropdown {
+      > .sub-menu {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
+      &.is-open > .sub-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+
+      // More dropdown specific styles
+
       @apply flex-shrink-0;
 
       > a {

@@ -182,8 +182,16 @@ class ProductCard extends HTMLElement {
   }
 
   render(){
-    this.classList.add('s-product-card-entry'); 
+    this.classList.add('s-product-card-entry');
     this.setAttribute('id', this.product.id);
+
+    // NOVA: inherit the card style from the product element that owns this card.
+    // This keeps each Page Builder element independent; tabs inside the same
+    // element naturally inherit the same selection.
+    const styleOwner = this.closest('[data-nova-card-style]');
+    const elementCardStyle = styleOwner?.getAttribute('data-nova-card-style');
+    const fallbackCardStyle = document.body?.getAttribute('data-nova-pc') || 'modern';
+    this.setAttribute('data-nova-card-style', elementCardStyle || fallbackCardStyle);
     !this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-vertical') : '';
     this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-horizontal') : '';
     this.fitImageHeight && !this.isSpecial && !this.fullImage && !this.minimal? this.classList.add('s-product-card-fit-height') : '';

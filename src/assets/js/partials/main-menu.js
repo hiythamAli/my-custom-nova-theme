@@ -181,65 +181,51 @@ class NavigationMenu extends HTMLElement {
         const mainMenu = this.querySelector('.main-menu');
         if (!mainMenu) return;
 
-        const container = mainMenu.closest('.container');
-        if (!container) return;
+        // Always keep exactly the first 5 root links in the header.
+        // Everything after them belongs to the More dropdown.
+        this.visibleMenus = this.menus.slice(0, 5);
+        this.overflowMenus = this.menus.slice(5);
 
-        // Reset menus
-        this.visibleMenus = [...this.menus];
-        this.overflowMenus = [];
-
-        // Remove existing more dropdown
         const existingMore = mainMenu.querySelector('#more-menu-dropdown');
-        if (existingMore) {
-            existingMore.remove();
-        }
+        if (existingMore) existingMore.remove();
 
-        // Show all menu items first
         const menuItems = mainMenu.querySelectorAll('.root-level[data-menu-item]');
-        menuItems.forEach(item => {
-            item.style.display = '';
-        });
-
-        // Calculate available width
-        const containerWidth = container.offsetWidth;
-        const otherElements = container.querySelector('.flex').children;
-        let usedWidth = 0;
-
-        // Calculate width used by logo and other elements
-        Array.from(otherElements).forEach(element => {
-            if (!element.contains(mainMenu)) {
-                usedWidth += element.offsetWidth;
-            }
-        });
-
-        const moreReserve = 140;
-        const availableWidth = Math.max(0, containerWidth - usedWidth - moreReserve);
-        let currentWidth = 0;
-        let visibleCount = 0;
-
-        // Check each menu item
         menuItems.forEach((item, index) => {
-            const itemWidth = item.offsetWidth;
-
-            if (currentWidth + itemWidth <= availableWidth && index < this.menus.length) {
-                currentWidth += itemWidth;
-                visibleCount++;
-            } else {
-                // Hide overflow items
-                item.style.setProperty('display', 'none', 'important');
-                if (index < this.menus.length) {
-                    this.overflowMenus.push(this.menus[index]);
-                }
-            }
+            item.style.setProperty('display', index < 5 ? '' : 'none', 'important');
         });
 
-        // Update visible menus
-        this.visibleMenus = this.menus.slice(0, visibleCount);
-
-        // Add More dropdown if needed
         if (this.overflowMenus.length > 0) {
             mainMenu.insertAdjacentHTML('beforeend', this.createMoreDropdown());
+            this.bindMoreDropdown();
         }
+    }
+
+    /**
+    * Open More only when the More control itself is hovered/focused or clicked.
+    * This prevents accidental opening from nearby page areas.
+    */
+    bindMoreDropdown() {
+        const more = this.querySelector('#more-menu-dropdown');
+        if (!more || more.dataset.bound === 'true') return;
+
+        const trigger = more.querySelector(':scope > a');
+        if (!trigger) return;
+
+        more.dataset.bound = 'true';
+
+        const open = () => more.classList.add('is-open');
+        const close = () => more.classList.remove('is-open');
+
+        trigger.addEventListener('mouseenter', open);
+        trigger.addEventListener('focus', open);
+        more.addEventListener('mouseleave', close);
+        more.addEventListener('focusout', (event) => {
+            if (!more.contains(event.relatedTarget)) close();
+        });
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            more.classList.toggle('is-open');
+        });
     }
 
     /**

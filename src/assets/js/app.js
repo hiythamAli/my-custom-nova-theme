@@ -12,6 +12,7 @@ class App extends AppHelpers {
 
   loadTheApp() {
     this.commonThings();
+    this.initNovaUserMenuTrigger();
     this.initiateNotifier();
     this.initiateMobileMenu();
     if (header_is_sticky) {
@@ -38,6 +39,38 @@ class App extends AppHelpers {
     this.status = 'ready';
     document.dispatchEvent(new CustomEvent('theme::ready'));
     this.log('Theme Loaded 🎉');
+  }
+
+  initNovaUserMenuTrigger() {
+    try {
+      salla.onReady().then(() => {
+        if (!salla.hooks || typeof salla.hooks.registerHook !== 'function') return;
+
+        salla.hooks.registerHook('salla-user-menu', 'componentDidLoad', ({ element }) => {
+          if (!element || !element.matches('[data-testid="store-header-user-menu"]')) return;
+
+          element.style.setProperty('background', 'transparent', 'important');
+          element.style.setProperty('box-shadow', 'none', 'important');
+
+          // Twilight user-menu currently renders its trigger inside an open
+          // shadow root. Only neutralize the trigger surface; leave the
+          // account dropdown itself untouched.
+          const root = element.shadowRoot;
+          if (!root) return;
+
+          const trigger = root.querySelector('button, [role="button"]');
+          if (!trigger) return;
+
+          trigger.style.setProperty('background', 'transparent', 'important');
+          trigger.style.setProperty('background-color', 'transparent', 'important');
+          trigger.style.setProperty('box-shadow', 'none', 'important');
+          trigger.style.setProperty('border-color', 'transparent', 'important');
+        });
+      });
+    } catch (error) {
+      // Never allow optional header polish to affect theme startup.
+      console.warn('NOVA user-menu polish skipped', error);
+    }
   }
 
   log(message) {
