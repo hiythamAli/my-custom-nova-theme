@@ -1,3 +1,7 @@
+{# NOVA_CUSTOM_COMPONENT_BRANCH #}
+{% if component is defined and component.product_card_style is defined %}
+<section class="s-block s-block--best-offers container overflow-hidden nova-product-element nova-card-style-{{ component.product_card_style }}" data-nova-card-style="{{ component.product_card_style }}"><salla-products-slider source="selected" source-value="{{ component.products|map(p => p.id)|json_encode }}" limit="{{ component.products|length }}" product-card-component="custom-salla-product-card"></salla-products-slider></section>
+{% else %}
 {#
 | Variable              | Type      | Description                                                      |
 |-----------------------|-----------|------------------------------------------------------------------|
@@ -26,3 +30,5 @@
     ></salla-products-slider>
   {% endif %}
 </section>
+
+{% endif %}

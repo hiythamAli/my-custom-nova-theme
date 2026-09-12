@@ -1,3 +1,10 @@
+{# NOVA_CUSTOM_COMPONENT_BRANCH #}
+{% if component is defined and component.product_card_style is defined %}
+<section class="s-block s-block-tabs s-block--tabs-produtcs container nova-product-element nova-card-style-{{ component.product_card_style }}" data-nova-card-style="{{ component.product_card_style }}">
+  {% if component.tabs|length > 1 %}<div class="tabs hide-scroll">{% for tab in component.tabs %}<salla-button class="tab-trigger {{ loop.first?'is-active':'' }}" data-target="nova-f2-{{ position }}-{{ loop.index }}" fill="outline">{{ tab['tabs.title']|default(tab.title) }}</salla-button>{% endfor %}</div>{% endif %}
+  <div class="tabs-wrapper">{% for tab in component.tabs %}<div id="nova-f2-{{ position }}-{{ loop.index }}" class="tabs__item {{ loop.first?'is-active':'' }}"><div class="grid grid-cols-2 lg:grid-cols-4 gap-4">{% for product in tab.products %}<custom-salla-product-card product="{{ product }}"></custom-salla-product-card>{% endfor %}</div></div>{% endfor %}</div>
+</section>
+{% else %}
 {#
 | Variable                      | Type      | Description                                                         |
 |-------------------------------|-----------|---------------------------------------------------------------------|
@@ -62,3 +69,5 @@
       </div>
   </div>
 </section> 
+
+{% endif %}
