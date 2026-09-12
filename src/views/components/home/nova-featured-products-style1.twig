@@ -1,0 +1,23 @@
+{% set component_id='nova-featured-products-style1-' ~ loop.index|default(0) %}
+{% set main_product = component.main_product|default(null) %}
+<section data-testid="store-home-featured-products" class="s-block s-block-tabs s-block--special-products container" id="{{ component_id }}" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  <div class="s-block__title">
+    <div class="right-side"><h2>{{ component.title|default('') }}</h2></div>
+    {% if component.sections|length > 1 %}<div class="tabs hide-scroll hidden lg:flex">
+      {% for section in component.sections %}<salla-button shape="link" data-target="{{ component_id }}-{{ loop.index }}" data-component-id="{{ component_id }}" class="tab-trigger {{ loop.first ? 'is-active' : '' }}">{{ section['sections.title']|default('') }}</salla-button>{% endfor %}
+    </div>{% endif %}
+  </div>
+  <div class="grid grid-cols-1 {{ main_product ? 'lg:grid-cols-2' : '' }} gap-8">
+    {% if main_product %}<div class="flex flex-col"><custom-salla-product-card shadow-on-hover product="{{ main_product }}" isSpecial></custom-salla-product-card></div>{% endif %}
+    <div class="flex flex-col">
+      {% if component.sections|length > 1 %}<div class="tabs mb-4 sm:mb-8 hide-scroll lg:hidden">
+        {% for section in component.sections %}<salla-button shape="link" data-target="{{ component_id }}-{{ loop.index }}" data-component-id="{{ component_id }}" class="tab-trigger {{ loop.first ? 'is-active' : '' }}">{{ section['sections.title']|default('') }}</salla-button>{% endfor %}
+      </div>{% endif %}
+      <div class="tabs-wrapper flex flex-1">
+        {% for section in component.sections %}<div id="{{ component_id }}-{{ loop.index }}" class="tabs__item grid-cols-2 {{ main_product ? '' : 'lg:grid-cols-4' }} {{ loop.first ? 'is-active' : '' }}">
+          {% for product in section['sections.products']|default([]) %}<custom-salla-product-card product="{{ product }}"></custom-salla-product-card>{% endfor %}
+        </div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

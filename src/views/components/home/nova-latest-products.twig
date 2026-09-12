@@ -1,0 +1,4 @@
+<section data-testid="store-home-products-section" class="s-block s-block--latest-products container mt-6 sm:mt-8" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  <div class="s-block__title"><h2>{{ trans('blocks.home.latest_products') }}</h2></div>
+  <salla-products-list data-testid="store-home-latest-products-list" source="latest" product-card-component="custom-salla-product-card"></salla-products-list>
+</section>

@@ -1,0 +1,15 @@
+{% set component_id='nova-featured-products-style2-' ~ loop.index|default(0) %}
+<section data-testid="store-home-featured-products-tabs" class="s-block s-block-tabs s-block--tabs-produtcs s-block--full-bg {{ component.is_slider ? 'as-slider':'as-grid' }} bg-gray-100 py-8 sm:py-16" id="{{ component_id }}" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  <div class="container">
+    {% if component.sections|length > 1 %}<div class="tabs hide-scroll">
+      {% for section in component.sections %}<salla-button class="tab-trigger {{ loop.first?'is-active':'' }}" data-target="{{ component_id }}-{{ loop.index }}" data-component-id="{{ component_id }}" fill="outline">{{ section['sections.title']|default('') }}</salla-button>{% endfor %}
+    </div>{% endif %}
+    <div class="tabs-wrapper">
+      {% for section in component.sections %}<div id="{{ component_id }}-{{ loop.index }}" class="tabs__item {{ loop.first?'is-active':'' }}">
+        {% set ids = section['sections.products']|default([])|map((p)=>p.id)|json_encode %}
+        {% if component.is_slider %}<salla-products-slider slider-id="nova-featured-2-{{ loop.index }}" source="selected" limit="{{ section['sections.products']|default([])|length }}" source-value="{{ ids }}" product-card-component="custom-salla-product-card"></salla-products-slider>
+        {% else %}<salla-products-list source="selected" limit="{{ section['sections.products']|default([])|length }}" source-value="{{ ids }}" product-card-component="custom-salla-product-card"></salla-products-list>{% endif %}
+      </div>{% endfor %}
+    </div>
+  </div>
+</section>

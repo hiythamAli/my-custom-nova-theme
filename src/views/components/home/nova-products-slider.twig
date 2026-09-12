@@ -1,0 +1,4 @@
+<section data-testid="store-home-products-slider" class="s-block s-block--best-offers container overflow-hidden" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  {% set ids=component.products|default([])|map((p)=>p.id)|json_encode %}
+  <salla-products-slider data-testid="store-home-products-slider-widget" source="selected" limit="{{ component.products|default([])|length }}" source-value="{{ ids }}" {{ component.autoplay ? 'autoplay':'' }} display-all-url="{{ component.display_all_url|default('') }}" block-title="{{ component.title|default('') }}" block-subTitle="{{ component.sub_title|default('') }}" slider-id="nova-products-slider"></salla-products-slider>
+</section>

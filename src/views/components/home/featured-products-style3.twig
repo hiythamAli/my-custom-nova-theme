@@ -1,7 +1,3 @@
-{# NOVA_CUSTOM_COMPONENT_BRANCH #}
-{% if component is defined and component.product_card_style is defined %}
-<section class="s-block s-block--features-products container nova-product-element nova-card-style-{{ component.product_card_style }}" data-nova-card-style="{{ component.product_card_style }}"><div class="inner">{% for section in component.sections %}<div><div class="s-block__title"><h2>{{ section['sections.title']|default(section.title) }}</h2></div><div class="grid grid-cols-1 lg:grid-cols-3 gap-4">{% for product in section.products %}<custom-salla-product-card shadow-on-hover product="{{ product }}"></custom-salla-product-card>{% endfor %}</div></div>{% endfor %}</div></section>
-{% else %}
 {#
 | Variable                      | Type      | Description                                                         |
 |-------------------------------|-----------|---------------------------------------------------------------------|
@@ -44,5 +40,3 @@
     </div>
 </section>
  
-
-{% endif %}

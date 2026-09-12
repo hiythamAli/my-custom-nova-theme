@@ -11,10 +11,7 @@
     "color",
     "breadcrumb",
     "unite-cards-height",
-    "component-featured-products",
     "component-fixed-banner",
-    "component-fixed-products",
-    "component-products-slider",
     "component-photos-slider",
     "component-parallax-background",
     "component-testimonials",
@@ -1684,20 +1681,21 @@
       ]
     },
     {
-      "key": "nova-featured-products-style1",
+      "key": "9b745fc4-1d1b-4b6b-83f2-1bbdce505212",
       "title": {
-        "en": "Featured Products — Nova Style 1",
-        "ar": "بطاقات مميزة — Nova 1"
+        "en": "Featured Products",
+        "ar": "بطاقات مميزة"
       },
-      "icon": "sicon-layout-grid-rearrange",
-      "path": "home.featured-products-style1",
+      "icon": "sicon-star",
+      "path": "home.nova-featured-products-style1",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر، بما في ذلك جميع التابات داخله.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -1705,69 +1703,103 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "99511e65-e2fb-4700-b229-593a6c364deb"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "2281a346-bb47-4580-b760-72ebcb1d0600"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "f98039ec-06a2-4cec-be04-6d5daf09efed"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "b07560fe-db35-4100-9a18-3125448e0024"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "c5ffcf11-b709-4c86-a95f-8e66d8ce603a"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "84e8002f-1b7a-4bc2-95b6-79ecea311569"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
+              "key": "d53b7197-b835-417d-b128-f635e88f655a"
             }
           ]
         },
         {
-          "id": "tabs",
+          "id": "title",
+          "type": "string",
+          "icon": "sicon-format-text-alt",
+          "label": "العنوان",
+          "value": null,
+          "required": false,
+          "format": "text",
+          "minLength": 0,
+          "maxLength": 100
+        },
+        {
+          "id": "main_product",
+          "type": "items",
+          "format": "dropdown-list",
+          "label": "المنتج الرئيسي",
+          "icon": "sicon-shopping-bag",
+          "selected": [],
+          "options": [],
+          "required": false,
+          "multichoice": false,
+          "source": "products",
+          "searchable": true,
+          "minLength": 0,
+          "maxLength": 1
+        },
+        {
+          "id": "sections",
           "type": "collection",
           "format": "collection",
-          "label": "التابات",
           "required": true,
           "minLength": 1,
-          "maxLength": 6,
-          "item_label": "تاب",
+          "maxLength": 10,
+          "label": "الأقسام",
+          "item_label": "قسم",
+          "value": [],
           "fields": [
             {
-              "id": "tabs.title",
+              "id": "sections.title",
               "type": "string",
-              "label": "عنوان التاب",
+              "icon": "sicon-format-text-alt",
+              "label": "عنوان القسم",
+              "value": null,
+              "required": false,
               "format": "text",
-              "required": false
+              "minLength": 0,
+              "maxLength": 100
             },
             {
-              "id": "products",
+              "id": "sections.products",
               "type": "items",
-              "icon": "sicon-list",
-              "label": "المنتجات",
               "format": "dropdown-list",
+              "label": "منتجات القسم",
+              "icon": "sicon-shopping-bag",
+              "selected": [],
+              "options": [],
               "required": true,
-              "source": "Products",
               "multichoice": true,
+              "source": "products",
               "searchable": true,
+              "minLength": 1,
               "maxLength": 8
             }
           ]
@@ -1775,20 +1807,21 @@
       ]
     },
     {
-      "key": "nova-featured-products-style2",
+      "key": "32076171-aa1b-418d-aa3b-c2a6b515e838",
       "title": {
-        "en": "Featured Products — Nova Style 2",
-        "ar": "بطاقات مميزة — Nova 2"
+        "en": "Featured Products Style 2",
+        "ar": "بطاقات مميزة Style 2"
       },
-      "icon": "sicon-layout-grid-rearrange",
-      "path": "home.featured-products-style2",
+      "icon": "sicon-layout-grid",
+      "path": "home.nova-featured-products-style2",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر، بما في ذلك جميع التابات داخله.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -1796,97 +1829,109 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "f99860a8-fb7c-4667-939c-e4911e82e2e6"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "6d567648-caaa-41fd-969d-bab2bc1ad398"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "1cc69f66-3ca3-48e1-88d8-ab229415fa4f"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "34cab27e-490f-4a27-85b1-dc513201d309"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "f7516e1f-2501-43b3-bf71-e7a4ca23e0db"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "5d3572b8-47be-4ac0-8fc1-6b9c419e1b63"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
-            }
-          ]
-        },
-        {
-          "id": "tabs",
-          "type": "collection",
-          "format": "collection",
-          "label": "التابات",
-          "required": true,
-          "minLength": 1,
-          "maxLength": 6,
-          "item_label": "تاب",
-          "fields": [
-            {
-              "id": "tabs.title",
-              "type": "string",
-              "label": "عنوان التاب",
-              "format": "text",
-              "required": false
-            },
-            {
-              "id": "products",
-              "type": "items",
-              "icon": "sicon-list",
-              "label": "المنتجات",
-              "format": "dropdown-list",
-              "required": true,
-              "source": "Products",
-              "multichoice": true,
-              "searchable": true,
-              "maxLength": 12
+              "key": "2cfcbe25-4e94-46eb-8b81-824566a6bc4a"
             }
           ]
         },
         {
           "id": "is_slider",
           "type": "boolean",
-          "label": "عرض المنتجات بشكل متحرك",
+          "icon": "sicon-toggle-off",
+          "label": "عرض المنتجات كسلايدر",
           "format": "switch",
+          "required": false,
+          "value": true,
           "selected": true
+        },
+        {
+          "id": "sections",
+          "type": "collection",
+          "format": "collection",
+          "required": true,
+          "minLength": 1,
+          "maxLength": 10,
+          "label": "الأقسام",
+          "item_label": "قسم",
+          "value": [],
+          "fields": [
+            {
+              "id": "sections.title",
+              "type": "string",
+              "icon": "sicon-format-text-alt",
+              "label": "عنوان القسم",
+              "value": null,
+              "required": false,
+              "format": "text",
+              "minLength": 0,
+              "maxLength": 100
+            },
+            {
+              "id": "sections.products",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "منتجات القسم",
+              "icon": "sicon-shopping-bag",
+              "selected": [],
+              "options": [],
+              "required": true,
+              "multichoice": true,
+              "source": "products",
+              "searchable": true,
+              "minLength": 1,
+              "maxLength": 8
+            }
+          ]
         }
       ]
     },
     {
-      "key": "nova-featured-products-style3",
+      "key": "cb29d498-4ee0-482b-acc2-5f104575e456",
       "title": {
-        "en": "Featured Products — Nova Style 3",
-        "ar": "بطاقات مميزة — Nova 3"
+        "en": "Featured Products Style 3",
+        "ar": "بطاقات مميزة Style 3"
       },
-      "icon": "sicon-layout-grid-rearrange",
-      "path": "home.featured-products-style3",
+      "icon": "sicon-layout-grid",
+      "path": "home.nova-featured-products-style3",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر، بما في ذلك جميع التابات داخله.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -1894,39 +1939,39 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "ada95961-0a36-448f-a64a-b9ab622442f2"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "d4ecfb95-4ac7-40cd-9f83-b48d6e38d3d0"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "869ef09d-c368-418a-ba04-54a01aca9ab6"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "8605fc61-d8c1-41bd-b0f4-e9367c660104"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "a0c71b90-15e9-44ea-a5ff-759ab6c3f5b4"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "9aea645a-852a-4d2b-92cb-c2606a15f103"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
+              "key": "64ace64e-c6ee-421a-94ea-f3c199ef579f"
             }
           ]
         },
@@ -1934,29 +1979,52 @@
           "id": "sections",
           "type": "collection",
           "format": "collection",
-          "label": "الأقسام",
           "required": true,
           "minLength": 1,
-          "maxLength": 4,
+          "maxLength": 10,
+          "label": "الأقسام",
           "item_label": "قسم",
+          "value": [],
           "fields": [
             {
               "id": "sections.title",
               "type": "string",
+              "icon": "sicon-format-text-alt",
               "label": "عنوان القسم",
+              "value": null,
+              "required": false,
               "format": "text",
-              "required": false
+              "minLength": 0,
+              "maxLength": 100
             },
             {
-              "id": "products",
+              "id": "sections.featured_product",
               "type": "items",
-              "icon": "sicon-list",
-              "label": "المنتجات",
               "format": "dropdown-list",
-              "required": true,
-              "source": "Products",
-              "multichoice": true,
+              "label": "المنتج الرئيسي",
+              "icon": "sicon-shopping-bag",
+              "selected": [],
+              "options": [],
+              "required": false,
+              "multichoice": false,
+              "source": "products",
               "searchable": true,
+              "minLength": 0,
+              "maxLength": 1
+            },
+            {
+              "id": "sections.products",
+              "type": "items",
+              "format": "dropdown-list",
+              "label": "المنتجات الأخرى",
+              "icon": "sicon-shopping-bag",
+              "selected": [],
+              "options": [],
+              "required": true,
+              "multichoice": true,
+              "source": "products",
+              "searchable": true,
+              "minLength": 1,
               "maxLength": 8
             }
           ]
@@ -1964,20 +2032,21 @@
       ]
     },
     {
-      "key": "nova-fixed-products",
+      "key": "c2683f38-4f3d-4439-9bb2-845d753359a2",
       "title": {
-        "en": "Fixed Products — Nova",
-        "ar": "بطاقات ثابتة — Nova"
+        "en": "Fixed Products",
+        "ar": "بطاقات ثابتة"
       },
-      "icon": "sicon-list",
-      "path": "home.fixed-products",
+      "icon": "sicon-grid",
+      "path": "home.nova-fixed-products",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر، بما في ذلك جميع التابات داخله.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -1985,101 +2054,139 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "1697122e-0655-4305-a056-f1c9a1af0d5c"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "061ad474-09d2-4273-9c1a-548dcfc676ed"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "690a3fa0-de28-4fc5-9ac3-b8ae60868c1c"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "f6448574-1f3f-4d09-953b-4fd9a2af60f1"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "24160cc2-0759-49e2-9831-743413345122"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "2684fc66-de1d-45c6-83ad-e748cd64aa86"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
+              "key": "1d75e4b0-f285-4d1e-9728-aae519db3540"
             }
           ]
         },
         {
           "id": "title",
           "type": "string",
+          "icon": "sicon-format-text-alt",
           "label": "العنوان",
+          "value": null,
+          "required": false,
           "format": "text",
-          "required": false
+          "minLength": 0,
+          "maxLength": 100
         },
         {
           "id": "products",
           "type": "items",
-          "icon": "sicon-list",
-          "label": "المنتجات",
           "format": "dropdown-list",
+          "label": "المنتجات",
+          "icon": "sicon-shopping-bag",
+          "selected": [],
+          "options": [],
           "required": true,
-          "source": "Products",
           "multichoice": true,
+          "source": "products",
           "searchable": true,
-          "maxLength": 12
+          "minLength": 1,
+          "maxLength": 20
         },
         {
           "id": "display_all_url",
           "type": "items",
           "icon": "sicon-link",
           "label": "رابط عرض الكل",
-          "format": "variable-list",
+          "value": [],
           "required": false,
+          "format": "variable-list",
+          "searchable": true,
           "source": "custom",
           "sources": [
             {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "منتجات مع وسم",
+              "key": "products_tags",
+              "value": "products_tags"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "ماركة تجارية",
+              "key": "brands",
+              "value": "brands"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
               "label": "رابط خارجي",
-              "key": "link",
-              "value": "link"
+              "key": "custom",
+              "value": "custom"
             }
           ]
         },
         {
-          "id": "vertical",
+          "id": "horizontal",
           "type": "boolean",
-          "label": "عرض رأسي للبطاقات",
+          "icon": "sicon-toggle-off",
+          "label": "عرض أفقي",
           "format": "switch",
-          "selected": true
+          "required": false,
+          "value": false,
+          "selected": false
         }
       ]
     },
     {
-      "key": "nova-products-slider",
+      "key": "95e8d2cb-509e-4045-9d78-a111d637f8d4",
       "title": {
-        "en": "Products Slider — Nova",
-        "ar": "بطاقات متحركة — Nova"
+        "en": "Products Slider",
+        "ar": "بطاقات متحركة"
       },
       "icon": "sicon-list-play",
-      "path": "home.products-slider",
+      "path": "home.nova-products-slider",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر، بما في ذلك جميع التابات داخله.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -2087,85 +2194,150 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "05c4d51c-0b40-4272-ad2e-4a14e00fcb30"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "e4d6b3f8-e345-4498-b1d1-cf7ac591b7dd"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "18db2e0e-7af2-4d8e-b6dc-8f79fb64c60b"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "3b438210-e471-4ff8-a40e-0c7f42644f89"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "589d1f6f-072a-4336-ad17-980a7b5c8d8f"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "1c8328e6-b46c-42d4-9909-55db9e34b98c"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
+              "key": "55dc6049-692e-402e-8e0b-54871d4edada"
             }
           ]
         },
         {
           "id": "title",
           "type": "string",
+          "icon": "sicon-format-text-alt",
           "label": "العنوان",
+          "value": null,
+          "required": false,
           "format": "text",
-          "required": false
+          "minLength": 0,
+          "maxLength": 100
         },
         {
           "id": "sub_title",
           "type": "string",
-          "label": "العنوان الفرعي",
-          "format": "textarea",
-          "required": false
+          "icon": "sicon-format-text-alt",
+          "label": "النص التوضيحي",
+          "value": null,
+          "required": false,
+          "format": "text",
+          "minLength": 0,
+          "maxLength": 100
         },
         {
           "id": "products",
           "type": "items",
-          "icon": "sicon-list",
-          "label": "المنتجات",
           "format": "dropdown-list",
+          "label": "المنتجات",
+          "icon": "sicon-shopping-bag",
+          "selected": [],
+          "options": [],
           "required": true,
-          "source": "Products",
           "multichoice": true,
+          "source": "products",
           "searchable": true,
-          "maxLength": 12
+          "minLength": 1,
+          "maxLength": 20
+        },
+        {
+          "id": "display_all_url",
+          "type": "items",
+          "icon": "sicon-link",
+          "label": "رابط عرض الكل",
+          "value": [],
+          "required": false,
+          "format": "variable-list",
+          "searchable": true,
+          "source": "custom",
+          "sources": [
+            {
+              "label": "منتج",
+              "key": "products",
+              "value": "products"
+            },
+            {
+              "label": "منتجات مع وسم",
+              "key": "products_tags",
+              "value": "products_tags"
+            },
+            {
+              "label": "تصنيف",
+              "key": "categories",
+              "value": "categories"
+            },
+            {
+              "label": "ماركة تجارية",
+              "key": "brands",
+              "value": "brands"
+            },
+            {
+              "label": "صفحة تعريفية",
+              "key": "pages",
+              "value": "pages"
+            },
+            {
+              "label": "رابط خارجي",
+              "key": "custom",
+              "value": "custom"
+            }
+          ]
+        },
+        {
+          "id": "autoplay",
+          "type": "boolean",
+          "icon": "sicon-toggle-off",
+          "label": "تشغيل تلقائي",
+          "format": "switch",
+          "required": false,
+          "value": true,
+          "selected": true
         }
       ]
     },
     {
-      "key": "nova-latest-products",
+      "key": "66f0d7d7-840b-4690-bb98-b715b157c02b",
       "title": {
-        "en": "Latest Products — Nova",
-        "ar": "أحدث المنتجات — Nova"
+        "en": "Latest Products",
+        "ar": "أحدث المنتجات"
       },
       "icon": "sicon-clock",
-      "path": "home.latest-products",
+      "path": "home.nova-latest-products",
+      "is_default": false,
       "fields": [
         {
           "id": "product_card_style",
           "type": "items",
           "format": "dropdown-list",
-          "label": "شكل بطاقات المنتجات",
-          "description": "يطبق هذا الاختيار على جميع بطاقات هذا العنصر.",
+          "label": "شكل بطاقة المنتج",
+          "description": "يطبق هذا الاختيار على بطاقات المنتجات داخل هذا العنصر فقط.",
           "icon": "sicon-layout-grid-rearrange",
           "source": "Manual",
           "required": true,
@@ -2173,49 +2345,41 @@
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "a966b4d4-7484-4a99-9c05-690da6a2cea1"
             }
           ],
           "options": [
             {
               "label": "Modern — الأساسي",
               "value": "modern",
-              "key": "nova-product-card-modern"
+              "key": "dd238696-85c0-4c26-8f16-4fd94221cb65"
             },
             {
               "label": "Style 1 — Profile",
               "value": "nova-profile",
-              "key": "nova-product-card-profile"
+              "key": "1e0c7377-4d22-4e49-b8bd-09d6b52fdeec"
             },
             {
               "label": "Style 2 — Dark Product",
               "value": "nova-dark",
-              "key": "nova-product-card-dark"
+              "key": "c1303657-dc20-49e6-a702-ac41e18b1902"
             },
             {
               "label": "Style 3 — Clean Product",
               "value": "nova-clean",
-              "key": "nova-product-card-clean"
+              "key": "c489f25e-8db0-41e1-8b37-291eaa48b366"
             },
             {
               "label": "Style 4 — Image Overlay",
               "value": "nova-overlay",
-              "key": "nova-product-card-overlay"
+              "key": "502798d6-e564-4801-bfdb-030a09b29c20"
             },
             {
               "label": "Style 5 — Horizontal",
               "value": "nova-horizontal",
-              "key": "nova-product-card-horizontal"
+              "key": "e1fa1a28-d9d2-4ec8-b122-9a5a93b07001"
             }
           ]
-        },
-        {
-          "id": "limit",
-          "type": "number",
-          "format": "integer",
-          "label": "عدد المنتجات",
-          "required": false,
-          "value": 8
         }
       ]
     }

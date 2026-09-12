@@ -1,0 +1,12 @@
+<section data-testid="store-home-featured-products-grid" class="s-block s-block--features-products {% if component.sections|length > 1 %}two-cols{% endif %} container" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  <div class="inner">
+    {% for section in component.sections %}<div>
+      <div class="s-block__title"><h2>{{ section['sections.title']|default('') }}</h2></div>
+      {% set main = section['sections.featured_product']|default(null) %}
+      <div class="flex-1 grid lg:grid-cols-2 gap-4 sm:gap-8">
+        {% if main %}<custom-salla-product-card shadow-on-hover product="{{ main }}" fullImage></custom-salla-product-card><div class="grid gap-4 sm:gap-8">{% for product in section['sections.products']|default([])|slice(0,3) %}<custom-salla-product-card shadow-on-hover product="{{ product }}" minimal></custom-salla-product-card>{% endfor %}</div>
+        {% else %}{% for product in section['sections.products']|default([]) %}<custom-salla-product-card shadow-on-hover product="{{ product }}" minimal></custom-salla-product-card>{% endfor %}{% endif %}
+      </div>
+    </div>{% endfor %}
+  </div>
+</section>
