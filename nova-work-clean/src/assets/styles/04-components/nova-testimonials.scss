@@ -1,0 +1,21 @@
+/**
+ * NOVA TESTIMONIALS (home/custom-testimonials.twig)
+ * ------------------------------------------------------------------
+ * Restyles the existing testimonials slider (salla-slider type=
+ * "testimonials") — same active/prev/next slide classes Raed already
+ * uses for the center-focus effect, just a calmer visual language.
+ * ------------------------------------------------------------------
+ */
+[data-testid="store-home-custom-testimonials"] {
+  .s-reviews-header { font-size: 1.125rem; font-weight: 700; color: var(--nova-text); text-align: center; }
+
+  .s-reviews-testimonial {
+    background: var(--nova-card);
+    border: 1px solid var(--nova-border);
+    border-radius: var(--nova-radius-lg);
+    &__inner { padding: 2.5rem; }
+    &__icon svg { fill: var(--nova-border-strong); }
+    &__text p { color: var(--nova-text) !important; font-size: 1rem !important; line-height: 1.9 !important; }
+    h2 { color: var(--nova-text) !important; }
+  }
+}

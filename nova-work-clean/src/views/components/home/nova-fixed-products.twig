@@ -1,0 +1,5 @@
+<section data-testid="store-home-fixed-products" class="s-block container" data-nova-card-style="{{ component.product_card_style|default('modern') }}">
+  {% if component.title %}<div class="s-block__title"><div class="right-side"><h2>{{ component.title }}</h2></div>{% if component.display_all_url %}<a href="{{ component.display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>{% endif %}</div>{% endif %}
+  {% set ids=component.products|default([])|map((p)=>p.id)|json_encode %}
+  <salla-products-list data-testid="store-home-fixed-products-list" source="selected" limit="{{ component.products|default([])|length }}" source-value="{{ ids }}" class="{{ component.horizontal ? 'horizontal-products':'vertical-products' }}" product-card-component="custom-salla-product-card" {{ component.horizontal ? 'horizontal-cards':'' }}></salla-products-list>
+</section>

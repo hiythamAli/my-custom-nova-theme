@@ -1,0 +1,113 @@
+/**
+ * NOVA HEADER
+ * ------------------------------------------------------------------
+ * Restyles Raed's existing two-row header (.top-navbar + .main-nav-
+ * container) into one visually seamless dark bar, matching Nova's
+ * identity. No markup/JS changes — same salla-menu, salla-search,
+ * salla-user-menu, salla-cart-summary, custom-main-menu components,
+ * same #mainnav id used by the sticky-header script.
+ *
+ * Specificity note: these rules use single-class selectors
+ * (.main-nav-container, .top-navbar). Salla's own header-customization
+ * feature (merchant-set colors from the Partners Portal) applies via
+ * ".has-bg .main-nav-container" / CSS vars, which is more specific and
+ * will still correctly win over these Nova defaults if a merchant sets
+ * a custom color there.
+ * ------------------------------------------------------------------
+ */
+
+.top-navbar {
+  background: var(--nova-ink-soft);
+  color: var(--nova-text-on-ink-muted);
+  border-bottom: 1px solid var(--nova-ink-border);
+
+  .topnav-link-item { border-color: var(--nova-ink-border); }
+  .btn--circle-gray,
+  .btn--rounded-gray { background: rgba(255,255,255,.06); color: var(--nova-text-on-ink); }
+  .s-search-input { background: rgba(255,255,255,.06); color: var(--nova-text-on-ink); }
+}
+
+.main-nav-container {
+  background: rgba(10,6,18,.8);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid var(--nova-ink-border);
+  box-shadow: 0 1px 0 rgba(168,85,247,.15);
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .main-menu > .root-level > a {
+    color: var(--nova-text-on-ink);
+    font-size: .9rem;
+    letter-spacing: var(--nova-tracking-wide);
+    position: relative;
+    transition: color var(--nova-duration) var(--nova-ease);
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--nova-accent), var(--nova-accent-2));
+      transform: scaleX(0);
+      transition: transform var(--nova-duration) var(--nova-ease);
+      box-shadow: var(--nova-glow);
+    }
+    &:hover { color: var(--nova-accent-soft); }
+    &:hover::after { transform: scaleX(1); }
+  }
+
+  a[data-testid="store-header-mobile-toggle"] i,
+  a[data-testid="store-header-mobile-toggle"] .sicon-menu {
+    color: var(--nova-text-on-ink) !important;
+  }
+
+  .header-btn__icon {
+    background: transparent;
+    border-color: var(--nova-ink-border);
+    color: var(--nova-text-on-ink);
+  }
+
+  .s-cart-summary-total { color: var(--nova-text-on-ink); }
+}
+
+/* logo area keeps merchant's own image untouched — only vertical rhythm */
+.navbar-brand img { max-height: 34px; }
+
+/* Floating rounded navbar — matches reference: inset margin,
+   pill-rounded corners, subtle border, sits above the page content
+   instead of running edge-to-edge. Sticky-scroll behavior untouched
+   (Raed's existing #mainnav.fixed-header class still handled). */
+.main-nav-container {
+  margin: .65rem 1rem 0;
+  border-radius: var(--nova-radius-pill);
+  border: 1px solid var(--nova-border);
+  max-width: calc(100% - 2rem);
+}
+#mainnav.fixed-header.main-nav-container {
+  margin: .5rem auto 0;
+  max-width: 1100px;
+  left: 0; right: 0;
+}
+@media (max-width: 639px) {
+  .main-nav-container { margin: .5rem .5rem 0; border-radius: var(--nova-radius-lg); max-width: calc(100% - 1rem); }
+}
+
+/* NOVA header behavior: solid at page load, glass only after sticky state. */
+#mainnav.main-nav-container {
+  background: var(--nova-ink-soft) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: .65rem 1.25rem !important;
+}
+#mainnav.main-nav-container.fixed-header {
+  background: color-mix(in srgb, var(--nova-ink-soft) 82%, transparent) !important;
+  backdrop-filter: blur(18px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+#mainnav.main-nav-container .inner,
+#mainnav.main-nav-container .container {
+  background: transparent !important;
+}
+@media (max-width: 639px) {
+  #mainnav.main-nav-container { padding: .55rem .8rem !important; }
+}

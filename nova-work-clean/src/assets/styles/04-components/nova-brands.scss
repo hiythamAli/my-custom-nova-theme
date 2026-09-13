@@ -1,0 +1,13 @@
+/**
+ * NOVA BRANDS (home/brands.twig)
+ * Section bg already resolved by [data-nova-section-bg] rules in
+ * nova-product-card.scss (overrides the bg-gray-100 utility). This
+ * file only adds the grayscale → color hover treatment on logos.
+ */
+[data-testid="store-home-brands"] {
+  .brand-item {
+    filter: grayscale(1) opacity(.55);
+    transition: filter var(--nova-duration) var(--nova-ease);
+    &:hover { filter: grayscale(0) opacity(1); }
+  }
+}

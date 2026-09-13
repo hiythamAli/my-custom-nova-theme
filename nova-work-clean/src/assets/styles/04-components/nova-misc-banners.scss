@@ -1,0 +1,74 @@
+/**
+ * NOVA — full-bleed banner + transparent header-over-hero
+ * ------------------------------------------------------------------
+ * Transparent header only activates on the home page (scoped via
+ * body:has(.nova-home-marker), a harmless wrapper div added in
+ * pages/index.twig — no Salla logic touched). Uses Raed's EXISTING
+ * scroll listener (app.js initiateStickyMenu, untouched) which
+ * already toggles "fixed-header" on #mainnav — we only style that
+ * state differently.
+ * ------------------------------------------------------------------
+ */
+
+/* full-bleed banner, edge to edge — auto-fits to whatever image the
+   merchant uploads (big or small), no forced crop/stretch. Width
+   spans the full container; height simply follows the image's own
+   natural ratio. */
+.nova-full-bleed {
+  &__inner { width: 100%; line-height: 0; }
+  .banner--fixed {
+    border-radius: 0;
+    width: 100%;
+    display: block;
+  }
+  .banner--fixed img {
+    width: 100%;
+    height: auto;
+    max-width: none !important;
+    display: block;
+  }
+}
+[data-testid="store-home-photos-slider"] .swiper-slide img {
+  border-radius: var(--nova-radius-lg);
+  overflow: hidden;
+}
+
+/* transparent header floating over the hero — home page only */
+body:has(.nova-home-marker) {
+  .top-navbar { display: none; }
+
+  #mainnav.main-nav-container,
+  #mainnav.main-nav-container.has-bg {
+    position: absolute !important;
+    top: 0; left: 0; right: 0;
+    z-index: 30;
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+    transition: background var(--nova-duration) var(--nova-ease), backdrop-filter var(--nova-duration) var(--nova-ease), position var(--nova-duration);
+
+    /* once Raed's own scroll script adds "fixed-header": pure glass blur, no color at all */
+    &.fixed-header {
+      position: fixed !important;
+      background: transparent !important;
+      backdrop-filter: blur(22px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+      border-bottom-color: transparent !important;
+    }
+  }
+
+  /* pull the first hero/banner section up behind the transparent header */
+  .nova-home-marker .s-block:first-of-type {
+    margin-top: 0 !important;
+  }
+  /* stick the very next block directly under the hero, no gap.
+     nth-of-type(2) is more robust than an adjacent-sibling (+)
+     selector here, since it doesn't depend on there being no wrapper
+     element between the two blocks. */
+  .nova-home-marker .s-block:nth-of-type(2) {
+    margin-top: 0 !important;
+  }
+  .nova-home-marker .s-block--hero-slider:first-of-type .swiper-slide { border-radius: 0 !important; }
+}
